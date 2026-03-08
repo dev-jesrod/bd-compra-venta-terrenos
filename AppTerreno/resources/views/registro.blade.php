@@ -29,12 +29,13 @@
             </label>
         </div>
 
-        <form class="space-y-4">
+        <form class="space-y-4" method="POST" action="/login">
+            @csrf
             <div class="space-y-2">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Nombre Completo</label>
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">person</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Juan Pérez" type="text" />
+                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Juan Pérez" type="text" name="name" required />
                 </div>
             </div>
 
@@ -42,7 +43,7 @@
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Correo Electrónico</label>
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">mail</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="juan@ejemplo.com" type="email" />
+                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="juan@ejemplo.com" type="email" name="email" required />
                 </div>
             </div>
 
@@ -58,7 +59,7 @@
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Contraseña</label>
                 <div class="relative">
                     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">lock</span>
-                    <input class="w-full pl-12 pr-12 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="••••••••" type="password" />
+                    <input class="w-full pl-12 pr-12 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="••••••••" type="password" name="password" required />
                     <button class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 hover:text-primary transition-colors" type="button">
                         <span class="material-symbols-outlined text-xl">visibility</span>
                     </button>

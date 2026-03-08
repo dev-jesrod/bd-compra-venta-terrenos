@@ -20,7 +20,7 @@
             <p class="text-slate-500 dark:text-slate-400 text-base">Accede de forma segura a tu portafolio de inversión de terrenos.</p>
         </div>
         
-        <form class="flex flex-col gap-5">
+        <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-5">
             <!-- Email Field -->
             <div class="flex flex-col gap-1.5">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="email">Correo Electrónico</label>

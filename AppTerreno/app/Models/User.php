@@ -45,4 +45,34 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Registra un nuevo usuario aplicando validación a nivel de modelo.
+     * Esto asegura que nunca se cree un usuario inválido desde ninguna 
+     * parte del código (no solo desde el controlador).
+     *
+     * @param array $datos
+     * @return User
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public static function registrarUsuario(array $datos): self
+    {
+        // 1. Validación estricta a nivel del Modelo
+        $validador = \Illuminate\Support\Facades\Validator::make($datos, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if ($validador->fails()) {
+            throw new \Illuminate\Validation\ValidationException($validador);
+        }
+
+        // 2. Creación e instanciación del modelo
+        return self::create([
+            'name' => $datos['name'],
+            'email' => $datos['email'],
+            'password' => \Illuminate\Support\Facades\Hash::make($datos['password']),
+        ]);
+    }
 }
