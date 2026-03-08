@@ -7,6 +7,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/login.css',
+                'resources/css/registro.css',
                 'resources/js/tailwind-config.js'
             ],
             refresh: true,
