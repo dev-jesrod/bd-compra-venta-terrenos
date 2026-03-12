@@ -29,41 +29,50 @@
             </label>
         </div>
 
-        <form class="space-y-4" method="POST" action="/login">
+        <form class="space-y-4" method="POST" action="{{ route('registro.store') }}">
             @csrf
             <div class="space-y-2">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Nombre Completo</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">person</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Juan Pérez" type="text" name="name" required />
+                <div class="relative flex items-center">
+                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">person</span>
+                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 @error('name') border-red-500 @enderror" placeholder="Juan Pérez" type="text" name="name" value="{{ old('name') }}" required />
                 </div>
+                @error('name')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="space-y-2">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Correo Electrónico</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">mail</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="juan@ejemplo.com" type="email" name="email" required />
+                <div class="relative flex items-center">
+                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">mail</span>
+                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 @error('email') border-red-500 @enderror" placeholder="juan@ejemplo.com" type="email" name="email" value="{{ old('email') }}" required />
                 </div>
+                @error('email')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="space-y-2">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Número de Teléfono</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">call</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="+1 (555) 000-0000" type="tel" />
+                <div class="relative flex items-center">
+                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">call</span>
+                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="+1 (555) 000-0000" type="tel" name="phone" />
                 </div>
             </div>
 
             <div class="space-y-2">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Contraseña</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/40 text-xl">lock</span>
-                    <input class="w-full pl-12 pr-12 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="••••••••" type="password" name="password" required />
-                    <button class="absolute right-4 top-1/2 -translate-y-1/2 text-primary/40 hover:text-primary transition-colors" type="button">
-                        <span class="material-symbols-outlined text-xl">visibility</span>
+                <div class="relative flex items-center">
+                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">lock</span>
+                    <input class="w-full pl-12 pr-12 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 @error('password') border-red-500 @enderror" id="password" placeholder="••••••••" type="password" name="password" required />
+                    <button id="toggle-password" class="absolute right-4 flex items-center justify-center text-primary/40 hover:text-primary transition-colors h-full w-8" type="button">
+                        <span class="material-symbols-outlined text-xl leading-none">visibility</span>
                     </button>
                 </div>
+                @error('password')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="pt-2">
@@ -106,4 +115,19 @@
         </div>
     </div>
 </main>
+
+<script>
+    document.getElementById('toggle-password').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('span');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.textContent = 'visibility_off'; // Icono para ocultar
+        } else {
+            passwordInput.type = 'password';
+            icon.textContent = 'visibility'; // Icono para mostrar
+        }
+    });
+</script>
 @endsection

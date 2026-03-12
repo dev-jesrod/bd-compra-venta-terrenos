@@ -21,10 +21,14 @@
         </div>
         
         <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-5">
+            @csrf
             <!-- Email Field -->
             <div class="flex flex-col gap-1.5">
                 <label class="text-sm font-semibold text-slate-700 dark:text-slate-300" for="email">Correo Electrónico</label>
-                <input class="w-full px-4 py-3 rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-slate-100" id="email" placeholder="nombre@ejemplo.com" type="email" />
+                <input class="w-full px-4 py-3 rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-slate-100 @error('email') border-red-500 @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="nombre@ejemplo.com" type="email" required />
+                @error('email')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
             </div>
             
             <!-- Password Field -->
@@ -34,16 +38,19 @@
                     <a class="text-xs font-bold text-primary hover:underline" href="#">¿Olvidaste tu contraseña?</a>
                 </div>
                 <div class="relative">
-                    <input class="w-full px-4 py-3 pr-10 rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-slate-100" id="password" placeholder="Ingresa tu contraseña" type="password" />
-                    <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary flex items-center" type="button">
+                    <input class="w-full px-4 py-3 pr-10 rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 text-slate-900 dark:text-slate-100 @error('password') border-red-500 @enderror" id="password" name="password" placeholder="Ingresa tu contraseña" type="password" required />
+                    <button id="toggle-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary flex items-center" type="button">
                         <span class="material-symbols-outlined text-[20px]">visibility</span>
                     </button>
                 </div>
+                @error('password')
+                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                @enderror
             </div>
             
             <!-- Remember Me -->
             <div class="flex items-center gap-2">
-                <input class="w-4 h-4 rounded border-primary/20 text-primary focus:ring-primary cursor-pointer" id="remember" type="checkbox" />
+                <input class="w-4 h-4 rounded border-primary/20 text-primary focus:ring-primary cursor-pointer" id="remember" name="remember" type="checkbox" />
                 <label class="text-sm text-slate-600 dark:text-slate-400 cursor-pointer select-none" for="remember">Recordar este dispositivo</label>
             </div>
             
@@ -77,4 +84,19 @@
         </p>
     </div>
 </main>
+
+<script>
+    document.getElementById('toggle-password').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const icon = this.querySelector('span');
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.textContent = 'visibility_off'; // Icono para ocultar
+        } else {
+            passwordInput.type = 'password';
+            icon.textContent = 'visibility'; // Icono para mostrar
+        }
+    });
+</script>
 @endsection
