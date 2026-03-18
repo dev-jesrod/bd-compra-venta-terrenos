@@ -1,117 +1,117 @@
 @extends('layouts.app')
 
-@section('title', 'AppTerreno - Crear Cuenta')
+@section('title', 'Maz Terrenos - Registro')
 
 @php
     $css_file = 'registro';
 @endphp
 
 @section('content')
-<main class="flex flex-1 items-center justify-center p-6 bg-background-light dark:bg-background-dark">
-    <div class="w-full max-w-[480px] space-y-8 bg-white dark:bg-slate-900 p-8 rounded-xl shadow-xl shadow-primary/5 border border-primary/5">
-        <div class="text-center space-y-2">
-            <h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Crear Cuenta</h1>
-            <p class="text-primary/70 dark:text-primary/60 text-sm">Únete a AppTerreno para iniciar tu viaje inmobiliario</p>
+<main class="flex-1 flex bg-white min-h-[calc(100vh-80px)]">
+    <!-- Left Side: Image Placeholder -->
+    <div class="hidden lg:flex lg:w-1/2 bg-gray-200 relative items-center justify-center">
+        <!-- 
+        <img src="{{ asset('public/images/paisaje-mazatlan.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+        -->
+        <div class="absolute inset-0 flex items-center justify-center">
+            <span class="text-gray-500 font-black text-3xl uppercase tracking-widest text-center px-10">Paisaje de Mazatlán</span>
         </div>
+    </div>
 
-        <div class="flex p-1 bg-primary/5 rounded-xl">
-            <label class="flex-1 cursor-pointer">
-                <input checked class="peer hidden" name="role" type="radio" value="buyer" />
-                <div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-semibold transition-all peer-checked:bg-primary peer-checked:text-white text-primary/60">
-                    Comprador
+    <!-- Right Side: Registration Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 lg:p-24 bg-white">
+        <div class="w-full max-w-md">
+            
+            <!-- Logo Section -->
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-16 h-16 rounded-full border-2 border-green-600 flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-green-600 text-3xl">nature_people</span>
                 </div>
-            </label>
-            <label class="flex-1 cursor-pointer">
-                <input class="peer hidden" name="role" type="radio" value="seller" />
-                <div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-semibold transition-all peer-checked:bg-primary peer-checked:text-white text-primary/60">
-                    Vendedor
-                </div>
-            </label>
-        </div>
-
-        <form class="space-y-4" method="POST" action="{{ route('registro.store') }}">
-            @csrf
-            <div class="space-y-2">
-                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Nombre Completo</label>
-                <div class="relative flex items-center">
-                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">person</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 @error('name') border-red-500 @enderror" placeholder="Juan Pérez" type="text" name="name" value="{{ old('name') }}" required />
-                </div>
-                @error('name')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
+                <h1 class="text-2xl font-black text-green-700 tracking-wide uppercase">MAZ TERRENOS</h1>
+                <p class="text-gray-500 text-sm mt-2 font-medium text-center">Únete a la red inmobiliaria más sostenible del mundo</p>
             </div>
 
-            <div class="space-y-2">
-                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Correo Electrónico</label>
-                <div class="relative flex items-center">
-                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">mail</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 @error('email') border-red-500 @enderror" placeholder="juan@ejemplo.com" type="email" name="email" value="{{ old('email') }}" required />
-                </div>
-                @error('email')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-            </div>
+            <!-- Form -->
+            <form method="POST" action="{{ route('registro.store') }}" class="space-y-4">
+                @csrf
+                <input type="hidden" name="role" value="seller" />
 
-            <div class="space-y-2">
-                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Número de Teléfono</label>
-                <div class="relative flex items-center">
-                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">call</span>
-                    <input class="w-full pl-12 pr-4 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="+1 (555) 000-0000" type="tel" name="phone" />
+                <!-- Nombre Completo -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Nombre Completo</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">person</span>
+                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="Ej: Juan Pérez" class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('name') border-red-500 @enderror">
+                    </div>
+                    @error('name')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
                 </div>
-            </div>
 
-            <div class="space-y-2">
-                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Contraseña</label>
-                <div class="relative flex items-center">
-                    <span class="material-symbols-outlined absolute left-4 text-primary/40 text-xl pointer-events-none">lock</span>
-                    <input class="w-full pl-12 pr-12 py-3.5 bg-background-light dark:bg-slate-800 border-primary/10 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 @error('password') border-red-500 @enderror" id="password" placeholder="••••••••" type="password" name="password" required />
-                    <button id="toggle-password" class="absolute right-4 flex items-center justify-center text-primary/40 hover:text-primary transition-colors h-full w-8" type="button">
-                        <span class="material-symbols-outlined text-xl leading-none">visibility</span>
+                <!-- Nombre de la Inmobiliaria / Negocio -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Nombre de la Inmobiliaria / Negocio</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">domain</span>
+                        <input type="text" name="business_name" value="{{ old('business_name') }}" placeholder="Ej: Inmuebles Verdes S.A." class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('business_name') border-red-500 @enderror">
+                    </div>
+                    @error('business_name')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Correo Electrónico</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">mail</span>
+                        <input type="email" name="email" value="{{ old('email') }}" required placeholder="juan@ejemplo.com" class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('email') border-red-500 @enderror">
+                    </div>
+                    @error('email')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Teléfono -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Teléfono</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">call</span>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="+52 55 1234 5678" class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('phone') border-red-500 @enderror">
+                    </div>
+                    @error('phone')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Contraseña -->
+                <div>
+                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Contraseña</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">lock</span>
+                        <input type="password" id="password" name="password" required placeholder="••••••••" class="w-full pl-11 pr-12 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('password') border-red-500 @enderror">
+                        <button id="toggle-password" type="button" class="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none">
+                            <span class="material-symbols-outlined text-[18px]">visibility</span>
+                        </button>
+                    </div>
+                    @error('password')
+                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-[#1e8a26] hover:bg-green-800 text-white font-bold py-3.5 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm">
+                        Registrarse como Vendedor
+                        <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>
                     </button>
                 </div>
-                @error('password')
-                    <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                @enderror
-            </div>
+            </form>
 
-            <div class="pt-2">
-                <button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 transform active:scale-[0.98]" type="submit">
-                    Crear Cuenta
-                </button>
+            <div class="mt-8 text-center text-xs text-gray-500 font-medium tracking-wide">
+                ¿Ya tienes una cuenta? <a href="{{ route('login') }}" class="text-[#1e8a26] font-bold hover:underline">Inicia sesión aquí</a>
             </div>
-        </form>
-
-        <div class="relative py-4">
-            <div class="absolute inset-0 flex items-center">
-                <div class="w-full border-t border-primary/10"></div>
-            </div>
-            <div class="relative flex justify-center text-xs uppercase">
-                <span class="bg-white dark:bg-slate-900 px-2 text-primary/40 font-semibold tracking-wider">O continuar con</span>
-            </div>
-        </div>
-
-        <button class="w-full flex items-center justify-center gap-3 bg-white dark:bg-slate-800 border border-primary/10 hover:bg-primary/5 dark:hover:bg-slate-700/50 py-3.5 rounded-xl transition-all text-slate-700 dark:text-slate-200 font-semibold">
-            <svg class="w-5 h-5" viewBox="0 0 24 24">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
-                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
-                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
-                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
-            </svg>
-            Registrarse con Google
-        </button>
-
-        <div class="text-center space-y-4">
-            <p class="text-xs text-primary/60 dark:text-primary/40 leading-relaxed max-w-[320px] mx-auto">
-                Al crear una cuenta, aceptas nuestros
-                <a class="text-primary font-bold hover:underline decoration-2" href="#">Términos y Condiciones</a>
-                y
-                <a class="text-primary font-bold hover:underline decoration-2" href="#">Política de Privacidad</a>.
-            </p>
-            <p class="text-sm text-slate-600 dark:text-slate-400">
-                ¿Ya tienes una cuenta?
-                <a class="text-primary font-bold hover:underline decoration-2 ml-1" href="/login">Iniciar Sesión</a>
-            </p>
+            
         </div>
     </div>
 </main>
@@ -123,10 +123,10 @@
         
         if (passwordInput.type === 'password') {
             passwordInput.type = 'text';
-            icon.textContent = 'visibility_off'; // Icono para ocultar
+            icon.textContent = 'visibility_off';
         } else {
             passwordInput.type = 'password';
-            icon.textContent = 'visibility'; // Icono para mostrar
+            icon.textContent = 'visibility';
         }
     });
 </script>
