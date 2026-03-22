@@ -8,6 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class RegistroUserController extends Controller
 {
+    /**
+     * Muestra el formulario de registro de usuario.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        return view('registro');
+    }
+
+    /**
+     * Procesa y almacena el registro de un nuevo usuario.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         // 1. Validación en el Controlador (Asegura que la petición HTTP trae los datos correctos)
