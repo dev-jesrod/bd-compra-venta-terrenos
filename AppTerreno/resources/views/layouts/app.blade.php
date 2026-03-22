@@ -39,8 +39,8 @@
                     </nav>
                     <!-- Auth Buttons -->
                     <div class="flex items-center gap-4 text-sm font-bold">
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-green-600 transition-colors">Iniciar Sesión</a>
-                        <a href="{{ route('registro') }}" class="bg-green-700 hover:bg-green-800 text-white px-5 py-2.5 rounded-lg transition-colors">Registrarse</a>
+                        <a href="/login" class="text-gray-700 hover:text-green-600 transition-colors">Iniciar Sesión</a>
+                        <a href="/registro" class="bg-green-700 hover:bg-green-800 text-white px-5 py-2.5 rounded-lg transition-colors">Registrarse</a>
                     </div>
                 </div>
             </header>

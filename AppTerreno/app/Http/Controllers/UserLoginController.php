@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserAuthController extends Controller
+class UserLoginController extends Controller
 {
     /**
      * Muestra el formulario de inicio de sesión.
@@ -44,8 +44,6 @@ class UserAuthController extends Controller
             'email' => 'Las credenciales proporcionadas no son válidas.',
         ])->onlyInput('email');
     }
-<<<<<<< HEAD:AppTerreno/app/Http/Controllers/UserLoginController.php
-=======
 
     /**
      * Cierra la sesión del usuario autenticado.
@@ -62,5 +60,4 @@ class UserAuthController extends Controller
 
         return redirect('/login');
     }
->>>>>>> 47e50b29bf488b676a851449512b3bedbfee80d6:AppTerreno/app/Http/Controllers/UserAuthController.php
 }
