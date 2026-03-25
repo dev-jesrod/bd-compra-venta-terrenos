@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('contrasena', 255);
             $table->string('foto', 255);
             $table->boolean('estado');
+
+            $table->unique(['curp','telefono','email']); //Agregando la restriccion UNIQUE
             $table->timestamps();
         });
     }
