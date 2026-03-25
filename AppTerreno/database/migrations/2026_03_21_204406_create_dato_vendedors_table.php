@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dato_vendedors', function (Blueprint $table) {
             $table->id('idVendedor');
-            $table->foreignId('idUsario');
+            $table->foreignId('idUsario')->constrained();
             $table->string('rfc', 13)->unique();
             $table->decimal('utilidad', 4, 2)->unsigned();
             $table->timestamps();
