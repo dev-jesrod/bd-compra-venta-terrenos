@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('telefono', 10);
             $table->string('email', 80);
             $table->string('contrasena', 255);
-            $table->string('foto', 255);
+            $table->string('foto', 255)->nullable();
             $table->boolean('estado');
 
             $table->unique(['curp','telefono','email']); //Agregando la restriccion UNIQUE
