@@ -12,7 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaccions', function (Blueprint $table) {
-            $table->id();
+            $table->id('idTransaccion');
+            $table->foreignId('idUsuario')->constrained();
+            $table->foreignId('idTerreno')->constrained()->unique();
+            $table->foreignId('idCuenta')->constrained();
+            $table->enum('metodoPago', ['EFECTIVO','TRANSFERENCIA']);
+            $table->enum('estadoPago', ['PENDIENTE','COMPLETADO']);
+            $table->decimal('monto', 10, 2);
+            $table->date('fechaTransaccion');
             $table->timestamps();
         });
     }
