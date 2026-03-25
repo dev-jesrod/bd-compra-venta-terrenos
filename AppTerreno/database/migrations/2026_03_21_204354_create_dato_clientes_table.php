@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('dato_clientes', function (Blueprint $table) {
             $table->id('idCliente');
-            $table->foreignId('idUsuario')->constrained();
+            $table->foreignId('idUsuario') //Nombre del Campo
+                    ->constrained('usuarios') //Tabla donde hara la referencia
+                    ->references('idUsuario'); //Campo donde apunta la llave foranea
             $table->timestamps();
         });
     }
