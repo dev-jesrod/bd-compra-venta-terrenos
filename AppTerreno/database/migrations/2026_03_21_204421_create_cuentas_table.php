@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cuentas', function (Blueprint $table) {
-            $table->id();
+            $table->id('idCuenta');
+            $table->foreignId('idUsuario')->constrained();
+            $table->string('numeroCuenta', 50);
+            $table->string('banco', 120);
             $table->timestamps();
         });
     }
