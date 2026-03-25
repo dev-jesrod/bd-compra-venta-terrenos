@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dato_vendedors', function (Blueprint $table) {
-            $table->id();
+            $table->id('idVendedor');
+            $table->foreignId('idUsario');
+            $table->string('rfc', 13)->unique();
+            $table->decimal('utilidad', 4, 2)->unsigned();
             $table->timestamps();
         });
     }
