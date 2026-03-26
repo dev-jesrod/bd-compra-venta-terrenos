@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id('idCuenta');
-            $table->foreignId('idUsuario')->constrained();
+            $table->foreignId('idUsuario')
+                    ->constrained('usuarios')
+                    ->references('idUsuario');
             $table->string('numeroCuenta', 50);
             $table->string('banco', 120);
             $table->timestamps();

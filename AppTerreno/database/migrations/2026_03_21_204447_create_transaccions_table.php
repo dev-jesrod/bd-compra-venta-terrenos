@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('transaccions', function (Blueprint $table) {
             $table->id('idTransaccion');
-            $table->foreignId('idUsuario')->constrained();
-            $table->foreignId('idTerreno')->constrained()->unique();
-            $table->foreignId('idCuenta')->constrained();
+            $table->foreignId('idUsuario')
+                    ->constrained('usuarios')
+                    ->references('idUsuario');
+            $table->foreignId('idTerreno')
+                    ->constrained('terrenos')
+                    ->references('idTerreno')
+                    ->unique();
+            $table->foreignId('idCuenta')
+                    ->constrained('cuentas')
+                    ->references('idCuenta');
             $table->enum('metodoPago', ['EFECTIVO','TRANSFERENCIA']);
             $table->enum('estadoPago', ['PENDIENTE','COMPLETADO']);
             $table->decimal('monto', 10, 2);

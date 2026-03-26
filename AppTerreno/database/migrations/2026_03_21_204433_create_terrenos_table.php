@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('terrenos', function (Blueprint $table) {
             $table->id('idTerreno');
-            $table->foreignId('idUsuario')->constrained();
+            $table->foreignId('idUsuario')
+                    ->constrained('transaccions')
+                    ->references('idUsuario');
             $table->string('nombre', 100)->nullable();
             $table->enum('estado', ['DISPONIBLE','VENDIDO','RESERVADO']);
             $table->decimal('largo', 8, 2)->unsigned();
