@@ -2,23 +2,28 @@
 
 namespace Database\Factories;
 
-use App\Models\Usuario;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Usuario;
 
-/**
- * @extends Factory<Usuario>
- */
 class UsuarioFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Usuario::class;
+
     public function definition(): array
     {
         return [
-            //
+            'tipoUsuario' => fake()->randomElement(['admin','cliente']),
+            'nombre' => fake()->firstName(),
+            'apellido1' => fake()->lastName(),
+            'apellido2' => fake()->lastName(),
+            'sexo' => fake()->randomElement(['M','F']),
+            'fechaNacimiento' => fake()->date(),
+            'curp' => fake()->unique()->bothify('????######??????'),
+            'telefono' => fake()->unique()->numerify('##########'),
+            'email' => fake()->unique()->safeEmail(),
+            'contrasena' => bcrypt('12345678'),
+            'foto' => null,
+            'estado' => true,
         ];
     }
 }

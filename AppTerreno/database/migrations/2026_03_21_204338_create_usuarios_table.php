@@ -19,9 +19,6 @@ return new class extends Migration
             $table->string('apellido2', 45);
             $table->enum('sexo', ['M','F']);
             $table->date('fechaNacimiento');
-            $table->string('curp', 18);
-            $table->string('telefono', 10);
-            $table->string('email', 80);
             $table->string('contrasena', 255);
             $table->string('foto', 255)->nullable();
             $table->boolean('estado');
