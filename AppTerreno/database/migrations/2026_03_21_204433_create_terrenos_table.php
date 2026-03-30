@@ -22,7 +22,7 @@ return new class extends Migration
             $table->decimal('ancho', 8, 2)->unsigned();
             $table->string('descripcion', 255);
             $table->decimal('precio', 10, 2)->unsigned();
-            $table->date('fechaVenta');
+            $table->date('fechaVenta')->nullable();
             $table->date('fechaCompra');
             $table->timestamps();
         });
