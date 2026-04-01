@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 namespace Database\Seeders;
+
 use App\Models\DatoCliente;
 use App\Models\DatoVendedor;
 use App\Models\Cuenta;
@@ -21,4 +22,3 @@ class DatabaseSeeder extends Seeder
         Terreno::factory(20)->create();
     }
 }
-
