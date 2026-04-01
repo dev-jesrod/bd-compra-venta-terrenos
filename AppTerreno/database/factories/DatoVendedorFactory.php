@@ -13,11 +13,12 @@ class DatoVendedorFactory extends Factory
     public function definition(): array
     {
         return [
-            'idUsuario' => Usuario::factory([
-                'tipoUsuario' => 'vendedor'
-            ]),
-            'rfc' => fake()->unique()->bothify('????######???'),
-            'utilidad' => fake()->randomFloat(2, 1000, 50000),
-        ];
-    }
+             'idUsuario' => Usuario::where('tipoUsuario','vendedor')
+             ->inRandomOrder()
+             ->first()
+             ->idUsuario,
+        'rfc' => fake()->unique()->bothify('????######???'),
+        'utilidad' => fake()->randomFloat(2, 1000, 50000),
+    ];
+}
 }

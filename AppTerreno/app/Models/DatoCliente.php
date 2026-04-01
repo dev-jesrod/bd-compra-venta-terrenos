@@ -12,7 +12,10 @@ class DatoCliente extends Model
     protected $table = 'dato_clientes';
     protected $primaryKey = 'idCliente';
 
-    protected $fillable = [
-        'idUsuario',
-    ];
+    protected $fillable = ['idUsuario'];
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'idUsuario');
+    }
 }

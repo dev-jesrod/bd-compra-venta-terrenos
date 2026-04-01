@@ -10,28 +10,16 @@ class Terreno extends Model
     use HasFactory;
 
     protected $table = 'terrenos';
-
     protected $primaryKey = 'idTerreno';
 
     protected $fillable = [
-        'idUsuario',
-        'nombre',
-        'estado',
-        'largo',
-        'ancho',
-        'descripcion',
-        'precio',
-        'fechaVenta',
-        'fechaCompra'
+        'idUsuario','nombre','estado','largo',
+        'ancho','descripcion','precio',
+        'fechaCompra','fechaVenta'
     ];
 
-    public $incrementing = true;
-
-    protected $keyType = 'int';
-
-   
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'idUsuario', 'idUsuario');
+        return $this->belongsTo(Usuario::class, 'idUsuario');
     }
 }

@@ -11,24 +11,33 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaccions', function (Blueprint $table) {
+        Schema::create('transacciones', function (Blueprint $table) {
             $table->id('idTransaccion');
+
             $table->foreignId('idUsuario')
-                    ->constrained('usuarios')
-                    ->references('idUsuario');
+                ->constrained('usuarios')
+                ->references('idUsuario')
+                ->onDelete('cascade');
+
             $table->foreignId('idTerreno')
-                    ->constrained('terrenos')
-                    ->references('idTerreno')
-                    ->unique();
+                ->unique()
+                ->constrained('terrenos')
+                ->references('idTerreno')
+                ->onDelete('cascade');
+
             $table->foreignId('idCuenta')
-                    ->constrained('cuentas')
-                    ->references('idCuenta');
+                ->constrained('cuentas')
+                ->references('idCuenta')
+                ->onDelete('cascade');
+
             $table->enum('metodoPago', ['EFECTIVO','TRANSFERENCIA']);
             $table->enum('estadoPago', ['PENDIENTE','COMPLETADO']);
-            $table->decimal('monto', 10, 2);
+
+            $table->decimal('monto', 10, 2)->unsigned();
             $table->date('fechaTransaccion');
+
             $table->timestamps();
-        });
+});
     }
 
     /**

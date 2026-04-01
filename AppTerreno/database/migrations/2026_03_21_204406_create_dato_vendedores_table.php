@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id('idVendedor');
 
             $table->foreignId('idUsuario')
-                  ->constrained('usuarios')
-                  ->references('idUsuario');
+                ->unique()
+                ->constrained('usuarios', 'idUsuario')
+                ->onDelete('cascade');
 
             $table->string('rfc', 13)->unique();
             $table->decimal('utilidad', 10, 2)->unsigned();
