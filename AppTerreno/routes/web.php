@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\RegistroUserController;
 
@@ -25,3 +26,14 @@ Route::middleware('auth')->group(function () {
         }
         )->name('home');
     });
+=======
+use App\Http\Controllers\TerrenoController;
+use App\Http\Controllers\CuentaController;
+
+Route::get('/cuentas', [CuentaController::class, 'index']);
+Route::post('/terrenos', [TerrenoController::class, 'store'])->name('terrenos.store');
+
+Route::get('/terrenos/create', function () {
+    return view('create');
+});
+>>>>>>> dataBase

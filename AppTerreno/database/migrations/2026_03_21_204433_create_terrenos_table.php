@@ -13,20 +13,28 @@ return new class extends Migration
     {
         Schema::create('terrenos', function (Blueprint $table) {
             $table->id('idTerreno');
+
             $table->foreignId('idUsuario')
-                    ->constrained('usuarios')
-                    ->references('idUsuario');
+                ->constrained('usuarios')
+                ->references('idUsuario')
+                ->onDelete('cascade');
+
             $table->string('nombre', 100)->nullable();
+
             $table->enum('estado', ['DISPONIBLE','VENDIDO','RESERVADO']);
+
             $table->decimal('largo', 8, 2)->unsigned();
             $table->decimal('ancho', 8, 2)->unsigned();
+
             $table->string('descripcion', 255);
             $table->decimal('precio', 10, 2)->unsigned();
-            $table->date('fechaVenta')->nullable();
+
             $table->date('fechaCompra');
+            $table->date('fechaVenta')->nullable();
+
             $table->timestamps();
-        });
-    }
+   });
+        }
 
     /**
      * Reverse the migrations.
