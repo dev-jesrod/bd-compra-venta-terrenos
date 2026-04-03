@@ -15,3 +15,6 @@ Route::get('/registro', function () {
     return view('registro');
 });
 
+Route::get('/dashboard', function () {
+    return view('vendedor.dashboard');
+});
