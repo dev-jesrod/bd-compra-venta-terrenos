@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\RegistroUserController;
 
@@ -17,23 +16,11 @@ Route::post('/registro', [RegistroUserController::class , 'store'])->name('regis
 
 // Logout
 Route::post('/logout', [UserLoginController::class , 'logout'])->name('logout');
-
-/* |-------------------------------------------------------------------------- | Rutas Protegidas (requieren autenticación) |-------------------------------------------------------------------------- */
-
+/* |--------------------------------------------------------------------------
+ | Rutas Protegidas (Requieren Autenticación)
+ |-------------------------------------------------------------------------- */
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
             return view('homePage');
         }
-        )->name('home');
-    });
-=======
-use App\Http\Controllers\TerrenoController;
-use App\Http\Controllers\CuentaController;
-
-Route::get('/cuentas', [CuentaController::class, 'index']);
-Route::post('/terrenos', [TerrenoController::class, 'store'])->name('terrenos.store');
-
-Route::get('/terrenos/create', function () {
-    return view('create');
-});
->>>>>>> dataBase
+        )->name('home');    });
