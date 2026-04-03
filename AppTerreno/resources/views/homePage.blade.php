@@ -1,343 +1,264 @@
 <!DOCTYPE html>
-<html class="light" lang="es">
+<html lang="{{ config('app.locale', 'es') }}">
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AppTerreno - Encuentra tu Pedazo de Tierra</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="description" content="{{ $seo_description ?? 'Terrenos exclusivos en armonía con la naturaleza. Inversión consciente con legado natural.' }}">
+    <meta name="keywords" content="{{ $seo_keywords ?? 'terrenos, inversión, sustentabilidad, Valle de Bravo, Querétaro, Tapalpa' }}">
+    <title>{{ $page_title ?? 'Maz Terrenos - Inversión Consciente, Legado Natural' }}</title>
+    
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-    @vite(['resources/css/homePage.css', 'resources/js/tailwind-config.js'])
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#ffdad6",
+                        "background": "#F8F8FF",
+                        "secondary": "#475569",
+                        "primary-fixed-dim": "#78d6d5",
+                        "surface-variant": "#e2e8f0",
+                        "inverse-primary": "#78d6d5",
+                        "on-primary-fixed": "#002020",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#2b4c4c",
+                        "tertiary-fixed": "#ffdbca",
+                        "primary": "{{ $primary_color ?? '#228B22' }}",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-container": "{{ $primary_color ?? '#228B22' }}",
+                        "surface-container": "#ebefee",
+                        "tertiary": "#8c4a24",
+                        "surface-tint": "{{ $primary_color ?? '#228B22' }}",
+                        "surface-bright": "#ffffff",
+                        "outline-variant": "#e2e8f0",
+                        "surface-container-highest": "#dfe3e2",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline": "#cbd5e1",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#aacdcc",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#723611",
+                        "inverse-on-surface": "#f1f5f9",
+                        "on-tertiary-container": "#fffbff",
+                        "on-surface-variant": "#475569",
+                        "surface-container-high": "#e5e9e8",
+                        "on-secondary-container": "#1e293b",
+                        "surface-container-low": "#F8F8FF",
+                        "on-secondary-fixed": "#002020",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#f1f5f9",
+                        "secondary-fixed": "#c6e9e8",
+                        "on-surface": "#0f172a",
+                        "surface-dim": "#d7dbda",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface": "#F8F8FF",
+                        "on-background": "#0f172a",
+                        "inverse-surface": "#1e293b",
+                        "primary-fixed": "#94f2f2",
+                        "on-primary-fixed-variant": "#004f50",
+                        "tertiary-container": "#aa623a",
+                        "on-primary-container": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Work Sans", "sans-serif"],
+                        "label": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Work Sans', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
+    </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
-    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-        <div class="layout-container flex h-full grow flex-col">
-            <!-- Navigation Header -->
-            <header class="flex items-center justify-between border-b border-primary/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50 px-6 md:px-20 py-4">
-                <div class="flex items-center gap-10">
-                    <div class="flex items-center gap-2 text-primary">
-                        <span class="material-symbols-outlined text-3xl font-bold">landscape</span>
-                        <h2 class="text-xl font-bold leading-tight tracking-tight">AppTerreno</h2>
-                    </div>
-                    <nav class="hidden md:flex items-center gap-8">
-                        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Comprar Terreno</a>
-                        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Vender Propiedad</a>
-                        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Inversiones Conjuntas</a>
-                        <a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Recursos</a>
-                    </nav>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button class="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-bold text-primary hover:bg-primary/5 rounded-lg transition-colors">
-                        <span class="material-symbols-outlined text-[20px]">language</span>
-                        ES
-                    </button>
-                    <a href="/login" class="flex items-center justify-center rounded-full bg-primary p-2 text-white hover:bg-primary/90 transition-all">
-                        <span class="material-symbols-outlined">person</span>
-                    </a>
-                </div>
-            </header>
-
-            <main class="flex flex-1 flex-col px-6 md:px-20 py-8 max-w-7xl mx-auto w-full">
-                <!-- Hero & Search Section -->
-                <div class="flex flex-col gap-6 mb-10">
-                    <div class="max-w-2xl">
-                        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
-                            Encuentra tu pedazo de <span class="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-green-700">Tierra.</span>
-                        </h1>
-                        <p class="text-lg text-slate-600 dark:text-slate-400">
-                            La plataforma más confiable para comprar y vender terrenos verificados a nivel global. Transacciones seguras, valuación experta.
-                        </p>
-                    </div>
-                    <div class="w-full bg-white dark:bg-slate-800 p-2 rounded-xl shadow-xl shadow-primary/5 border border-primary/10">
-                        <div class="flex flex-col md:flex-row gap-2">
-                            <div class="flex-1 flex items-center px-4 bg-background-light dark:bg-slate-900 rounded-lg group border border-transparent focus-within:border-primary/30">
-                                <span class="material-symbols-outlined text-primary/60">search</span>
-                                <input class="w-full bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder:text-slate-400 py-3" placeholder="Buscar por ciudad, estado, o tipo de propiedad..." type="text" />
-                            </div>
-                            <div class="flex items-center px-4 bg-background-light dark:bg-slate-900 rounded-lg min-w-[180px]">
-                                <span class="material-symbols-outlined text-primary/60 mr-2">location_on</span>
-                                <select class="w-full bg-transparent border-none focus:ring-0 text-sm font-medium">
-                                    <option>Todas las Regiones</option>
-                                    <option>Norteamérica</option>
-                                    <option>Europa</option>
-                                    <option>Asia Pacífico</option>
-                                </select>
-                            </div>
-                            <button class="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:brightness-110 transition-all shadow-lg shadow-primary/20">
-                                Buscar Propiedades
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category Filters -->
-                <div class="flex gap-3 pb-8 overflow-x-auto no-scrollbar">
-                    <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white text-sm font-semibold whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[20px]">grid_view</span>
-                        Todos los Terrenos
-                    </button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-primary/10 hover:border-primary/40 transition-colors text-sm font-semibold whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[20px]">potted_plant</span>
-                        Agrícola
-                    </button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-primary/10 hover:border-primary/40 transition-colors text-sm font-semibold whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[20px]">home_work</span>
-                        Residencial
-                    </button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-primary/10 hover:border-primary/40 transition-colors text-sm font-semibold whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[20px]">factory</span>
-                        Industrial
-                    </button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-primary/10 hover:border-primary/40 transition-colors text-sm font-semibold whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[20px]">forest</span>
-                        Conservación
-                    </button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-800 border border-primary/10 hover:border-primary/40 transition-colors text-sm font-semibold whitespace-nowrap">
-                        <span class="material-symbols-outlined text-[20px]">beach_access</span>
-                        Frente al Agua
-                    </button>
-                </div>
-
-                <!-- Listings Grid Header -->
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Propiedades Destacadas</h2>
-                    <div class="flex items-center gap-2 text-primary font-semibold text-sm cursor-pointer hover:underline">
-                        Ver todas las 1,248 propiedades
-                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                    </div>
-                </div>
-
-                <!-- Listings Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                    <!-- Card 1 -->
-                    <div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
-                        <div class="relative aspect-[4/3] overflow-hidden">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Expansive green agricultural rolling hills landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUVc23ZBgPPq0hp9Mu2e0Ex2p7MVdE4yCEaglX7x_Ft9cIOqtySfyoJR1NphYRKLsLnpfap62xcUCcCbIYQ1bxefXx9pEtJWCUR8-oTn721DPd0w_Hr4J93QYjl7s2F_hQJI_2IG9sHNHrekqL3XpCv7WsqsIfbEe7sN4UgPb3Wgz2sdbCs9ujL7cQFDNZqfzuHeHVC4AS8Zut3fcddiGUVgFTAo8Vwaj8S_EwwuZM80Uhj8yDEfZvOTs_6hnKzofX0CZls6CqG7U" />
-                            <div class="absolute top-3 left-3 flex gap-2">
-                                <span class="bg-primary/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Nuevo</span>
-                            </div>
-                            <div class="absolute top-3 right-3">
-                                <button class="size-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col gap-3">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="text-2xl font-bold text-slate-900 dark:text-white">$450,000</p>
-                                    <p class="text-xs font-semibold text-primary uppercase">$45 / m²</p>
-                                </div>
-                                <div class="flex items-center gap-1 px-2 py-1 bg-green-50 dark:bg-primary/10 border border-primary/20 rounded text-primary">
-                                    <span class="material-symbols-outlined text-[16px] font-bold">verified</span>
-                                    <span class="text-[10px] font-bold uppercase">Verificado</span>
-                                </div>
-                            </div>
-                            <div class="space-y-1">
-                                <p class="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">location_on</span>
-                                    Austin, TX
-                                </p>
-                                <p class="flex items-center text-sm text-slate-500 dark:text-slate-400">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">square_foot</span>
-                                    10,000 m² • Agrícola
-                                </p>
-                            </div>
-                            <button class="mt-2 w-full py-2 bg-background-light dark:bg-slate-900 text-slate-900 dark:text-white font-bold rounded-lg border border-primary/5 hover:bg-primary hover:text-white transition-all">
-                                Ver Detalles
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
-                        <div class="relative aspect-[4/3] overflow-hidden">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Lush tropical coastal land near the ocean" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0FjV8v6e_KnNI8VXd2k3aJCDBReKQJ_R3_McFTx5sC96aLWahySlDWYJief2kkucc9weviSPU4wenFkkrZNON5Rm-9KfrTSbeZ9kITX3gCW5CjW8f0HmQJ9KJW_pewow1bcF0ZUhVp7gtLFm9QdNE4HvV27VV_g_NUXELhzJ1w4cTGO8wtL2e8o_bycro9PVUAjhLS3Mh1KFC4xUJLAWCRdJZ2sulWVdHpeO4g3VgO_XZlSyloyaIixgZXA--UB7XZ2X5mEZ7YfI" />
-                            <div class="absolute top-3 right-3">
-                                <button class="size-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col gap-3">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="text-2xl font-bold text-slate-900 dark:text-white">$1,200,000</p>
-                                    <p class="text-xs font-semibold text-primary uppercase">$120 / m²</p>
-                                </div>
-                                <div class="flex items-center gap-1 px-2 py-1 bg-green-50 dark:bg-primary/10 border border-primary/20 rounded text-primary">
-                                    <span class="material-symbols-outlined text-[16px] font-bold">verified</span>
-                                    <span class="text-[10px] font-bold uppercase">Verificado</span>
-                                </div>
-                            </div>
-                            <div class="space-y-1">
-                                <p class="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">location_on</span>
-                                    Miami, FL
-                                </p>
-                                <p class="flex items-center text-sm text-slate-500 dark:text-slate-400">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">square_foot</span>
-                                    10,000 m² • Industrial
-                                </p>
-                            </div>
-                            <button class="mt-2 w-full py-2 bg-background-light dark:bg-slate-900 text-slate-900 dark:text-white font-bold rounded-lg border border-primary/5 hover:bg-primary hover:text-white transition-all">
-                                Ver Detalles
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
-                        <div class="relative aspect-[4/3] overflow-hidden">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Dense pine forest with mountain background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbs9h6WsIfePAwHgHaY373qgKuPKI8EV85IA86XEpebd5kQBuOP_EzpaxEapyqukYyPfF4J74N95B9x7B4PhUDpehQXkfqWQlopOVJybv7uhrUZ0Rhv93FJtdYhs2BPINU206oReoRxU3tCWqvf0Hpq7P0oON2Gvi-CAh-n7lLfoF1v_FZrZffsxVbDKDCuIjHuYXXon2g-Cf6sH6CzudGLEPQyTR5XpkKvGiVIG3_OOa4XmfnYW4O4dDtOHiaY8AobTxNWWNTL4M" />
-                            <div class="absolute top-3 right-3">
-                                <button class="size-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col gap-3">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="text-2xl font-bold text-slate-900 dark:text-white">$85,000</p>
-                                    <p class="text-xs font-semibold text-primary uppercase">$8.5 / m²</p>
-                                </div>
-                                <div class="flex items-center gap-1 px-2 py-1 bg-green-50 dark:bg-primary/10 border border-primary/20 rounded text-primary">
-                                    <span class="material-symbols-outlined text-[16px] font-bold">verified</span>
-                                    <span class="text-[10px] font-bold uppercase">Verificado</span>
-                                </div>
-                            </div>
-                            <div class="space-y-1">
-                                <p class="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">location_on</span>
-                                    Boise, ID
-                                </p>
-                                <p class="flex items-center text-sm text-slate-500 dark:text-slate-400">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">square_foot</span>
-                                    10,000 m² • Agrícola
-                                </p>
-                            </div>
-                            <button class="mt-2 w-full py-2 bg-background-light dark:bg-slate-900 text-slate-900 dark:text-white font-bold rounded-lg border border-primary/5 hover:bg-primary hover:text-white transition-all">
-                                Ver Detalles
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-primary/5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
-                        <div class="relative aspect-[4/3] overflow-hidden">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Sunlight filtering through forest trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpmXSRc8DpcAVlcywnWRif4fzeO_wNzCM7DSpbkwUHzJmXf8gq6mrrJPMhcV8GNSC8KQTne3450vtWR89UlLI2rlrEUI1EDmOwOb5zMSX4KwbhfKbOyQoE8m2of4mkdmVkH55xWX3eWiDXWHpWBOi9FpdiCq7wMS3yPqH_q5qoaHVl77dv2hjxB_evPkZADB6bhaJMfwUL0m5jHCnxRrp0Q6slQiO1yYQRUS7q0C28e7n9pnheEPa9chqn1G8ASSF_eUgsMqMG4O8" />
-                            <div class="absolute top-3 right-3">
-                                <button class="size-8 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[20px]">favorite</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-5 flex flex-col gap-3">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <p class="text-2xl font-bold text-slate-900 dark:text-white">$320,000</p>
-                                    <p class="text-xs font-semibold text-primary uppercase">$64 / m²</p>
-                                </div>
-                                <div class="flex items-center gap-1 px-2 py-1 bg-green-50 dark:bg-primary/10 border border-primary/20 rounded text-primary">
-                                    <span class="material-symbols-outlined text-[16px] font-bold">verified</span>
-                                    <span class="text-[10px] font-bold uppercase">Verificado</span>
-                                </div>
-                            </div>
-                            <div class="space-y-1">
-                                <p class="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">location_on</span>
-                                    Denver, CO
-                                </p>
-                                <p class="flex items-center text-sm text-slate-500 dark:text-slate-400">
-                                    <span class="material-symbols-outlined text-[18px] mr-1 text-primary">square_foot</span>
-                                    5,000 m² • Residencial
-                                </p>
-                            </div>
-                            <button class="mt-2 w-full py-2 bg-background-light dark:bg-slate-900 text-slate-900 dark:text-white font-bold rounded-lg border border-primary/5 hover:bg-primary hover:text-white transition-all">
-                                Ver Detalles
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Call to Action Section -->
-                <div class="mt-20 relative overflow-hidden rounded-2xl bg-primary px-8 py-12 text-center text-white">
-                    <div class="absolute inset-0 opacity-10 bg-cta-hero"></div>
-                    <div class="relative z-10 max-w-2xl mx-auto space-y-6">
-                        <h2 class="text-3xl font-bold">¿Listo para vender tu terreno?</h2>
-                        <p class="text-primary/10 bg-white/10 p-4 rounded-lg inline-block text-slate-100 backdrop-blur-sm">
-                            Únete a miles de propietarios que listan su propiedad con el mercado verificado de AppTerreno.
-                        </p>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                            <button class="w-full sm:w-auto px-10 py-4 bg-white text-primary font-bold rounded-xl shadow-xl hover:scale-105 transition-transform">
-                                Listar Tu Propiedad
-                            </button>
-                            <button class="w-full sm:w-auto px-10 py-4 bg-primary border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors">
-                                Hablar con un Experto
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-            <!-- Footer -->
-            <footer class="bg-white dark:bg-slate-900 border-t border-primary/5 pt-16 pb-8 px-6 md:px-20 mt-20">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
-                    <div class="col-span-2 lg:col-span-1">
-                        <h2 class="text-xl font-bold leading-tight tracking-tight text-primary mb-4">AppTerreno</h2>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
-                            Construyendo el futuro de la inversión en terrenos a través de la transparencia y la inteligencia geoespacial.
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col gap-4">
-                        <h4 class="font-bold text-slate-900 dark:text-white">Explorar</h4>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Todos los Terrenos</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Terrenos Comerciales</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Terrenos Agrícolas</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Lotes Residenciales</a>
-                    </div>
-
-                    <div class="flex flex-col gap-4">
-                        <h4 class="font-bold text-slate-900 dark:text-white">Compañía</h4>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Sobre Nosotros</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Carreras</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Prensa</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Contacto</a>
-                    </div>
-
-                    <div class="flex flex-col gap-4">
-                        <h4 class="font-bold text-slate-900 dark:text-white">Recursos</h4>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Blog</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Guía para Compradores</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Guía para Vendedores</a>
-                        <a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Tendencias del Mercado</a>
-                    </div>
-
-                    <div class="col-span-2 md:col-span-4 lg:col-span-1 flex flex-col gap-4">
-                        <h4 class="font-bold text-slate-900 dark:text-white">Suscríbete</h4>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Recibe las últimas noticias y ofertas de propiedades.</p>
-                        <div class="flex gap-2">
-                            <input class="w-full bg-background-light dark:bg-slate-800 border-primary/10 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-slate-900 dark:text-white placeholder:text-slate-400 px-4 py-2 text-sm" placeholder="Tu correo electrónico" type="email" />
-                            <button class="bg-primary hover:bg-primary/90 text-white rounded-lg px-4 transition-colors">
-                                <span class="material-symbols-outlined text-[20px]">send</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-8 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                    <p>© 2024 AppTerreno Plataforma Inmobiliaria. Todos los derechos reservados.</p>
-                    <div class="flex gap-6">
-                        <a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
-                        <a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
-                        <a class="hover:text-primary transition-colors" href="#">Cookies</a>
-                    </div>
-                </div>
-            </footer>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-[#F8F8FF] dark:bg-slate-900/90 backdrop-blur-md docked full-width top-0 z-50 tonal shift via surface-container-low">
+    <div class="flex justify-between items-center px-8 py-4 w-full max-w-screen-2xl mx-auto">
+        <!-- Navigation Links (Left) -->
+        <nav class="hidden md:flex items-center space-x-8">
+            <a class="text-green-700 dark:text-green-400 font-bold border-b-2 border-green-700 pb-1" href="{{ route('properties.index') }}">
+                Propiedades {{ $propiedades ?? 0 }} 
+            </a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-green-700 transition-colors" href="{{ route('projects.index') }}">Proyectos</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-green-700 transition-colors" href="{{ route('sustainability.index') }}">Sustentabilidad</a>
+            <a class="text-slate-600 dark:text-slate-400 hover:text-green-700 transition-colors" href="{{ route('about.index') }}">Nosotros</a>
+        </nav>
+        
+        <!-- Brand Identity (Center) -->
+        <div class="flex flex-col items-center text-center">
+            <div class="flex items-center space-x-3 mb-1">
+                <img alt="{{ $company_name ?? 'Maz Terrenos' }} Logo" 
+                     class="w-10 h-10 rounded-full object-cover border border-outline-variant" 
+                     src="{{ $logo_url ?? asset('images/logo.png') }}"
+                     data-alt="{{ $logo_alt ?? 'Circular minimal logo for a luxury real estate brand featuring stylized natural landscape elements in green and white' }}">
+                <span class="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50">{{ $company_name ?? 'Maz Terrenos' }}</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500 italic font-medium">{{ $tagline ?? 'Inversión consciente, legado natural' }}</span>
+        </div>
+        
+        <!-- Actions (Right) -->
+        <div class="flex items-center space-x-4">
+            @auth
+                <a href="{{ route('dashboard') }}" class="text-slate-600 hover:text-green-700 font-medium px-4 py-2 hover:scale-102 transition-transform duration-200">
+                    {{ Auth::user()->name }}
+                </a>
+            @else
+                <a href="{{ route('login') }}" class="text-slate-600 hover:text-green-700 font-medium px-4 py-2 hover:scale-102 transition-transform duration-200">
+                    Iniciar Sesión
+                </a>
+            @endauth
+            <a href="{{ route('contact') }}" class="bg-primary text-on-primary px-6 py-2.5 rounded-xl font-semibold hover:scale-102 active:scale-95 transition-all duration-200 shadow-sm">
+                {{ $cta_button_text ?? 'Contactar' }}
+            </a>
         </div>
     </div>
-</body>
-</html>
+</header>
+
+<main>
+    <!-- Hero Section (Split Layout) -->
+    <section class="relative min-h-[870px] flex flex-col md:flex-row overflow-hidden">
+        <div class="w-full md:w-1/2 relative min-h-[512px] md:min-h-0">
+            <img alt="{{ $hero_alt ?? 'Luxury Forest Cabin' }}" 
+                 class="absolute inset-0 w-full h-full object-cover" 
+                 src="{{ $hero_image ?? 'https://lh3.googleusercontent.com/aida-public/AB6AXuCVjd9XoXwlxqcAvT6CopoGXcoUlilf5T4Fw9y1zS97D5ZscDIH3RkFBS1XUcBCqKVDW7oB2V1Wvsn7Eo8kHx6-9vuREFU-9TbnXzunrhTS_-8tfdbsXkBDo8MoEJCRq8e8Uwi6Rf-GxluNFK03vq27OBU2iRMIEj2h8LYBuV1syc_NIG45FvTOk8G6kgnd6AoyqsJSuOn9C5BcRT1yYh9nXYwH0IO6GJ222l7UNn3mTepJz1MvgQte50Re4hwPPeeqiAj2ZR2lqZaQ'}}"
+                 data-alt="{{ $hero_alt ?? 'Modern architectural cabin with large glass windows nestled in a misty pine forest during early morning light, editorial style' }}">
+            <div class="absolute inset-0 bg-primary/10 backdrop-blur-[1px]"></div>
+        </div>
+        <div class="w-full md:w-1/2 flex items-center justify-center p-8 md:p-24 bg-surface-container-low">
+            <div class="max-w-xl">
+                <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-8 uppercase tracking-tighter text-primary">
+                    {{ $hero_title ?? 'INVIERTE HOY EN EL ESPACIO DE TUS SUEÑOS' }}
+                </h1>
+                <p class="text-lg text-secondary mb-10 leading-relaxed font-body">
+                    {{ $hero_description ?? 'Descubre terrenos exclusivos diseñados para armonizar con la naturaleza. Creamos plusvalía a través de la conservación y el diseño consciente. Tu legado comienza en la tierra que respira.' }}
+                </p>
+                <a href="{{ route('properties.index') }}" class="bg-primary text-on-primary text-lg px-10 py-5 rounded-xl font-bold hover:scale-102 transition-transform shadow-lg inline-flex items-center group">
+                    {{ $hero_cta_text ?? 'Ver Terrenos' }}
+                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="py-24 px-8 max-w-screen-2xl mx-auto">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <h2 class="text-4xl font-bold text-on-surface mb-2">{{ $featured_title ?? 'Propiedades Destacadas' }}</h2>
+                <p class="text-secondary">{{ $featured_subtitle ?? 'Oportunidades únicas seleccionadas por su entorno natural y potencial de crecimiento.' }}</p>
+            </div>
+            <a href="{{ route('properties.catalog') }}" class="text-primary font-bold flex items-center hover:underline">
+                {{ $catalog_cta ?? 'Ver catálogo completo' }} 
+                <span class="material-symbols-outlined ml-1" data-icon="trending_flat">trending_flat</span>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            @forelse($featured_properties ?? [] as $property)
+                <div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img alt="{{ $property['alt'] ?? $property->name ?? 'Property' }}" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                             src="{{ $property['image'] ?? $property->image_url ?? asset('images/placeholder.jpg') }}">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center text-primary text-xs font-bold uppercase tracking-widest mb-3">
+                            <span class="material-symbols-outlined text-sm mr-1" data-icon="location_on">location_on</span> 
+                            {{ $property['location'] ?? $property->location ?? 'Ubicación' }}
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">{{ $property['name'] ?? $property->name ?? 'Propiedad' }}</h3>
+                        <p class="text-on-surface/60 text-sm mb-6 line-clamp-2 font-body">
+                            {{ $property['description'] ?? $property->description ?? 'Descripción de la propiedad' }}
+                        </p>
+                        <div class="flex justify-between items-center pt-6 border-t border-outline-variant">
+                            <span class="text-xl font-bold text-primary">{{ $property['price'] ?? $property->price ?? '$0 MXN' }}</span>
+                            <a href="{{ $property['url'] ?? route('properties.show', $property->slug ?? $property->id) }}" 
+                               class="bg-surface-container text-on-surface px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary hover:text-white transition-colors">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <!-- Fallback properties if none provided -->
+                <div class="col-span-full text-center py-16 text-secondary">
+                    No hay propiedades destacadas disponibles en este momento.
+                </div>
+            @endforelse
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="px-8 mt-12">
+        <div class="bg-primary rounded-3xl p-12 md:p-20 text-center text-on-primary max-w-screen-2xl mx-auto relative overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">{{ $cta_title ?? '¿Listo para tu nueva vida?' }}</h2>
+                <p class="text-lg md:text-xl text-green-100 max-w-2xl mx-auto mb-10 font-body">
+                    {{ $cta_description ?? 'Agenda una visita guiada con nuestros expertos y conoce el terreno que transformará tu futuro.' }}
+                </p>
+                <a href="{{ route('contact') }}" class="bg-white text-primary px-12 py-5 rounded-xl font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl">
+                    {{ $cta_button_text ?? 'Contactar a un asesor' }}
+                </a>
+            </div>
+            <!-- Decorative element -->
+            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute -left-20 -top-20 w-96 h-96 bg-black/10 rounded-full blur-3xl"></div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-green-800 dark:bg-green-950 block w-full rounded-t-[2rem] mt-20 shadow-inner">
+    <div class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-screen-2xl mx-auto">
+        <!-- Brand Section -->
+        <div class="mb-12 md:mb-0 max-w-sm">
+            <div class="text-xl font-serif text-white mb-4">{{ $company_name ?? 'Maz Terrenos' }}</div>
+            <p class="text-green-100/80 text-sm leading-relaxed font-sans tracking-wide">
+                {{ $footer_description ?? 'Líderes en el desarrollo de espacios conscientes que integran la vida moderna con la preservación del ecosistema. Inversión con propósito.' }}
+            </p>
+            <div class="flex space-x-4 mt-8">
+                @foreach($social_links ?? [] as $platform => $url)
+                    <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-green-800 transition-all" href="{{ $url }}" target="_blank">
+                        <span class="material-symbols-outlined" data-icon="{{ $platform }}">public</span>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+        
+        <!-- Links Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-12 text-sm">
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">{{ $footer_sections['company'] ?? 'Compañía' }}</h4>
+                <ul class="space-y-4">
+                    @foreach($footer_company_links ?? [['name' => 'Sustentabilidad', 'url' => route('sustainability.index')], ['name' => 'Nosotros', 'url' => route('about.index')]] as $link)
+                        <li><a class="text-green-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ $link['url'] }}">{{ $link['name'] }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">{{ $footer_sections['support'] ?? 'Soporte' }}</h4>
+                <ul class="space-y-4">
+                    @foreach($footer_support_links ?? [['name' => 'Preguntas Frecuentes', 'url' => route('faq')], ['name' => 'Privacidad', 'url' => route('privacy')]] as $link)
+                        <li><a class="text-green-100/80 hover:text-white hover:translate-x-1 transition-transform inline-block" href="{{ $link['url'] }}">{{ $link['name'] }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+                <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">{{ $footer_sections['locations'] ?? 'Ubicaciones' }}</h4>
+                <ul class="space-y-4 text-green-100/80">
+                    @foreach($contact_info ?? [['icon' => 'location_on', 'text' => 'Av. Las Palmas 405, Lomas, CDMX'], ['icon' => 'phone', 'text' => '+52 55 1234 5678']] as $info)
+                        <li class="flex items-start">
+                            <span class="material-symbols-outlined
