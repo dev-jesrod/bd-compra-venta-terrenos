@@ -84,80 +84,13 @@
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-on-background min-h-screen">
-    <!-- SideNavBar Shell -->
-    <!-- TODO: Controlador necesario para verificar los menús activos según la ruta y cargar la información básica del Vendedor -->
-    <aside class="fixed left-0 top-0 h-full flex flex-col bg-slate-50 dark:bg-slate-950 border-r border-gray-200 dark:border-gray-800 w-64 z-50">
-        <div class="p-6 flex items-center gap-3">
-            <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white font-black text-xl">M</div>
-            <div>
-                <h1 class="text-xl font-black text-green-700 dark:text-green-400 leading-none">MAZ TERRENOS</h1>
-                <p class="text-xs text-gray-500 font-medium">Vendor Management</p>
-            </div>
-        </div>
-        <nav class="flex-1 px-4 mt-4 space-y-1">
-            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium text-sm rounded-lg" href="#">
-                <span class="material-symbols-outlined">dashboard</span>
-                Dashboard
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400 font-medium text-sm" href="#">
-                <span class="material-symbols-outlined">landscape</span>
-                Properties
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium text-sm rounded-lg" href="#">
-                <span class="material-symbols-outlined">group</span>Vendedores
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium text-sm rounded-lg" href="#">
-                <span class="material-symbols-outlined">leaderboard</span>
-                Leads
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium text-sm rounded-lg" href="#">
-                <span class="material-symbols-outlined">verified_user</span>Mis documentos
-            </a>
-            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors font-medium text-sm rounded-lg" href="#">
-                <span class="material-symbols-outlined">settings</span>Configuracion de cuenta
-            </a>
-        </nav>
-        <div class="p-4 border-t border-gray-200 dark:border-gray-800">
-            <!-- TODO: Controlador/Ruta necesario para la vista de soporte técnico -->
-            <button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary-container py-3 rounded-lg font-bold text-sm transition-transform active:scale-95">
-                <span class="material-symbols-outlined">support_agent</span>
-                Soporte Técnico
-            </button>
-        </div>
-    </aside>
+    <!-- SideNavBar Component -->
+    <x-vendedor.sidebar />
 
     <!-- Main Content Canvas -->
     <main class="pl-64">
-        <!-- TopNavBar Shell -->
-        <header class="fixed top-0 right-0 left-64 z-40 flex justify-between items-center px-8 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
-            <div class="flex items-center w-full max-w-xl">
-                <div class="relative w-full">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-                    <!-- TODO: Controlador necesario para manejar la búsqueda de propiedades/ID -->
-                    <form action="#" method="GET">
-                        <input name="query" class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="Buscar por propiedad o ID..." type="text">
-                    </form>
-                </div>
-            </div>
-            <div class="flex items-center gap-6">
-                <!-- TODO: Controlador necesario para cargar las notificaciones no leídas del vendedor -->
-                <button class="relative text-gray-500 hover:text-green-700 transition-colors">
-                    <span class="material-symbols-outlined">notifications</span>
-                    <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
-                </button>
-                <button class="text-gray-500 hover:text-green-700 transition-colors">
-                    <span class="material-symbols-outlined">help</span>
-                </button>
-                <div class="flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-gray-800">
-                    <!-- TODO: Controlador necesario para pasar los datos Auth()->user() a la vista layout -->
-                    <div class="text-right">
-                        <p class="text-sm font-bold text-gray-900 dark:text-gray-100">Ricardo Mendoza</p>
-                        <p class="text-xs text-gray-500">Master Vendor</p>
-                    </div>
-                    <img alt="Vendor Manager Profile" class="w-10 h-10 rounded-full border border-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDenS20kaZBgOS64xvFoHjrbAJy5a-TXSJer_U6Xj93op5sde4GMteyZPLOg1lMlf8MiD14XwN2lAT8Nd5WrIvtenFtpsJYc29qpnTD7Pdf33jbNzTXpveGoG10IVwlZaZI1Sgsd-ZABlQgOQL5vqKa4FyhvgsdzwMDIZQMU5aVOMqyLBUndcoDV94fGHceEIpiBLJk9pI8yy3i-5bNBCXmxi_c1Et9-r2PFHkVugEB4AX1_uOQ-0lHSNpfhTFJX8atS9FEimEKIeI">
-                </div>
-            </div>
-        </header>
+        <!-- TopNavBar Component -->
+        <x-vendedor.navbar />
 
         <div class="mt-16 p-8">
             @yield('content')

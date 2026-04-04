@@ -18,3 +18,11 @@ Route::get('/registro', function () {
 Route::get('/dashboard', function () {
     return view('vendedor.dashboard');
 });
+
+Route::get('/publicar-terreno', function() {
+    return view('vendedor.publicar-terreno');
+});
+
+Route::get('/mis-propiedades', function() {
+    return view('vendedor.mis-propiedades');
+});

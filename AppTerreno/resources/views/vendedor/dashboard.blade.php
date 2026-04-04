@@ -10,7 +10,7 @@
             <p class="text-gray-500 mt-1">Gestiona tus publicaciones y revisa el rendimiento de tus terrenos.</p>
         </div>
         <!-- TODO: Controlador necesario para mostrar la vista de creación de propiedades -->
-        <a href="#"
+        <a href="{{ url('/publicar-terreno') }}"
             class="bg-primary-container text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-primary transition-all active:scale-95 shadow-lg shadow-green-900/10">
             <span class="material-symbols-outlined">add_circle</span>
             + Publicar Nuevo Terreno
@@ -83,7 +83,7 @@
         <div class="flex items-center justify-between mb-6">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Mis Terrenos Publicados</h3>
             <!-- TODO: Controlador necesario para mostrar la ruta index(listar) de todas las propiedades de este vendedor -->
-            <a href="#" class="text-green-700 font-bold text-sm hover:underline">Ver todos los listados</a>
+            <a href="{{ url('/mis-propiedades') }}" class="text-green-700 font-bold text-sm hover:underline">Ver todos los listados</a>
         </div>
 
         <!-- TODO: Controlador necesario para iterar (p.ej. con foreach) los terrenos del vendedor. -->
