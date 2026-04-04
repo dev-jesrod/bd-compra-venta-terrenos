@@ -26,3 +26,11 @@ Route::get('/publicar-terreno', function() {
 Route::get('/mis-propiedades', function() {
     return view('vendedor.mis-propiedades');
 });
+
+Route::get('/leads', function() {
+    return view('vendedor.leads');
+});
+
+Route::get('/documentos', function() {
+    return view('vendedor.documentos');
+});
