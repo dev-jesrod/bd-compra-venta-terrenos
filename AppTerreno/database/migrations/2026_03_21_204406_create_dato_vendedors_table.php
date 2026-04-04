@@ -16,8 +16,6 @@ return new class extends Migration {
 
             $table->string('rfc', 13)->unique();
             $table->decimal('utilidad', 10, 2)->unsigned();
-            $table->string('ine', 5)->unique();
-
             $table->timestamps();
         });
     }
