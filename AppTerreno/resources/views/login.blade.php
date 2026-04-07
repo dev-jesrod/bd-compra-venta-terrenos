@@ -34,6 +34,8 @@
     </form>
 <!-- fin Formulario -->
 
+    <p>¿Quieres empezar a comprar? <a href="/registro">Registrate</a> </p>
+
 </body>
 
 </html>
