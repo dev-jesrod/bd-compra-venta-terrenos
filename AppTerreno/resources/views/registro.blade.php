@@ -13,6 +13,17 @@
 
         <ul>
             <li>
+                <label for="opciones">Tipo Usuario:</label>
+                <select name="usuario" id="tipo_usuario">
+                    <option selected> Selecciona alguna opcion </option>
+                    <option value="cliente"> Cliente</option>
+                    <option value="vendedor"> Vendedor </option>
+                </select>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre_usuario" required >
             </li>
