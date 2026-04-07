@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\RegistroUserController;
+use App\Http\Controllers\TerrenoController;
+
 
 /* |-------------------------------------------------------------------------- | Rutas de Autenticación |-------------------------------------------------------------------------- */
+//* Terreno
+
+Route::get('/terrenos', [TerrenoController::class, 'index'])->name('terrenos.index');
 
 // Login
 Route::get('/login', [UserLoginController::class , 'showLoginForm'])->name('login');
@@ -26,14 +30,3 @@ Route::middleware('auth')->group(function () {
         }
         )->name('home');
     });
-=======
-use App\Http\Controllers\TerrenoController;
-use App\Http\Controllers\CuentaController;
-
-Route::get('/cuentas', [CuentaController::class, 'index']);
-Route::post('/terrenos', [TerrenoController::class, 'store'])->name('terrenos.store');
-
-Route::get('/terrenos/create', function () {
-    return view('create');
-});
->>>>>>> dataBase
