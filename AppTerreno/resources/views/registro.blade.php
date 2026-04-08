@@ -9,7 +9,7 @@
 
     <h2>Registrarse</h2>
 <!-- Formulario -->
-    <form action="/" method="get">
+    <form action="/registro" method="get">
 
         <ul>
             <li>
