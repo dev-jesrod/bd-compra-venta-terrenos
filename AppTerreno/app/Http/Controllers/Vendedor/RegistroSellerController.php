@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\Auth;
 
-class RegistroUserController extends Controller
+class RegistroSellerController extends Controller
 {
     /**
      * Muestra el formulario de registro de usuario.
@@ -15,7 +15,7 @@ class RegistroUserController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('registro');
+        return view('RegistroVendedor');
     }
 
     /**

@@ -32,3 +32,6 @@ Route::middleware('auth')->group(function () {
                 }
         )->name('home');
 });
+
+
+//Rutas para el vendedor
