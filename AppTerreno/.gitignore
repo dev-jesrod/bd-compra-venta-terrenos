@@ -18,6 +18,7 @@
 /public/storage
 /storage/*.key
 /storage/pail
+/markdown
 /vendor
 /markdown
 Homestead.json
