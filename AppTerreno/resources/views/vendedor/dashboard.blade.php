@@ -28,7 +28,11 @@
                 <span class="text-green-600 text-sm font-bold bg-green-50 px-2 py-1 rounded">+12%</span>
             </div>
             <p class="text-gray-500 text-sm font-medium">Total Vistas</p>
-            <h3 class="text-3xl font-extrabold mt-1">12,480</h3>
+            @if($totalVistas > 0)
+                <h3 class="text-3xl font-extrabold mt-1">{{ number_format($totalVistas) }}</h3>
+            @else
+                <h3 class="text-lg font-bold text-red-500 mt-1 italic">Sin registros</h3>
+            @endif
         </div>
         <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
             <div class="flex justify-between items-start mb-4">
@@ -38,7 +42,11 @@
                 <span class="text-green-600 text-sm font-bold bg-green-50 px-2 py-1 rounded">+5%</span>
             </div>
             <p class="text-gray-500 text-sm font-medium">Nuevos prospectos</p>
-            <h3 class="text-3xl font-extrabold mt-1">184</h3>
+            @if($totalProspectos > 0)
+                <h3 class="text-3xl font-extrabold mt-1">{{ number_format($totalProspectos) }}</h3>
+            @else
+                <h3 class="text-lg font-bold text-red-500 mt-1 italic">Sin registros</h3>
+            @endif
         </div>
         <div class="bg-tertiary-container p-6 rounded-xl border border-tertiary-container shadow-sm text-white">
             <div class="flex justify-between items-start mb-4">
@@ -47,7 +55,11 @@
                 </div>
             </div>
             <p class="text-white/80 text-sm font-medium">Apartados Activos</p>
-            <h3 class="text-3xl font-extrabold mt-1">2</h3>
+            @if($apartadosActivos > 0)
+                <h3 class="text-3xl font-extrabold mt-1">{{ number_format($apartadosActivos) }}</h3>
+            @else
+                <h3 class="text-lg font-bold text-red-300 mt-1 italic">Sin registros</h3>
+            @endif
         </div>
     </div>
 
@@ -57,24 +69,32 @@
         <div class="flex-1">
             <h3 class="text-xl font-bold mb-4">Estado de Verificación del Vendedor</h3>
             <div class="w-full bg-black/10 rounded-full h-3 mb-4">
-                <div class="bg-white h-3 rounded-full" style="width: 85%"></div>
+                <div class="bg-white h-3 rounded-full" style="width: {{ $trustLevel }}%"></div>
             </div>
             <div class="flex flex-wrap gap-3">
-                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">check_circle</span> INE Validada
+                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-bold flex items-center gap-1 opacity-60">
+                    <span class="material-symbols-outlined text-sm">help</span> INE Pendiente
                 </span>
+                
+                @if($hasRfc)
                 <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-bold flex items-center gap-1">
                     <span class="material-symbols-outlined text-sm">check_circle</span> RFC Verificado
                 </span>
+                @else
+                <span class="px-3 py-1 bg-error/40 border border-white/20 rounded-full text-xs font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">error</span> RFC Pendiente
+                </span>
+                @endif
+                
                 <span
-                    class="px-3 py-1 bg-error/40 border border-white/20 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">error</span> Comprobante Pendiente
+                    class="px-3 py-1 bg-white/20 rounded-full text-xs font-bold flex items-center gap-1 opacity-60">
+                    <span class="material-symbols-outlined text-sm">help</span> Comprobante Pendiente
                 </span>
             </div>
         </div>
         <div class="flex-shrink-0 text-center md:text-right">
             <p class="text-white/80 text-sm mb-1 uppercase tracking-wider font-bold">Nivel de Confianza</p>
-            <p class="text-5xl font-black">85%</p>
+            <p class="text-5xl font-black">{{ $trustLevel }}%</p>
         </div>
     </div>
 
@@ -198,40 +218,46 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div
                 class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex items-center gap-4">
-                <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-700">
+                <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
                 </div>
                 <div class="flex-1">
                     <h5 class="font-bold text-gray-900 dark:text-white">INE</h5>
-                    <span class="text-xs text-green-600 font-bold uppercase">Verified</span>
+                    <span class="text-xs text-gray-500 font-bold uppercase">No Contemplado</span>
                 </div>
-                <span class="material-symbols-outlined text-green-600">check_circle</span>
+                <span class="material-symbols-outlined text-gray-400">help</span>
             </div>
 
             <div
                 class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex items-center gap-4">
-                <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-700">
+                <div class="w-12 h-12 {{ $hasRfc ? 'bg-green-50 text-green-700' : 'bg-red-50 text-error' }} rounded-lg flex items-center justify-center">
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
                 </div>
                 <div class="flex-1">
                     <h5 class="font-bold text-gray-900 dark:text-white">RFC</h5>
-                    <span class="text-xs text-green-600 font-bold uppercase">Validado</span>
+                    @if($hasRfc)
+                        <span class="text-xs text-green-600 font-bold uppercase">Validado</span>
+                    @else
+                        <span class="text-xs text-error font-bold uppercase">Pendiente</span>
+                    @endif
                 </div>
-                <span class="material-symbols-outlined text-green-600">check_circle</span>
+                @if($hasRfc)
+                    <span class="material-symbols-outlined text-green-600">check_circle</span>
+                @else
+                    <button class="bg-primary-container text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary transition-colors">Subir Ahora</button>
+                @endif
             </div>
 
             <div
                 class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex items-center gap-4">
-                <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center text-red-700">
+                <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_pin</span>
                 </div>
                 <div class="flex-1">
                     <h5 class="font-bold text-gray-900 dark:text-white">Comprobante Domicilio</h5>
-                    <span class="text-xs text-error font-bold uppercase">Pendiente</span>
+                    <span class="text-xs text-gray-500 font-bold uppercase">No Contemplado</span>
                 </div>
-                <button
-                    class="bg-primary-container text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary transition-colors">Subir
-                    Ahora</button>
+                <span class="material-symbols-outlined text-gray-400">help</span>
             </div>
         </div>
     </div>
