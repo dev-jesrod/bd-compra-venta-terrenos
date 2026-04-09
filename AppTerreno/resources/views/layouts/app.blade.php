@@ -15,6 +15,7 @@
         'resources/js/tailwind-config.js',
         'resources/css/app.css',
         isset($css_file) ? "resources/css/{$css_file}.css" : ''
+        'resources/js/app.js'
     ])
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">

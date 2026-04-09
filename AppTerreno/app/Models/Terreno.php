@@ -13,7 +13,7 @@ class Terreno extends Model
     protected $primaryKey = 'idTerreno';
 
     protected $fillable = [
-        'idUsuario','nombre','estado','largo',
+        'idUsuario','nombre','ubicacion','estado','largo',
         'ancho','descripcion','precio',
         'fechaCompra','fechaVenta'
     ];
