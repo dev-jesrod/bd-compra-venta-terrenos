@@ -36,6 +36,10 @@ class UserLoginController extends Controller
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
 
+            if (Auth::user()->tipoUsuario === 'vendedor') {
+                return redirect()->route('vendedor.dashboard');
+            }
+
             return redirect()->intended('/');
         }
 
