@@ -1,41 +1,40 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\Vendedor\RegistroVendedorController;
+use App\Http\Controllers\Cliente\RegistroClienteController;
 use App\Http\Controllers\Vendedor\DashboardController;
 use App\Http\Controllers\Vendedor\TerrenoVendedorController;
 use App\Http\Controllers\Vendedor\LeadController;
 use App\Http\Controllers\Vendedor\DocumentoController;
 use App\Http\Controllers\TerrenoController;
 
+/* |--------------------------------------------------------------------------
+ | Rutas Públicas (sin autenticación)
+ |-------------------------------------------------------------------------- */
 
-/* |-------------------------------------------------------------------------- | Rutas de Autenticación |-------------------------------------------------------------------------- */
-//* Terreno
+// HomePage — accesible para todos
+Route::get('/', [HomePageController::class, 'index'])->name('home');
 
+// Terrenos públicos
 Route::get('/terrenos', [TerrenoController::class, 'index'])->name('terrenos.index');
 
 // Login
 Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
 
-// Registro
+// Registro — Vendedor
 Route::get('/registro', [RegistroVendedorController::class, 'showRegistrationForm'])->name('registro');
 Route::post('/registro', [RegistroVendedorController::class, 'store'])->name('registro.store');
 
+// Registro — Cliente (usuario normal)
+Route::get('/registro-cliente', [RegistroClienteController::class, 'showRegistrationForm'])->name('registro.cliente');
+Route::post('/registro-cliente', [RegistroClienteController::class, 'store'])->name('registro.cliente.store');
+
 // Logout
 Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
-/* |--------------------------------------------------------------------------
- | Rutas Protegidas (Requieren Autenticación)
- |-------------------------------------------------------------------------- */
-Route::middleware('auth')->group(function () {
-        Route::get(
-                '/',
-                function () {
-                        return view('homePage');
-                }
-        )->name('home');
-});
 
 
 // Rutas para el vendedor
