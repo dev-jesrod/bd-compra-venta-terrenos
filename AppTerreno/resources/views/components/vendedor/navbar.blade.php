@@ -10,7 +10,7 @@
             </form>
         </div>
     </div>
-    <div class="flex items-center gap-6">
+        <div class="flex items-center gap-6">
         <button class="relative text-gray-500 hover:text-green-700 transition-colors">
             <span class="material-symbols-outlined">notifications</span>
             <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
@@ -22,7 +22,7 @@
             @php
                 $user = auth()->user();
                 $nombreCorto = $user ? $user->nombre . ' ' . $user->apellido1 : 'Usuario';
-                $iniciales = $user ? substr($user->nombre, 0, 1) . substr($user->apellido1, 0, 1) : 'U';
+                $iniciales = $user ? strtoupper(substr($user->nombre, 0, 1) . substr($user->apellido1, 0, 1)) : 'U';
             @endphp
             <div class="text-right">
                 <p class="text-sm font-bold text-gray-900 dark:text-gray-100">{{ $nombreCorto }}</p>
@@ -35,6 +35,14 @@
                     {{ $iniciales }}
                 </div>
             @endif
+            {{-- Cerrar sesión --}}
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="text-gray-400 hover:text-red-600 transition-colors" title="Cerrar sesión">
+                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                </button>
+            </form>
         </div>
     </div>
 </header>
+
