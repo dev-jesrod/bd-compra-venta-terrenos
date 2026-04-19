@@ -6,16 +6,50 @@
     <title>@yield('title', 'AppTerreno')</title>
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                primary: "#228B22",
+                secondary: "#475569",
+                surface: "#F8F8FF",
+                surfaceContainer: "#ebefee",
+                surfaceContainerLow: "#F8F8FF",
+                surfaceContainerLowest: "#ffffff",
+                surfaceContainerHigh: "#e5e9e8",
+                surfaceContainerHighest: "#dfe3e2",
+                surfaceDim: "#d7dbda",
+                onSurface: "#0f172a",
+                onSurfaceVariant: "#475569",
+                onPrimary: "#ffffff",
+                onSecondary: "#ffffff",
+                background: "#F8F8FF",
+                outline: "#cbd5e1",
+                outlineVariant: "#e2e8f0",
+            },
+            fontFamily: {
+                serif: ["Georgia", "serif"],
+                display: ["Inter", "sans-serif"],
+                sans: ["Inter", "sans-serif"],
+            }
+        }
+    }
+}
+</script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     
     <!-- Vite Directives -->
+    @if(false)
     @vite([
         'resources/js/tailwind-config.js',
         'resources/css/app.css',
         isset($css_file) ? "resources/css/{$css_file}.css" : ''
     ])
+    @endif
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">

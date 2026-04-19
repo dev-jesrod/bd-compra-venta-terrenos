@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 
 Route::get('/registro', function () {
     return view('registro');
@@ -34,3 +34,11 @@ Route::get('/leads', function() {
 Route::get('/documentos', function() {
     return view('vendedor.documentos');
 });
+
+Route::get('/recuperar-contrasena', function() {
+    return view('recuperarcontra');
+});
+
+Route::post('/recuperar-contrasena', function(Illuminate\Http\Request $request) {
+    return response()->json(['message' => 'Link enviado a tu correo']);
+})->name('password.email');
