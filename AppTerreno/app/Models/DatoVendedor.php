@@ -12,10 +12,9 @@ class DatoVendedor extends Model
     protected $table = 'dato_vendedores';
     protected $primaryKey = 'idVendedor';
 
-    protected $fillable = ['idUsuario','rfc','utilidad'];
-
+    protected $fillable = ['idUsuario','rfc','utilidad','nombre', 'email'];
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'idUsuario');
+    return $this->belongsTo(User::class, 'idUsuario');
     }
 }

@@ -4,9 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\RegistroUserController;
 use App\Http\Controllers\TerrenoController;
-
+use App\Http\Controllers\PerfilController;
 
 /* |-------------------------------------------------------------------------- | Rutas de Autenticación |-------------------------------------------------------------------------- */
+//* Usuario y Vendedor
+
+Route::get('/perfil-usuario', [PerfilController::class, 'usuario']);
+Route::get('/perfil-vendedor', [PerfilController::class, 'vendedor']);
+
 //* Terreno
 
 Route::get('/terrenos', [TerrenoController::class, 'index'])->name('terrenos.index');
