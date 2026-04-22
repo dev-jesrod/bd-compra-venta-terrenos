@@ -62,7 +62,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+<<<<<<< Updated upstream
             'model' => env('AUTH_MODEL', App\Models\User::class),
+=======
+            'model' => env('AUTH_MODEL', App\Models\Usuario::class),
+>>>>>>> Stashed changes
         ],
 
         // 'users' => [
