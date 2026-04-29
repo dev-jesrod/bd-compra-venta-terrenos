@@ -175,7 +175,7 @@
 </div>
 <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em]">© 2024 Maz Terrenos. Inversión consciente, legado natural.</p>
 <div class="fixed bottom-10 right-10">
-<button class="bg-on-surface text-white pl-8 pr-4 py-4 rounded-full flex items-center gap-6 shadow-2xl group hover:bg-primary transition-all duration-300">
+<button class="bg-green-700 text-white pl-8 pr-4 py-4 rounded-full flex items-center gap-6 shadow-2xl group hover:bg-primary transition-all duration-300">
 <span class="text-xs font-bold uppercase tracking-[0.2em]">COMPRAR AHORA</span>
 <span class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
 <span class="material-symbols-outlined text-sm">arrow_forward</span>
