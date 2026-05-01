@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('login');
 });
 
+Route::post('/', [ LoginController::class, 'login'] );
+
 Route::get('/registro',function (){
     return view('registro');
 });

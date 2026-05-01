@@ -11,12 +11,13 @@
     
     <h2>Inicio de Sesion</h2>
 <!-- Formulario -->
-    <form action="/" method="get">
+    <form action="/" method="POST">
+        @csrf
 
         <ul>
             <li>
                 <label for="correo">Correo electronico:</label>
-                <input type="email" id="correo" name="correo_electronico" required >
+                <input type="email" id="correo" name="email" required >
             </li>
         </ul>
 
