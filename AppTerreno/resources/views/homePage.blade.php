@@ -259,6 +259,5 @@
             <div class="col-span-2 md:col-span-1">
                 <h4 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">{{ $footer_sections['locations'] ?? 'Ubicaciones' }}</h4>
                 <ul class="space-y-4 text-green-100/80">
-                    @foreach($contact_info ?? [['icon' => 'location_on', 'text' => 'Av. Las Palmas 405, Lomas, CDMX'], ['icon' => 'phone', 'text' => '+52 55 1234 5678']] as $info)
                         <li class="flex items-start">
                             <span class="material-symbols-outlined

@@ -42,3 +42,59 @@ Route::get('/recuperar-contrasena', function() {
 Route::post('/recuperar-contrasena', function(Illuminate\Http\Request $request) {
     return response()->json(['message' => 'Link enviado a tu correo']);
 })->name('password.email');
+
+Route::get('/properties', function() {
+    return view('homePage');
+})->name('properties.index');
+
+Route::get('/properties/catalog', function() {
+    return view('homePage');
+})->name('properties.catalog');
+
+Route::get('/properties/{slug}', function($slug) {
+    return view('detalles-terreno');
+})->name('properties.show');
+
+Route::get('/projects', function() {
+    return view('homePage');
+})->name('projects.index');
+
+Route::get('/sustainability', function() {
+    return view('homePage');
+})->name('sustainability.index');
+
+Route::get('/about', function() {
+    return view('homePage');
+})->name('about.index');
+
+Route::get('/contact', function() {
+    return view('homePage');
+})->name('contact');
+
+Route::get('/faq', function() {
+    return view('homePage');
+})->name('faq');
+
+Route::get('/privacy', function() {
+    return view('homePage');
+})->name('privacy');
+
+Route::get('/register', function() {
+    return view('registro');
+})->name('register');
+
+Route::post('/register', function(Illuminate\Http\Request $request) {
+    return response()->json(['message' => 'Registro no implementado']);
+})->name('register.store');
+
+Route::get('/password/reset', function() {
+    return view('recuperarcontra');
+})->name('password.request');
+
+Route::post('/listings', function(Illuminate\Http\Request $request) {
+    return response()->json(['message' => 'Listings store no implementado']);
+})->name('listings.store');
+
+Route::post('/vendedor/terrenos', function(Illuminate\Http\Request $request) {
+    return response()->json(['message' => 'Vendedor terrains store no implementado']);
+})->name('vendedor.terrenos.store');
