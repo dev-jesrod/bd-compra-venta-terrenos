@@ -13,6 +13,7 @@ tailwind.config = {
         extend: {
             colors: {
                 primary: "#228B22",
+                'brand-green': "#228B22",
                 secondary: "#475569",
                 surface: "#F8F8FF",
                 surfaceContainer: "#ebefee",
@@ -28,17 +29,58 @@ tailwind.config = {
                 background: "#F8F8FF",
                 outline: "#cbd5e1",
                 outlineVariant: "#e2e8f0",
+                tertiary: "#8c4a24",
+                tertiaryContainer: "#aa623a",
+                tertiaryFixed: "#ffdbca",
+                tertiaryFixedDim: "#ffb690",
+                onTertiary: "#ffffff",
+                onTertiaryFixed: "#341100",
+                onTertiaryFixedVariant: "#723611",
+                onTertiaryContainer: "#fffbff",
+                secondaryFixed: "#c6e9e8",
+                secondaryFixedDim: "#aacdcc",
+                onSecondaryFixed: "#002020",
+                onSecondaryFixedVariant: "#2b4c4c",
+                onSecondaryContainer: "#1e293b",
+                secondaryContainer: "#f1f5f9",
+                primaryFixed: "#94f2f2",
+                primaryFixedDim: "#78d6d5",
+                onPrimaryFixed: "#002020",
+                onPrimaryFixedVariant: "#004f50",
+                onPrimaryContainer: "#ffffff",
+                primaryContainer: "#228B22",
+                surfaceTint: "#228B22",
+                inversePrimary: "#78d6d5",
+                inverseSurface: "#1e293b",
+                inverseOnSurface: "#f1f5f9",
+                error: "#ba1a1a",
+                errorContainer: "#ffdad6",
+                onError: "#ffffff",
+                onErrorContainer: "#93000a",
+                onBackground: "#0f172a",
+                surfaceBright: "#ffffff",
             },
             fontFamily: {
                 serif: ["Georgia", "serif"],
                 display: ["Inter", "sans-serif"],
                 sans: ["Inter", "sans-serif"],
+                headline: ["Newsreader", "serif"],
+                body: ["Work Sans", "sans-serif"],
+                label: ["Work Sans", "sans-serif"],
+                brand: ["Newsreader", "serif"],
+            },
+            borderRadius: {
+                DEFAULT: "0.25rem",
+                lg: "0.5rem",
+                xl: "0.75rem",
+                full: "9999px",
             }
         }
     }
 }
 </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400;1,6..72,700&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     
@@ -50,6 +92,8 @@ tailwind.config = {
         isset($css_file) ? "resources/css/{$css_file}.css" : ''
     ])
     @endif
+
+    @yield('styles')
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
@@ -88,6 +132,7 @@ tailwind.config = {
             @yield('content')
 
             <!-- Footer (Hidden on specific auth pages if preferred, but keeping it globally for now) -->
+            @yield('footer')
             <footer class="bg-white dark:bg-slate-900 border-t border-primary/5 pt-16 pb-8 px-6 md:px-20 mt-auto">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12 max-w-7xl mx-auto">
                     <div class="col-span-2 lg:col-span-1">
@@ -144,5 +189,7 @@ tailwind.config = {
             </footer>
         </div>
     </div>
+
+    @stack('scripts')
 </body>
 </html>
