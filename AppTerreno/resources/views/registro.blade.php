@@ -1,53 +1,137 @@
-{{--
-    Archivo: registro.blade.php
-    Descripción: Vista de registro de nuevos usuarios (vendedores/admins)
-    Controlador: RegisterController
-    - showRegistrationForm() -> GET /registro (pasa $heroImage, $logo, etc.)
-    - register(Request $request) -> POST /registro (maneja la creación del usuario)
-    
-    Variables esperadas desde RegisterController:
-    - $hero_image (string) - URL de la imagen del panel izquierdo
-    - $logo_url (string) - URL del logo de la marca
-    - $hero_title (string) - Título del panel izquierdo
-    - $hero_subtitle (string) - Subtítulo del panel izquierdo
-    - $page_title (string) - Título del formulario
-    - $page_subtitle (string) - Subtítulo del formulario
-    - $account_status_text (string) - Texto de estado de cuenta
---}}
-
-@extends('layouts.app')
-
-@section('title', 'Registro - ' . config('app.name', 'Maz Terrenos'))
-
-@push('css_file', 'registro')
-
-@section('styles')
-<link href="{{ asset('css/registro.css') }}" rel="stylesheet" />
-<style>
-    /* Ocultar header y footer del layout en registro */
-    .layout-container > header { display: none !important; }
-    .layout-container > footer { display: none !important; }
-</style>
-@endsection
-
-@section('content')
-<main class="split-container w-full">
-    {{-- Controlador: RegisterController -> $hero_image --}}
-    <section class="hidden md:block md:w-1/2 relative overflow-hidden left-panel">
-        <img class="absolute inset-0 w-full h-full object-cover" 
-             src="{{ $hero_image ?? 'https://lh3.googleusercontent.com/aida/ADBb0ui_uK9rQveIXjxVVr6EvHyuMIsapgNQx6ZRVFv2R5SKMxPr_by-T50-ZblnHQk-WC8OKfd2_hTm9JcZpUG8oooorrmegzhXy2gmjOeDCF_MNOqq2ppTfu4xxY-45kKS10oZAU1dVal_OufbTWkhXqlO3AMrM03Ywp9eIkTcq_BcpfxrLOlZtypmdEpu-Z6hZn2nQQ3BeTl9Fdrouc6aAJ5yn6erg1KLYKsmUwxZym78f1d5y-ATawGX4AcIulj2mj-v-2-gStABv-A' }}"
-             alt="Vista aérea del bosque">
-        <div class="absolute inset-0 bg-primary/10 backdrop-blur-[2px]"></div>
-        {{-- Controlador: RegisterController -> $hero_title, $hero_subtitle --}}
-        <div class="relative h-full flex flex-col justify-end p-16 text-white z-10">
-            <h2 class="text-5xl font-serif italic mb-6 leading-tight">
-                {{ $hero_title ?? 'Comience su viaje hacia la sostenibilidad.' }}
-            </h2>
-            <p class="text-xl font-body max-w-md opacity-90">
-                {{ $hero_subtitle ?? 'Únase a Maz Terrenos y asegure su lugar en el futuro de la conservación consciente.' }}
-            </p>
+<!DOCTYPE html>
+<<<<<<< HEAD
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed-dim": "#ffb690",
+                        "surface-container-low": "#F8F8FF",
+                        "outline": "#cbd5e1",
+                        "surface-container-highest": "#dfe3e2",
+                        "primary-container": "#228B22",
+                        "on-primary-fixed": "#002020",
+                        "surface-bright": "#ffffff",
+                        "on-surface": "#0f172a",
+                        "tertiary": "#8c4a24",
+                        "on-tertiary-fixed": "#341100",
+                        "primary-fixed": "#94f2f2",
+                        "on-primary-container": "#ffffff",
+                        "secondary": "#475569",
+                        "on-surface-variant": "#475569",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#0f172a",
+                        "inverse-primary": "#78d6d5",
+                        "surface-variant": "#e2e8f0",
+                        "secondary-fixed-dim": "#aacdcc",
+                        "tertiary-container": "#aa623a",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d7dbda",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#004f50",
+                        "background": "#F8F8FF",
+                        "primary": "#228B22",
+                        "on-secondary-fixed": "#002020",
+                        "surface-container-high": "#e5e9e8",
+                        "secondary-fixed": "#c6e9e8",
+                        "on-secondary-container": "#1e293b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#723611",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-surface": "#1e293b",
+                        "surface": "#F8F8FF",
+                        "secondary-container": "#f1f5f9",
+                        "inverse-on-surface": "#f1f5f9",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-tint": "#228B22",
+                        "surface-container": "#ebefee",
+                        "on-secondary-fixed-variant": "#2b4c4c",
+                        "outline-variant": "#e2e8f0",
+                        "primary-fixed-dim": "#78d6d5"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Work Sans", "sans-serif"],
+                        "label": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #F8F8FF;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Newsreader', serif;
+        }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+    <!-- HEADER -->
+    <header class="fixed top-0 w-full z-50 bg-[#F8F8FF]/80 backdrop-blur-md shadow-sm">
+        <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-3">
+                <img class="w-10 h-10 rounded-full object-cover" 
+                     data-alt="Maz Terrenos circular logo" 
+                     src="{{ $logo ?? asset('images/logo.png') }}"
+                     alt="Maz Terrenos Logo">
+                <span class="text-2xl font-bold tracking-tight text-slate-900 font-serif italic uppercase">
+                    {{ config('app.name', 'Maz Terrenos') }}
+                </span>
+            </div>
+            <nav class="hidden md:flex gap-8 items-center">
+                <a class="text-slate-600 hover:text-green-700 transition-colors font-label text-sm font-medium" 
+                   href="{{ route('listings.index') }}">Listings</a>
+                <a class="text-slate-600 hover:text-green-700 transition-colors font-label text-sm font-medium" 
+                   href="{{ route('philosophy') }}">Philosophy</a>
+                <a class="text-slate-600 hover:text-green-700 transition-colors font-label text-sm font-medium" 
+                   href="{{ route('impact') }}">Impact</a>
+                <a class="text-slate-600 hover:text-green-700 transition-colors font-label text-sm font-medium" 
+                   href="{{ route('concierge') }}">Concierge</a>
+                <a class="bg-primary text-on-primary px-6 py-2 rounded-full font-label text-sm font-semibold hover:scale-102 transition-transform active:scale-98" 
+                   href="{{ route('contact.inquiry') }}">Inquire</a>
+            </nav>
+            <button class="md:hidden">
+                <span class="material-symbols-outlined text-on-surface">menu</span>
+            </button>
         </div>
-    </section>
+    </header>
+
+    <main class="min-h-screen flex flex-col md:flex-row pt-20">
+        <!-- HERO SECTION -->
+        <section class="hidden md:block md:w-1/2 relative overflow-hidden">
+            <img class="absolute inset-0 w-full h-full object-cover" 
+                 data-alt="Aerial view of lush green forest canopy" 
+                 src="{{ $heroImage ?? asset('images/hero-forest.jpg') }}"
+                 alt="Vista aérea del bosque">
+            <div class="absolute inset-0 bg-primary/10 backdrop-blur-[2px]"></div>
+            <div class="relative h-full flex flex-col justify-end p-16 text-white z-10">
+                <h2 class="text-5xl font-serif italic mb-6 leading-tight">
+                    {{ $heroTitle ?? 'Comience su viaje hacia la sostenibilidad.' }}
+                </h2>
+                <p class="text-xl font-body max-w-md opacity-90">
+                    {{ $heroSubtitle ?? 'Únase a Maz Terrenos y asegure su lugar en el futuro de la conservación consciente.' }}
+                </p>
+            </div>
+        </section>
 
     {{-- Controlador: RegisterController -> showRegistrationForm() --}}
     <section class="w-full md:w-1/2 flex flex-col items-center justify-start p-8 md:p-16 bg-surface">
@@ -217,48 +301,112 @@
                     </div>
                 </div>
 
-                <!-- Birthdate -->
-                <div class="space-y-1.5">
-                    <label class="text-sm font-semibold font-label text-on-surface-variant ml-1">Fecha de Nacimiento</label>
-                    <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body text-on-surface @error('fecha_nacimiento') border-error ring-2 ring-error/20 @enderror" 
-                           name="fecha_nacimiento"
-                           value="{{ old('fecha_nacimiento') }}"
-                           type="date"/>
-                    @error('fecha_nacimiento')
-                        <p class="text-xs text-error">{{ $message }}</p>
-                    @enderror
-                </div>
+                    <!-- Birthdate and Account Status Row -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-1.5">
+                            <label class="text-sm font-semibold font-label text-on-surface-variant ml-1">Fecha de Nacimiento</label>
+                            <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-body text-on-surface @error('fecha_nacimiento') border-error ring-2 ring-error/20 @enderror" 
+                                   name="fecha_nacimiento"
+                                   value="{{ old('fecha_nacimiento') }}"
+                                   type="date"/>
+                            @error('fecha_nacimiento')
+                                <p class="text-xs text-error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-sm font-semibold font-label text-on-surface-variant ml-1">Estado de Cuenta</label>
+                            <div class="flex items-center gap-3 px-4 py-3 bg-surface-container-low rounded-xl border border-outline-variant">
+                                <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                                <span class="text-sm font-medium font-label text-on-surface
+=======
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
 
-                <!-- Account Status -->
-                <div class="space-y-1.5">
-                    <label class="text-sm font-semibold font-label text-on-surface-variant ml-1">Estado de Cuenta</label>
-                    <div class="flex items-center gap-3 px-4 py-3 bg-surface-container-low rounded-xl border border-outline-variant">
-                        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-                        <span class="text-sm font-medium font-label text-on-surface">{{ $account_status_text ?? 'Activa (Pre-aprobado)' }}</span>
-                    </div>
-                </div>
+    <h2>Registrarse</h2>
+<!-- Formulario -->
+    <form action="/registro" method="get">
 
-                <!-- Submit Button -->
-                <button class="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-white bg-primary hover:bg-primary/90 transition-colors duration-200" type="submit">
-                    {{ $register_btn_text ?? 'Registrarse' }}
-                </button>
-            </form>
+        <ul>
+            <li>
+                <label for="opciones">Tipo Usuario:</label>
+                <select name="usuario" id="tipo_usuario">
+                    <option selected> Selecciona alguna opcion </option>
+                    <option value="cliente"> Cliente</option>
+                    <option value="vendedor"> Vendedor </option>
+                </select>
+            </li>
+        </ul>
 
-            <footer class="mt-10 text-center">
-                <p class="text-sm text-on-surface-variant">
-                    {{ $has_account_text ?? '¿Ya tienes una cuenta?' }} 
-                    {{-- Controlador: LoginController -> showLoginForm() --}}
-                    {{-- Ruta: Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login') --}}
-                    <a class="text-primary font-bold hover:underline" href="{{ route('login') }}">
-                        {{ $login_link_text ?? 'Inicia Sesión' }}
-                    </a>
-                </p>
-            </footer>
-        </div>
-    </section>
-</main>
+        <ul>
+            <li>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre_usuario" required >
+            </li>
+        </ul>
 
-@push('scripts')
-<script src="{{ asset('js/tailwind-registro.js') }}"></script>
-@endpush
-@endsection
+        <ul>
+            <li>
+                <label for="apellido1">Apellido paterno:</label>
+                <input type="text" id="apellido1" name="apellido_p" required >
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <label for="apellido2">Apellido materno:</label>
+                <input type="text" id="apellido2" name="apellido_m" required >
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <label for="sexo">Sexo:</label>
+                <input type="text" id="sexo" name="sexo" required >
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_n" required >
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <label for="telefono">Telefono:</label>
+                <input type="text" id="telefono" name="numero_telefono" required >
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <label for="correo">Correo electronico:</label>
+                <input type="email" id="correo" name="correo_electronico" required >
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required >
+            </li>
+        </ul>
+
+        <li>
+            <button >Registrarse</button>
+        </li>
+
+    </form>
+<!-- fin Formulario -->
+    
+
+    
+</body>
+</html>
+>>>>>>> 5e284d38264939afc81f06b3ace1c4fca40c7ebb

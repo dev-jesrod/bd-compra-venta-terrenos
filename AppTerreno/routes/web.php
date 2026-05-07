@@ -1,17 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\VendedorController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
-    return view('homePage');
-});
-
-Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/registro', function () {
+Route::post('/', [ LoginController::class, 'login'] );
+
+Route::get('/registro',function (){
     return view('registro');
 });
 
