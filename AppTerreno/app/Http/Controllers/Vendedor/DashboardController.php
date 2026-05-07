@@ -29,7 +29,15 @@ class DashboardController extends Controller
 
             $noContent = $terrenos->isEmpty() && $leads->isEmpty();
 
-            return view('vendedor.dashboard', compact('terrenos', 'leads', 'noContent'));
+            $totalProspectos = $leads->count();
+            // Placeholder metrics for views and active reservations since they aren't fully modeled yet
+            $totalVistas = 0;
+            $apartadosActivos = 0;
+
+            $hasRfc = !empty($vendedor->rfc);
+            $trustLevel = $hasRfc ? 33 : 0;
+
+            return view('vendedor.dashboard', compact('terrenos', 'leads', 'noContent', 'totalProspectos', 'totalVistas', 'apartadosActivos', 'hasRfc', 'trustLevel', 'vendedor'));
 
         } catch (\Exception $e) {
             // Emulate error

@@ -1,5 +1,5 @@
-<aside
-    class="fixed left-0 top-0 h-full flex flex-col bg-slate-50 dark:bg-slate-950 border-r border-gray-200 dark:border-gray-800 w-64 z-50">
+<aside id="vendedor-sidebar"
+    class="fixed left-0 top-0 h-full flex flex-col bg-slate-50 dark:bg-slate-950 border-r border-gray-200 dark:border-gray-800 w-64 z-50 transition-transform duration-300 -translate-x-full md:translate-x-0">
     <div class="p-6 flex items-center gap-3">
         <div
             class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white font-black text-xl">
@@ -10,28 +10,28 @@
         </div>
     </div>
     <nav class="flex-1 px-4 mt-4 space-y-1">
-        <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('dashboard') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
-            href="{{ url('/dashboard') }}">
+        <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('vendedor.dashboard') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
+            href="{{ route('vendedor.dashboard') }}">
             <span class="material-symbols-outlined">dashboard</span>
             Dashboard
         </a>
-        <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('mis-propiedades*') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
-            href="{{ url('/mis-propiedades') }}">
+        <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('vendedor.terrenos.index') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
+            href="{{ route('vendedor.terrenos.index') }}">
             <span class="material-symbols-outlined">landscape</span>
             Mis Propiedades
         </a>
-        <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('publicar-terreno') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
-            href="{{ url('/publicar-terreno') }}">
+        <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('vendedor.terrenos.create') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
+            href="{{ route('vendedor.terrenos.create') }}">
             <span class="material-symbols-outlined">add_circle</span>
             Publicar Terreno
         </a>
-        <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('leads') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
-            href="{{ url('/leads') }}">
+        <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('vendedor.leads.index') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
+            href="{{ route('vendedor.leads.index') }}">
             <span class="material-symbols-outlined">forum</span>
             Leads y Mensajes
         </a>
-        <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('documentos') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
-            href="{{ url('/documentos') }}">
+        <a class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('vendedor.documentos.index') ? 'text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-700 dark:border-green-400' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }} transition-colors font-medium text-sm rounded-lg"
+            href="{{ route('vendedor.documentos.index') }}">
             <span class="material-symbols-outlined">verified_user</span>
             Mis documentos
         </a>

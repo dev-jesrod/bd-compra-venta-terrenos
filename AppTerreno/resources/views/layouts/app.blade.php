@@ -44,12 +44,8 @@
                         <a class="hover:text-green-600 transition-colors" href="#">Vendedores</a>
                         <a class="hover:text-green-600 transition-colors" href="#">Contacto</a>
                     </nav>
-                    <!-- Auth Buttons -->
-                    <div class="flex items-center gap-4 text-sm font-bold">
-                        <a href="/login" class="text-gray-700 hover:text-green-600 transition-colors">Iniciar Sesión</a>
-                        <a href="/registro"
-                            class="bg-green-700 hover:bg-green-800 text-white px-5 py-2.5 rounded-lg transition-colors">Registrarse</a>
-                    </div>
+                    <!-- Auth Section (condicional: logueado / invitado) -->
+                    <x-auth-nav />
                 </div>
             </header>
 
