@@ -12,29 +12,22 @@ class TerrenoFactory extends Factory
 
     public function definition(): array
     {
-        $estado = fake()->randomElement(['DISPONIBLE', 'VENDIDO', 'RESERVADO']);
+     $estado = fake()->randomElement(['DISPONIBLE','VENDIDO','RESERVADO']);
 
-        return [
-            'idUsuario' => Usuario::factory([
-                'tipoUsuario' => 'vendedor'
-            ]),
+     return [
+        'idUsuario' => Usuario::where('tipoUsuario','vendedor')
+            ->inRandomOrder()
+            ->first()
+            ->idUsuario,
 
-            'nombre' => fake()->optional()->word(),
-
-            'estado' => $estado,
-
-            'largo' => fake()->randomFloat(2, 10, 100),
-            'ancho' => fake()->randomFloat(2, 10, 100),
-
-            'descripcion' => fake()->sentence(),
-
-            'precio' => fake()->randomFloat(2, 50000, 500000),
-
-            'fechaCompra' => fake()->date(),
-
-            'fechaVenta' => $estado === 'VENDIDO'
-                ? fake()->date()
-                : null,
-        ];
-    }
+        'nombre' => fake()->optional()->word(),
+        'estado' => $estado,
+        'largo' => fake()->randomFloat(2, 10, 100),
+        'ancho' => fake()->randomFloat(2, 10, 100),
+        'descripcion' => fake()->sentence(),
+        'precio' => fake()->randomFloat(2, 50000, 500000),
+        'fechaCompra' => fake()->date(),
+        'fechaVenta' => $estado === 'VENDIDO' ? fake()->date() : null,
+    ];
+}
 }

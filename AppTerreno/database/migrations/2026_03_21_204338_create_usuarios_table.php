@@ -11,25 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->id('idUsuario');
-            $table->string('tipoUsuario', 10);
-            $table->string('nombre', 45);
-            $table->string('apellido1', 45);
-            $table->string('apellido2', 45);
-            $table->enum('sexo', ['M','F']);
-            $table->date('fechaNacimiento');
-            $table->string('contrasena', 255);
-            $table->string('foto', 255)->nullable();
-            $table->boolean('estado');
+       Schema::create('usuarios', function (Blueprint $table) {
+          $table->id('idUsuario');
 
-            //se parados por que haria una combinacion unica de los 3 juntos
-            $table->string('curp', 18)->unique();
-            $table->string('telefono', 10)->unique();
-            $table->string('email', 80)->unique();
+         $table->enum('tipoUsuario', ['admin','cliente','vendedor']);
 
-            $table->timestamps();
-        });
+         $table->string('nombre', 45);
+         $table->string('apellido1', 45);
+         $table->string('apellido2', 45);
+
+         $table->enum('sexo', ['M','F']);
+         $table->date('fechaNacimiento');
+
+         $table->string('contrasena', 255);
+         $table->string('foto', 255)->nullable();
+         $table->boolean('estado');
+
+         $table->string('curp', 18)->unique();
+         $table->string('telefono', 10)->unique();
+         $table->string('email', 80)->unique();
+
+    $table->timestamps();
+});
     }
 
     /**

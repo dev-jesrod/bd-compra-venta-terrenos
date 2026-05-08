@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dato_clientes', function (Blueprint $table) {
-            $table->id('idCliente');
-            $table->foreignId('idUsuario') //Nombre del Campo
-                    ->constrained('usuarios') //Tabla donde hara la referencia
-                    ->references('idUsuario'); //Campo donde apunta la llave foranea
-            $table->timestamps();
+         $table->id('idCliente');
+
+      $table->foreignId('idUsuario')
+          ->unique()
+          ->constrained('usuarios')
+          ->references('idUsuario')
+          ->onDelete('cascade');
+
+         $table->timestamps();
         });
     }
 
