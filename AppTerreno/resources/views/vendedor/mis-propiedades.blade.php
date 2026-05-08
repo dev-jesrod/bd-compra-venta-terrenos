@@ -10,11 +10,7 @@
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Mis Propiedades</h1>
             <p class="text-gray-500 text-sm mt-1">Gestiona y monitorea el rendimiento de tus terrenos publicados.</p>
         </div>
-<<<<<<< HEAD
-        <a href="{{ url('/publicar-terreno') }}" class="flex items-center justify-center gap-2 bg-[#228b22] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 active:opacity-80 transition-all shadow-md">
-=======
         <a href="{{ url('/vendedor/publicar-terreno') }}" class="flex items-center justify-center gap-2 bg-[#228b22] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 active:opacity-80 transition-all shadow-md">
->>>>>>> database
             <span class="material-symbols-outlined" data-icon="add">add_circle</span>
             Publicar Nuevo Terreno
         </a>

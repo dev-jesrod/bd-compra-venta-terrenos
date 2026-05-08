@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
@@ -16,13 +16,6 @@ class Usuario extends Authenticatable
     protected $table = 'usuarios';
     protected $primaryKey = 'idUsuario';
 
-<<<<<<< HEAD
-    public function getAuthPassword(){
-
-        return $this->contrasena;
-    }
-}
-=======
     protected $fillable = [
         'tipoUsuario','nombre','apellido1','apellido2',
         'sexo','fechaNacimiento','contrasena',
@@ -60,4 +53,3 @@ class Usuario extends Authenticatable
         return $this->hasMany(Terreno::class, 'idUsuario');
     }
 }
->>>>>>> database

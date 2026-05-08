@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\LoginController;
 
@@ -13,7 +12,7 @@ Route::post('/', [ LoginController::class, 'login'] );
 
 Route::get('/registro',function (){
     return view('registro');
-<<<<<<< HEAD
+
 });
 
 Route::get('/dashboard', function () {
@@ -99,8 +98,7 @@ Route::post('/listings', function(Illuminate\Http\Request $request) {
 Route::post('/vendedor/terrenos', function(Illuminate\Http\Request $request) {
     return response()->json(['message' => 'Vendedor terrains store no implementado']);
 })->name('vendedor.terrenos.store');
-=======
-=======
+
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\Vendedor\RegistroVendedorController;
@@ -169,6 +167,5 @@ Route::middleware(['auth', 'rol:vendedor'])
         Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
 
         Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
->>>>>>> database
 });
->>>>>>> dataBase
+
