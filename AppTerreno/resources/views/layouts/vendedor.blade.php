@@ -84,10 +84,17 @@
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-on-background min-h-screen">
+<<<<<<< HEAD
+=======
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
+
+>>>>>>> database
     <!-- SideNavBar Component -->
     <x-vendedor.sidebar />
 
     <!-- Main Content Canvas -->
+<<<<<<< HEAD
     <main class="pl-64">
         <!-- TopNavBar Component -->
         <x-vendedor.navbar />
@@ -96,5 +103,17 @@
             @yield('content')
         </div>
     </main>
+=======
+    <main class="md:pl-64 transition-all duration-300">
+        <!-- TopNavBar Component -->
+        <x-vendedor.navbar />
+
+        <div class="mt-16 p-4 md:p-8">
+            @yield('content')
+        </div>
+    </main>
+
+    <script src="{{ asset('js/sidebar.js') }}"></script>
+>>>>>>> database
 </body>
 </html>

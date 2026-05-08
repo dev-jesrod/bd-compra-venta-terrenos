@@ -10,22 +10,21 @@ class Cuenta extends Model
     use HasFactory;
 
     protected $table = 'cuentas';
-
     protected $primaryKey = 'idCuenta';
 
     protected $fillable = [
-        'idUsuario',
-        'numeroCuenta',
-        'banco'
+        'idCliente',
+        'idVendedor',
+        'saldo'
     ];
 
-    public $incrementing = true;
-
-    protected $keyType = 'int';
-
-    // 🔗 Relación: una cuenta pertenece a un usuario
-    public function usuario()
+    public function cliente()
     {
-        return $this->belongsTo(Usuario::class, 'idUsuario', 'idUsuario');
+        return $this->belongsTo(DatoCliente::class, 'idCliente', 'idCliente');
+    }
+
+    public function vendedor()
+    {
+        return $this->belongsTo(DatoVendedor::class, 'idVendedor', 'idVendedor');
     }
 }

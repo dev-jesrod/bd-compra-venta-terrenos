@@ -9,17 +9,13 @@ class DatoVendedor extends Model
 {
     use HasFactory;
 
-    protected $table = 'dato_vendedores'; 
-
+    protected $table = 'dato_vendedores';
     protected $primaryKey = 'idVendedor';
 
-    protected $fillable = [
-        'idUsuario',
-        'rfc',
-        'utilidad'
-    ];
+    protected $fillable = ['idUsuario','rfc','utilidad'];
 
-    public $incrementing = true;
-
-    protected $keyType = 'int';
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'idUsuario');
+    }
 }

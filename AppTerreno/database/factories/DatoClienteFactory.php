@@ -10,10 +10,13 @@ class DatoClienteFactory extends Factory
 {
     protected $model = DatoCliente::class;
 
-    public function definition(): array
-    {
-        return [
-            'idUsuario' => Usuario::factory(),
-        ];
+   public function definition(): array
+     {
+      return [
+         'idUsuario' => Usuario::where('tipoUsuario','cliente')
+            ->inRandomOrder()
+            ->first()
+            ->idUsuario,
+       ];
     }
 }
