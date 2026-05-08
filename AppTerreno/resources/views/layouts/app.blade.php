@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="light" lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -15,8 +16,15 @@
 
     <!-- Vite Directives -->
     @vite([
+<<<<<<< HEAD
     'resources/css/app.css',
     'resources/js/app.js'
+=======
+        'resources/js/tailwind-config.js',
+        'resources/css/app.css',
+        isset($css_file) ? "resources/css/{$css_file}.css" : ''
+
+>>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
     ])
 </head>
 
@@ -103,12 +111,12 @@
                     </div>
                 </div>
 
-                <div class="max-w-7xl mx-auto pt-8 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                    <p>© 2024 AppTerreno Plataforma Inmobiliaria. Todos los derechos reservados.</p>
-                    <div class="flex gap-6">
-                        <a class="hover:text-primary transition-colors" href="#">Términos de Servicio</a>
-                        <a class="hover:text-primary transition-colors" href="#">Política de Privacidad</a>
-                        <a class="hover:text-primary transition-colors" href="#">Cookies</a>
+                <div
+                    class="max-w-7xl mx-auto pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-400 font-semibold">
+                    <p>© 2024 GreenEstate. Todos los derechos reservados.</p>
+                    <div class="flex gap-6 text-gray-400">
+                        <a class="hover:text-green-600" href="#">Política de Privacidad</a>
+                        <a class="hover:text-green-600" href="#">Términos de Servicio</a>
                     </div>
                 </div>
             </footer>
@@ -117,4 +125,5 @@
 
     @stack('scripts')
 </body>
+
 </html>

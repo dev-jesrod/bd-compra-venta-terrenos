@@ -305,6 +305,7 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 
 @extends('layouts.app')
 
+<<<<<<< HEAD
 @section('title', 'Iniciar Sesión - ' . ($brand_name ?? 'Maz Terrenos'))
 
 @section('styles')
@@ -510,6 +511,8 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 =======
 @extends('layouts.app')
 
+=======
+>>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
 @section('title', 'Maz Terrenos - Iniciar Sesión')
 
 @php
@@ -648,6 +651,10 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
             }
         });
     </script>
+<<<<<<< HEAD
 @endsection
 >>>>>>> database
 >>>>>>> dataBase
+=======
+@endsection
+>>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
