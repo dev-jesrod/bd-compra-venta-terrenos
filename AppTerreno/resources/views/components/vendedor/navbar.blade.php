@@ -1,8 +1,13 @@
+<<<<<<< HEAD
+<header class="fixed top-0 right-0 left-64 z-40 flex justify-between items-center px-8 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <div class="flex items-center w-full max-w-xl">
+=======
 <header class="fixed top-0 right-0 left-0 md:left-64 z-40 flex justify-between items-center px-4 md:px-8 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-300">
     <div class="flex items-center w-full max-w-xl gap-3">
         <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-green-700 transition-colors">
             <span class="material-symbols-outlined">menu</span>
         </button>
+>>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
         <div class="relative w-full">
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
             <form action="#" method="GET">
@@ -10,7 +15,11 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
+    <div class="flex items-center gap-6">
+=======
         <div class="flex items-center gap-6">
+>>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
         <button class="relative text-gray-500 hover:text-green-700 transition-colors">
             <span class="material-symbols-outlined">notifications</span>
             <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
@@ -19,6 +28,16 @@
             <span class="material-symbols-outlined">help</span>
         </button>
         <div class="flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-gray-800">
+<<<<<<< HEAD
+            <div class="text-right">
+                <p class="text-sm font-bold text-gray-900 dark:text-gray-100">Ricardo Mendoza</p>
+                <p class="text-xs text-gray-500">Master Vendor</p>
+            </div>
+            <img alt="Vendor Manager Profile" class="w-10 h-10 rounded-full border border-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDenS20kaZBgOS64xvFoHjrbAJy5a-TXSJer_U6Xj93op5sde4GMteyZPLOg1lMlf8MiD14XwN2lAT8Nd5WrIvtenFtpsJYc29qpnTD7Pdf33jbNzTXpveGoG10IVwlZaZI1Sgsd-ZABlQgOQL5vqKa4FyhvgsdzwMDIZQMU5aVOMqyLBUndcoDV94fGHceEIpiBLJk9pI8yy3i-5bNBCXmxi_c1Et9-r2PFHkVugEB4AX1_uOQ-0lHSNpfhTFJX8atS9FEimEKIeI">
+        </div>
+    </div>
+</header>
+=======
             @php
                 $user = auth()->user();
                 $nombreCorto = $user ? $user->nombre . ' ' . $user->apellido1 : 'Usuario';
@@ -46,3 +65,4 @@
     </div>
 </header>
 
+>>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783

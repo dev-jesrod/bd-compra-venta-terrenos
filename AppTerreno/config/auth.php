@@ -1,4 +1,7 @@
-<?php
+    <?php
+
+use App\Models\Usuario;
+use Illuminate\Support\Facades\App;
 
 return [
 
@@ -61,8 +64,7 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Usuario::class),
+            'model' => App\Models\Usuario::class,
         ],
 
         // 'users' => [
