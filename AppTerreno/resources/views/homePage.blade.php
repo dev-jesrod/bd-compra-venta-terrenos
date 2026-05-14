@@ -13,8 +13,8 @@
             <!-- Left: Image Placeholder -->
             <div class="lg:w-1/2 relative bg-gray-300 min-h-[400px] lg:min-h-full flex items-center justify-center">
                 <!-- 
-                <img src="{{ asset('public/images/hero.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                -->
+                    <img src="{{ asset('public/images/hero.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+                    -->
                 <span class="text-gray-500 text-2xl font-bold tracking-widest uppercase relative z-10">Imagen</span>
 
                 <!-- Overlay Text -->
@@ -70,8 +70,8 @@
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
                     <div class="relative bg-gray-300 aspect-[4/3] flex items-center justify-center">
                         <!-- 
-                        <img src="{{ asset('public/images/prop1.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                        -->
+                            <img src="{{ asset('public/images/prop1.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+                            -->
                         <span class="text-gray-500 font-bold tracking-widest uppercase z-10">Imagen</span>
                         <span
                             class="absolute top-4 right-4 bg-white text-green-700 text-[10px] font-black uppercase px-3 py-1 rounded-full z-20">Nuevo</span>
@@ -101,8 +101,8 @@
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
                     <div class="relative bg-gray-300 aspect-[4/3] flex items-center justify-center">
                         <!-- 
-                        <img src="{{ asset('public/images/prop2.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                        -->
+                            <img src="{{ asset('public/images/prop2.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+                            -->
                         <span class="text-gray-500 font-bold tracking-widest uppercase z-10">Imagen</span>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
@@ -130,8 +130,8 @@
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
                     <div class="relative bg-gray-300 aspect-[4/3] flex items-center justify-center">
                         <!-- 
-                        <img src="{{ asset('public/images/prop3.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                        -->
+                            <img src="{{ asset('public/images/prop3.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+                            -->
                         <span class="text-gray-500 font-bold tracking-widest uppercase z-10">Imagen</span>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
@@ -161,18 +161,5 @@
                     Ver más propiedades
                 </button>
             </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="bg-green-700 py-24 px-6 text-center">
-            <h3 class="text-white text-4xl lg:text-5xl font-black mb-4 tracking-tight">¿Listo para tu nueva vida?</h3>
-            <p class="text-white/90 font-medium mb-10 text-sm max-w-md mx-auto">
-                Únete a cientos de personas que ya están viviendo su sueño en la naturaleza.
-            </p>
-            <button
-                class="bg-[#1a1e26] hover:bg-black text-white font-bold py-4 px-8 rounded-xl transition-colors shadow-lg">
-                Contactar a un asesor
-            </button>
-        </div>
     </main>
 @endsection

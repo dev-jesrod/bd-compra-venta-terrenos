@@ -1,59 +1,36 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Gestión para la Compra y Venta de Terrenos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introducción
+Este proyecto consiste en una plataforma digital integral diseñada para optimizar y profesionalizar el proceso de comercialización de bienes raíces, específicamente enfocada en la compra y venta de terrenos. Su objetivo principal es centralizar las operaciones comerciales, facilitando la interacción entre vendedores y prospectos, y asegurando un control eficiente de los activos inmobiliarios.
 
-## About Laravel
+## ¿Qué es y qué hace la aplicación?
+La aplicación es una herramienta de gestión empresarial (ERP) simplificada que permite a las organizaciones inmobiliarias y a sus vendedores administrar todo el ciclo de vida de un terreno en venta. Desde la publicación inicial de la propiedad hasta el seguimiento de interesados y la gestión documental necesaria para el cierre de la operación.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+En esencia, la plataforma actúa como un puente digital que organiza la información crítica de los terrenos, permitiendo que la fuerza de ventas tenga acceso inmediato a su inventario y a las herramientas necesarias para convertir interesados en clientes finales.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Funcionamiento General de la Aplicación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Gestión de Acceso y Perfiles
+La seguridad y la integridad de la información son fundamentales. La plataforma cuenta con un sistema de autenticación formal donde cada usuario (vendedor o administrativo) posee una cuenta personal. Esto permite que cada acción realizada dentro del sistema quede registrada y asociada a un responsable, garantizando transparencia en el proceso de venta.
 
-## Learning Laravel
+### 2. Panel de Control (Dashboard)
+Al ingresar, el usuario es recibido por un centro de mando visual. Este panel ofrece una vista panorámica del estado actual de sus operaciones, permitiéndole identificar de manera rápida el rendimiento de sus publicaciones y las tareas pendientes que requieren atención inmediata.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 3. Gestión de Inventario de Terrenos
+Esta es la columna vertebral del sistema. La plataforma permite:
+*   **Publicación Detallada:** Registrar nuevos terrenos con especificaciones técnicas, ubicación y características particulares que los hacen atractivos para el mercado.
+*   **Catálogo Digital:** Mantener una lista actualizada de propiedades disponibles, facilitando la búsqueda y filtrado de opciones según las necesidades de los clientes potenciales.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 4. Seguimiento de Prospectos (Gestión de Leads)
+El sistema incluye un módulo dedicado a la administración de interesados. Cada vez que una persona muestra interés en un terreno, se genera un registro centralizado. Los vendedores pueden gestionar estos contactos, realizar seguimientos oportunos y asegurar que ningún prospecto se pierda por falta de atención, incrementando así las tasas de conversión.
 
-## Laravel Sponsors
+### 5. Repositorio Documental
+Para formalizar una transacción inmobiliaria, la documentación es vital. La aplicación facilita la carga y organización de documentos legales y administrativos asociados a cada terreno o proceso de venta. Esto reduce la dependencia de archivos físicos y asegura que la información esté disponible para consulta en cualquier momento y desde cualquier lugar.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Beneficios para la Organización
+*   **Centralización:** Toda la información de la empresa reside en un solo lugar, eliminando el uso de hojas de cálculo dispersas o procesos manuales propensos a errores.
+*   **Eficiencia Operativa:** Automatiza el flujo de publicación y seguimiento, permitiendo que el equipo se enfoque en lo más importante: las relaciones con los clientes.
+*   **Toma de Decisiones Basada en Datos:** Al tener un registro histórico de ventas y prospectos, la administración puede identificar tendencias y ajustar sus estrategias comerciales con mayor precisión.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Resumen Técnico
+La aplicación ha sido desarrollada utilizando estándares modernos de desarrollo web, garantizando una interfaz fluida, segura y compatible con diversos dispositivos. El enfoque principal ha sido la experiencia del usuario (UX), asegurando que personas con diferentes niveles de habilidades tecnológicas puedan navegar y utilizar todas las funciones de la plataforma de manera intuitiva y eficiente.

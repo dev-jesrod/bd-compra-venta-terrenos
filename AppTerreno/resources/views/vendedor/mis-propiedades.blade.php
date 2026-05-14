@@ -17,7 +17,7 @@
     </div>
 
     <!-- Filter Bar -->
-    {{-- TODO_BACKEND (MERGE): El controlador debe recibir parámetros de filtro (ej: ?status=activos) y retornar las propiedades filtradas, o utilizar un componente Livewire para filtros asíncronos. --}}
+    {{-- TODO_BACKEND: El controlador debe recibir parámetros de filtro (ej: ?status=activos) y retornar las propiedades filtradas, o utilizar un componente Livewire para filtros asíncronos. --}}
     <div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 p-2 mb-8 overflow-x-auto">
         <div class="flex items-center gap-2 min-w-max">
             <button class="px-5 py-2 rounded-lg bg-green-50 dark:bg-green-900/40 text-green-700 dark:text-green-400 font-semibold text-sm">Todos</button>
@@ -29,7 +29,7 @@
     </div>
 
     <!-- Property List -->
-    {{-- TODO_BACKEND (MERGE): Reemplazar estos divs estáticos por una iteración. 
+    {{-- TODO_BACKEND: Reemplazar estos divs estáticos por una iteración.
          Ejemplo: @forelse($propiedades as $propiedad) ... html de la tarjeta ... @empty <p>No hay propiedades</p> @endforelse --}}
     <div class="space-y-6">
         <!-- Card 1: Activo -->

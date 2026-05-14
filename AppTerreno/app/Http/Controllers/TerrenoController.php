@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Terreno;
 
-class TerrenoController extends CuentaController
+class TerrenoController extends Controller
 {
     public function Filtro(Request $request)
     {
@@ -65,8 +65,8 @@ class TerrenoController extends CuentaController
         $terreno->descripcion = $request->descripcion;
         $terreno->precio = $request->precio;
 
-    $terreno->save();
+        $terreno->save();
 
-    return redirect()->back()->with('success', 'Terreno registrado correctamente');
-}
+        return redirect()->back()->with('success', 'Terreno registrado correctamente');
+    }
 }

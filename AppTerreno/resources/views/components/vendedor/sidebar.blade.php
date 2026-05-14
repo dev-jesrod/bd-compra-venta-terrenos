@@ -42,4 +42,5 @@
                 Soporte Técnico
             </button>
         </div>
+    </nav>
 </aside>

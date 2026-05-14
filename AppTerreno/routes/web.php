@@ -10,63 +10,58 @@ use App\Http\Controllers\Vendedor\TerrenoVendedorController;
 use App\Http\Controllers\Vendedor\LeadController;
 use App\Http\Controllers\Vendedor\DocumentoController;
 use App\Http\Controllers\TerrenoController;
-use App\Http\Controllers\CuentaController;
-use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\Cliente\DashboardController as ClienteDashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
-Route::get('/cuentas', [CuentaController::class, 'index']);
+/* |--------------------------------------------------------------------------
+ | Rutas Públicas (sin autenticación)
+ |-------------------------------------------------------------------------- */
 
-Route::post('/terrenos', [TerrenoController::class, 'store'])->name('terrenos.store');
-
-Route::get('/terrenos/create', function () {
-    return view('create');
-});
-
-Route::get('/perfil-usuario', [PerfilController::class, 'usuario']);
-Route::get('/perfil-vendedor', [PerfilController::class, 'vendedor']);
-
-/*
-|--------------------------------------------------------------------------
-| Rutas Públicas
-|--------------------------------------------------------------------------
-*/
-
+// HomePage — accesible para todos
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 
+// Terrenos públicos
 Route::get('/terrenos', [TerrenoController::class, 'index'])->name('terrenos.index');
 
+// Login
 Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserLoginController::class, 'login']);
 
+// Registro — Vendedor
 Route::get('/registro', [RegistroVendedorController::class, 'showRegistrationForm'])->name('registro');
 Route::post('/registro', [RegistroVendedorController::class, 'store'])->name('registro.store');
 
+// Registro — Cliente (usuario normal)
 Route::get('/registro-cliente', [RegistroClienteController::class, 'showRegistrationForm'])->name('registro.cliente');
 Route::post('/registro-cliente', [RegistroClienteController::class, 'store'])->name('registro.cliente.store');
 
+// Logout
 Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
 
-/*
-|--------------------------------------------------------------------------
-| Rutas Vendedor
-|--------------------------------------------------------------------------
-*/
 
-Route::middleware(['auth', 'rol:vendedor'])
-    ->prefix('vendedor')
-    ->name('vendedor.')
-    ->group(function () {
+// Rutas para el vendedor
+Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Terrenos (mis propiedades y publicar)
+    Route::get('/mis-propiedades', [TerrenoVendedorController::class, 'index'])->name('terrenos.index');
+    Route::get('/publicar-terreno', [TerrenoVendedorController::class, 'create'])->name('terrenos.create');
+    Route::post('/publicar-terreno', [TerrenoVendedorController::class, 'store'])->name('terrenos.store');
 
-        Route::get('/mis-propiedades', [TerrenoVendedorController::class, 'index'])->name('terrenos.index');
+    // Leads
+    Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
 
-        Route::get('/publicar-terreno', [TerrenoVendedorController::class, 'create'])->name('terrenos.create');
+    // Documentos
+    Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
+    Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
+});
 
-        Route::post('/publicar-terreno', [TerrenoVendedorController::class, 'store'])->name('terrenos.store');
+// Rutas para el cliente
+Route::middleware(['auth', 'rol:cliente'])->prefix('cliente')->name('cliente.')->group(function () {
+    Route::get('/dashboard', [ClienteDashboardController::class, 'index'])->name('dashboard');
+});
 
-        Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
-
-        Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
-
-        Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
+// Rutas para el admin
+Route::middleware(['auth', 'rol:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });

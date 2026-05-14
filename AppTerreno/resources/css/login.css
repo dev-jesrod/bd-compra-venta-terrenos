@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+body { font-family: 'Work Sans', sans-serif; }
+h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+=======
+.bg-login-hero {
+    background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2-hiPqcgEpK0iiNh4mdiZJo731MH375sK43-4fNtzd-CEmmGWu5pwkCk9Zhh5tA9HWTKh1YsLhkvFXB6sHUUYlNqMe2xXoLdwZtggzbwTgEi43dPEQoKt_aNtoeVBYeo7zGhPL3RrEZLFYpNV80iT2tFw8Ws0oiQw_knZphSvBQs6HqM_WqSLTDnIBg_rFlfkOWE-9Z-cjTgPexs4VH7jNRLCt9xPiKAXF-zoSRNBU1Vi44bmbAbdTBflaPx8vkfVJD_hSL_iXfc");
+}
+
+.FondoLogin {
+    background-image: url("/public/resources/FondoLogin.png");
+}
+>>>>>>> ac8c99bb9c47d0a6a1ffc803251b4e31a3299495
