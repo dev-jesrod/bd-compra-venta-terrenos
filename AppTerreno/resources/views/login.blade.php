@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 {{--
     Archivo: login.blade.php
     Descripción: Vista de inicio de sesión para vendedores
     Controlador: LoginController
     - showLoginForm() -> GET /login (pasa $hero_image, $logo, $brand_name)
     - login(Request $request) -> POST /login (maneja autenticación)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
 {{-- resources/views/auth/login.blade.php --}}
 <!DOCTYPE html>
 <html lang="es">
@@ -272,7 +268,6 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 </main>
 </body>
 </html>
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -283,7 +278,6 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 </head>
 
 <body>
->>>>>>> dataBase
     
     Variables esperadas desde LoginController:
     - $hero_image (string) - URL de la imagen del panel izquierdo
@@ -305,7 +299,6 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 
 @extends('layouts.app')
 
-<<<<<<< HEAD
 @section('title', 'Iniciar Sesión - ' . ($brand_name ?? 'Maz Terrenos'))
 
 @section('styles')
@@ -368,7 +361,6 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
                 </p>
             </div>
 
-<<<<<<< HEAD
             {{-- Controlador: LoginController -> login(Request $request) --}}
             {{-- Ruta: Route::post('/login', [LoginController::class, 'login'])->name('login') --}}
             <form action="{{ route('login') }}" method="POST" class="space-y-6">
@@ -507,12 +499,7 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 @endsection
 =======
 </html>
->>>>>>> 5e284d38264939afc81f06b3ace1c4fca40c7ebb
-=======
 @extends('layouts.app')
-
-=======
->>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
 @section('title', 'Maz Terrenos - Iniciar Sesión')
 
 @php
@@ -651,10 +638,4 @@ h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
             }
         });
     </script>
-<<<<<<< HEAD
 @endsection
->>>>>>> database
->>>>>>> dataBase
-=======
-@endsection
->>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783

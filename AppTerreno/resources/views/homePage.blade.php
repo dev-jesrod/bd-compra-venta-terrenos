@@ -175,8 +175,4 @@
             </button>
         </div>
     </main>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
