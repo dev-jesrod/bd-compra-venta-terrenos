@@ -40,7 +40,7 @@ Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
 // Rutas para el vendedor
 Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     // Terrenos (mis propiedades y publicar)
     Route::get('/mis-propiedades', [TerrenoVendedorController::class, 'index'])->name('terrenos.index');
     Route::get('/publicar-terreno', [TerrenoVendedorController::class, 'create'])->name('terrenos.create');
