@@ -15,14 +15,9 @@
         rel="stylesheet" />
 
     @vite([
-<<<<<<< HEAD
         'resources/js/tailwind-config.js',
         'resources/css/app.css',
         isset($css_file) ? "resources/css/{$css_file}.css" : ''
-=======
-    'resources/css/app.css',
-    'resources/js/app.js'
->>>>>>> ac8c99bb9c47d0a6a1ffc803251b4e31a3299495
     ])
 </head>
 
