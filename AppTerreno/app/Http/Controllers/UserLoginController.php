@@ -65,11 +65,14 @@ class UserLoginController extends Controller
                 $request->session()->regenerate();
 
                 // Redirigir según rol
-                if (Auth::user()->tipoUsuario === 'vendedor') {
-                    return redirect()->route('vendedor.dashboard');
-                }
+                $user = Auth::user();
 
-                return redirect()->intended(route('home'));
+                return match($user->tipoUsuario) {
+                    'vendedor' => redirect()->route('vendedor.dashboard'),
+                    'cliente' => redirect()->route('cliente.dashboard'),
+                    'admin' => redirect()->route('admin.dashboard'),
+                    default => redirect()->route('home'),
+                };
             }
 
             // 4. Credenciales incorrectas: registrar intento fallido
