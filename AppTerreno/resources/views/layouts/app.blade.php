@@ -14,17 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
-    <!-- Vite Directives -->
     @vite([
-<<<<<<< HEAD
-    'resources/css/app.css',
-    'resources/js/app.js'
-=======
         'resources/js/tailwind-config.js',
         'resources/css/app.css',
         isset($css_file) ? "resources/css/{$css_file}.css" : ''
-
->>>>>>> e61e1da5efe97daf3de90e6e8798ef4922300783
     ])
 </head>
 
