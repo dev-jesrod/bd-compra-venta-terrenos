@@ -7,11 +7,11 @@ use App\Models\Terreno;
 
 class TerrenoController extends Controller
 {
-    public function index(Request $request)
+    public function Filtro(Request $request)
     {
         $query = Terreno::query();
 
-        
+
         // Filtro por nombre 
         if ($request->filled('nombre')) {
             $query->where('nombre', 'like', '%' . $request->nombre . '%');
@@ -47,7 +47,7 @@ class TerrenoController extends Controller
         $request->validate([
             'idUsuario' => 'required|integer',
             'nombre' => 'required|string|max:255',
-            'ubicacion' => 'required|string|max:255', 
+            'ubicacion' => 'required|string|max:255',
             'estado' => 'required|string|max:100',
             'largo' => 'required|numeric|min:1',
             'ancho' => 'required|numeric|min:1',
@@ -58,7 +58,7 @@ class TerrenoController extends Controller
         $terreno = new Terreno();
         $terreno->idUsuario = $request->idUsuario;
         $terreno->nombre = $request->nombre;
-        $terreno->ubicacion = $request->ubicacion; 
+        $terreno->ubicacion = $request->ubicacion;
         $terreno->estado = $request->estado;
         $terreno->largo = $request->largo;
         $terreno->ancho = $request->ancho;

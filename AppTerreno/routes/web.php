@@ -1,9 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserLoginController;
-use App\Http\Controllers\RegistroUserController;
+use App\Http\Controllers\Vendedor\RegistroVendedorController;
+use App\Http\Controllers\Cliente\RegistroClienteController;
+use App\Http\Controllers\Vendedor\DashboardController;
+use App\Http\Controllers\Vendedor\TerrenoVendedorController;
+use App\Http\Controllers\Vendedor\LeadController;
+use App\Http\Controllers\Vendedor\DocumentoController;
 use App\Http\Controllers\TerrenoController;
+<<<<<<< HEAD
 use App\Http\Controllers\PerfilController;
 
 /* |-------------------------------------------------------------------------- | Rutas de Autenticación |-------------------------------------------------------------------------- */
@@ -13,25 +20,60 @@ Route::get('/perfil-usuario', [PerfilController::class, 'usuario']);
 Route::get('/perfil-vendedor', [PerfilController::class, 'vendedor']);
 
 //* Terreno
+=======
+use App\Http\Controllers\Cliente\DashboardController as ClienteDashboardController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
+/* |--------------------------------------------------------------------------
+ | Rutas Públicas (sin autenticación)
+ |-------------------------------------------------------------------------- */
+
+// HomePage — accesible para todos
+Route::get('/', [HomePageController::class, 'index'])->name('home');
+>>>>>>> e8a4ccb3b2b336f8a64be7fdce3934023338be64
+
+// Terrenos públicos
 Route::get('/terrenos', [TerrenoController::class, 'index'])->name('terrenos.index');
 
 // Login
-Route::get('/login', [UserLoginController::class , 'showLoginForm'])->name('login');
-Route::post('/login', [UserLoginController::class , 'login']);
+Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UserLoginController::class, 'login']);
 
-// Registro
-Route::get('/registro', [RegistroUserController::class , 'showRegistrationForm'])->name('registro');
-Route::post('/registro', [RegistroUserController::class , 'store'])->name('registro.store');
+// Registro — Vendedor
+Route::get('/registro', [RegistroVendedorController::class, 'showRegistrationForm'])->name('registro');
+Route::post('/registro', [RegistroVendedorController::class, 'store'])->name('registro.store');
+
+// Registro — Cliente (usuario normal)
+Route::get('/registro-cliente', [RegistroClienteController::class, 'showRegistrationForm'])->name('registro.cliente');
+Route::post('/registro-cliente', [RegistroClienteController::class, 'store'])->name('registro.cliente.store');
 
 // Logout
-Route::post('/logout', [UserLoginController::class , 'logout'])->name('logout');
+Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
 
-/* |-------------------------------------------------------------------------- | Rutas Protegidas (requieren autenticación) |-------------------------------------------------------------------------- */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-            return view('homePage');
-        }
-        )->name('home');
-    });
+// Rutas para el vendedor
+Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Terrenos (mis propiedades y publicar)
+    Route::get('/mis-propiedades', [TerrenoVendedorController::class, 'index'])->name('terrenos.index');
+    Route::get('/publicar-terreno', [TerrenoVendedorController::class, 'create'])->name('terrenos.create');
+    Route::post('/publicar-terreno', [TerrenoVendedorController::class, 'store'])->name('terrenos.store');
+
+    // Leads
+    Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+
+    // Documentos
+    Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
+    Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
+});
+
+// Rutas para el cliente
+Route::middleware(['auth', 'rol:cliente'])->prefix('cliente')->name('cliente.')->group(function () {
+    Route::get('/dashboard', [ClienteDashboardController::class, 'index'])->name('dashboard');
+});
+
+// Rutas para el admin
+Route::middleware(['auth', 'rol:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});

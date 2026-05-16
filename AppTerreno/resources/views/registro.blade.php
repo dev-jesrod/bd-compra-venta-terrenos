@@ -1,133 +1,91 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
 
-@section('title', 'Maz Terrenos - Registro')
+    <h2>Registrarse</h2>
+<!-- Formulario -->
+    <form action="/registro" method="get">
 
-@php
-    $css_file = 'registro';
-@endphp
+        <ul>
+            <li>
+                <label for="opciones">Tipo Usuario:</label>
+                <select name="usuario" id="tipo_usuario">
+                    <option selected> Selecciona alguna opcion </option>
+                    <option value="cliente"> Cliente</option>
+                    <option value="vendedor"> Vendedor </option>
+                </select>
+            </li>
+        </ul>
 
-@section('content')
-<main class="flex-1 flex bg-white min-h-[calc(100vh-80px)]">
-    <!-- Left Side: Image Placeholder -->
-    <div class="hidden lg:flex lg:w-1/2 bg-gray-200 relative items-center justify-center">
-        <!-- 
-        <img src="{{ asset('public/images/paisaje-mazatlan.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-        -->
-        <div class="absolute inset-0 flex items-center justify-center">
-            <span class="text-gray-500 font-black text-3xl uppercase tracking-widest text-center px-10">Paisaje de Mazatlán</span>
-        </div>
-    </div>
+        <ul>
+            <li>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre_usuario" required >
+            </li>
+        </ul>
 
-    <!-- Right Side: Registration Form -->
-    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 lg:p-24 bg-white">
-        <div class="w-full max-w-md">
-            
-            <!-- Logo Section -->
-            <div class="flex flex-col items-center mb-8">
-                <div class="w-16 h-16 rounded-full border-2 border-green-600 flex items-center justify-center mb-4">
-                    <span class="material-symbols-outlined text-green-600 text-3xl">nature_people</span>
-                </div>
-                <h1 class="text-2xl font-black text-green-700 tracking-wide uppercase">MAZ TERRENOS</h1>
-                <p class="text-gray-500 text-sm mt-2 font-medium text-center">Únete a la red inmobiliaria más sostenible del mundo</p>
-            </div>
+        <ul>
+            <li>
+                <label for="apellido1">Apellido paterno:</label>
+                <input type="text" id="apellido1" name="apellido_p" required >
+            </li>
+        </ul>
 
-            <!-- Form -->
-            <form method="POST" action="{{ route('registro.store') }}" class="space-y-4">
-                @csrf
-                <input type="hidden" name="role" value="seller" />
+        <ul>
+            <li>
+                <label for="apellido2">Apellido materno:</label>
+                <input type="text" id="apellido2" name="apellido_m" required >
+            </li>
+        </ul>
 
-                <!-- Nombre Completo -->
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Nombre Completo</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">person</span>
-                        <input type="text" name="name" value="{{ old('name') }}" required placeholder="Ej: Juan Pérez" class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('name') border-red-500 @enderror">
-                    </div>
-                    @error('name')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
+        <ul>
+            <li>
+                <label for="sexo">Sexo:</label>
+                <input type="text" id="sexo" name="sexo" required >
+            </li>
+        </ul>
 
-                <!-- Nombre de la Inmobiliaria / Negocio -->
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Nombre de la Inmobiliaria / Negocio</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">domain</span>
-                        <input type="text" name="business_name" value="{{ old('business_name') }}" placeholder="Ej: Inmuebles Verdes S.A." class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('business_name') border-red-500 @enderror">
-                    </div>
-                    @error('business_name')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
+        <ul>
+            <li>
+                <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_n" required >
+            </li>
+        </ul>
 
-                <!-- Correo Electrónico -->
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Correo Electrónico</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">mail</span>
-                        <input type="email" name="email" value="{{ old('email') }}" required placeholder="juan@ejemplo.com" class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('email') border-red-500 @enderror">
-                    </div>
-                    @error('email')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
+        <ul>
+            <li>
+                <label for="telefono">Telefono:</label>
+                <input type="text" id="telefono" name="numero_telefono" required >
+            </li>
+        </ul>
 
-                <!-- Teléfono -->
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Teléfono</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">call</span>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="+52 55 1234 5678" class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('phone') border-red-500 @enderror">
-                    </div>
-                    @error('phone')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
+        <ul>
+            <li>
+                <label for="correo">Correo electronico:</label>
+                <input type="email" id="correo" name="correo_electronico" required >
+            </li>
+        </ul>
 
-                <!-- Contraseña -->
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Contraseña</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">lock</span>
-                        <input type="password" id="password" name="password" required placeholder="••••••••" class="w-full pl-11 pr-12 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors @error('password') border-red-500 @enderror">
-                        <button id="toggle-password" type="button" class="absolute right-4 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none">
-                            <span class="material-symbols-outlined text-[18px]">visibility</span>
-                        </button>
-                    </div>
-                    @error('password')
-                        <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
-                    @enderror
-                </div>
+        <ul>
+            <li>
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required >
+            </li>
+        </ul>
 
-                <!-- Submit Button -->
-                <div class="pt-6">
-                    <button type="submit" class="w-full bg-[#1e8a26] hover:bg-green-800 text-white font-bold py-3.5 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm">
-                        Registrarse como Vendedor
-                        <span class="material-symbols-outlined text-[18px] font-bold">arrow_forward</span>
-                    </button>
-                </div>
-            </form>
+        <li>
+            <button >Registrarse</button>
+        </li>
 
-            <div class="mt-8 text-center text-xs text-gray-500 font-medium tracking-wide">
-                ¿Ya tienes una cuenta? <a href="{{ route('login') }}" class="text-[#1e8a26] font-bold hover:underline">Inicia sesión aquí</a>
-            </div>
-            
-        </div>
-    </div>
-</main>
+    </form>
+<!-- fin Formulario -->
+    
 
-<script>
-    document.getElementById('toggle-password').addEventListener('click', function() {
-        const passwordInput = document.getElementById('password');
-        const icon = this.querySelector('span');
-        
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            icon.textContent = 'visibility_off';
-        } else {
-            passwordInput.type = 'password';
-            icon.textContent = 'visibility';
-        }
-    });
-</script>
-@endsection
+    
+</body>
+</html>

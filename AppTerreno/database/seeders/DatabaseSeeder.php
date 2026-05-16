@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Database\Seeders;
 
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $admins = Usuario::factory(2)->create([
-            'tipoUsuario' => 'admin'
+            'tipoUsuario' => 'vendedor'
         ]);
 
         // Datos vendedor
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        
+
         foreach ($datosClientes as $cliente) {
             $vendedor = $datosVendedores->random();
 
