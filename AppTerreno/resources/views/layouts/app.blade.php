@@ -37,8 +37,8 @@
                     </a>
                     <!-- Nav Links -->
                     <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-700">
-                        <a class="hover:text-green-600 transition-colors" href="#">Home</a>
-                        <a class="hover:text-green-600 transition-colors" href="#">Terrenos</a>
+                        <a class="hover:text-green-600 transition-colors" href="{{ route('home') }}">Home</a>
+                        <a class="hover:text-green-600 transition-colors" href="{{ route('terrenos.index') }}">Terrenos</a>
                         <a class="hover:text-green-600 transition-colors" href="#">Vendedores</a>
                         <a class="hover:text-green-600 transition-colors" href="#">Contacto</a>
                     </nav>
