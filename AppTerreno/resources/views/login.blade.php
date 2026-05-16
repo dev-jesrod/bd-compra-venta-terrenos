@@ -80,8 +80,7 @@
                         {{-- Controlador: ForgotPasswordController -> showLinkRequestForm() --}}
                         {{-- Ruta: Route::get('/password/reset', [ForgotPasswordController::class,
                         'showLinkRequestForm'])->name('password.request') --}}
-                        <a class="text-xs font-bold text-brand-green hover:underline"
-                            href="{{ $forgot_password_url ?? route('password.request') }}">
+                        <a class="text-xs font-bold text-brand-green hover:underline">
                             {{ $forgot_password_text ?? '¿Olvidaste tu contraseña?' }}
                         </a>
                     </div>
@@ -135,8 +134,7 @@
                 <div class="mb-8">
                     <p class="text-sm text-gray-500">
                         {{ $no_account_text ?? '¿No tienes una cuenta?' }}
-                        <a class="text-brand-green font-bold hover:underline"
-                            href="{{ $register_url ?? route('register') }}">
+                        <a class="text-brand-green font-bold hover:underline">
                             {{ $register_text ?? 'Regístrate gratis' }}
                         </a>
                     </p>
