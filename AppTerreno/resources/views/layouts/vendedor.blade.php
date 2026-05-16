@@ -28,45 +28,23 @@
 </head>
 
 <body class="bg-slate-50 dark:bg-slate-950 text-on-background min-h-screen">
-    <<<<<<< HEAD <!-- Backdrop for mobile sidebar -->
-        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
 
-        =======
+    <!-- SideNavBar Component -->
+    <x-vendedor.sidebar />
 
-        <!-- Backdrop for mobile sidebar -->
-        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
+    <!-- Main Content Canvas -->
+    <main class="md:pl-64 transition-all duration-300">
+        <!-- TopNavBar Component -->
+        <x-vendedor.navbar />
 
+        <div class="mt-16 p-4 md:p-8">
+            @yield('content')
+        </div>
+    </main>
 
-        <!-- Backdrop for mobile sidebar -->
-        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
-
-
-        >>>>>>> ac8c99bb9c47d0a6a1ffc803251b4e31a3299495
-        <!-- SideNavBar Component -->
-        <x-vendedor.sidebar />
-
-        <!-- Main Content Canvas -->
-        <<<<<<< HEAD=======<main class="pl-64">
-            <!-- TopNavBar Component -->
-            <x-vendedor.navbar />
-
-            <div class="mt-16 p-8">
-                @yield('content')
-            </div>
-            </main>
-
-            >>>>>>> ac8c99bb9c47d0a6a1ffc803251b4e31a3299495
-            <main class="md:pl-64 transition-all duration-300">
-                <!-- TopNavBar Component -->
-                <x-vendedor.navbar />
-
-                <div class="mt-16 p-4 md:p-8">
-                    @yield('content')
-                </div>
-            </main>
-
-            <script src="{{ asset('js/sidebar.js') }}"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
 </body>
-<<<<<<< HEAD=======>>>>>>> ac8c99bb9c47d0a6a1ffc803251b4e31a3299495
 
 </html>
