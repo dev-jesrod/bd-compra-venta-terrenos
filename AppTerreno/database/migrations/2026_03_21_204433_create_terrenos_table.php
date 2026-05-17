@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('estado', ['DISPONIBLE','VENDIDO','RESERVADO']);
             $table->decimal('largo', 8, 2)->unsigned();
             $table->decimal('ancho', 8, 2)->unsigned();
-            $table->string('descripcion', 255);
+            $table->text('descripcion');
             $table->decimal('precio', 10, 2)->unsigned();
             $table->date('fechaVenta')->nullable();
             $table->date('fechaCompra');
