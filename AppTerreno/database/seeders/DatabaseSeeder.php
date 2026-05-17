@@ -22,10 +22,7 @@ class DatabaseSeeder extends Seeder
             'tipoUsuario' => 'cliente'
         ]);
 
-        $admins = Usuario::factory(2)->create([
-            'tipoUsuario' => 'vendedor'
-        ]);
-
+        
         // Datos vendedor
         $datosVendedores = collect();
         foreach ($vendedores as $vendedor) {

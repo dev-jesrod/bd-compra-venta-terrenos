@@ -14,13 +14,14 @@ class TerrenoFactory extends Factory
     {
      $estado = fake()->randomElement(['DISPONIBLE','VENDIDO','RESERVADO']);
 
-     return [
-        'idUsuario' => Usuario::where('tipoUsuario','vendedor')
-            ->inRandomOrder()
-            ->first()
-            ->idUsuario,
+    return [
+    'idUsuario' => Usuario::where('tipoUsuario','vendedor')
+        ->inRandomOrder()
+        ->first()
+        ->idUsuario,
 
         'nombre' => fake()->optional()->word(),
+        'ubicacion' => fake()->city(),
         'estado' => $estado,
         'largo' => fake()->randomFloat(2, 10, 100),
         'ancho' => fake()->randomFloat(2, 10, 100),
