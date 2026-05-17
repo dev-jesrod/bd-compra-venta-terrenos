@@ -6,6 +6,11 @@ return [
         'passwords' => 'users',
     ],
 
+    'redirects' => [
+        'login' => '/',
+        'logout' => '/',
+    ],
+
     'guards' => [
         'web' => [
             'driver' => 'session',

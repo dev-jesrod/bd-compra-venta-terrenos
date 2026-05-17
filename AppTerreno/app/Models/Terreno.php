@@ -14,10 +14,39 @@ class Terreno extends Model
     protected $primaryKey = 'idTerreno';
 
     protected $fillable = [
-        'idUsuario','nombre','ubicacion','estado','largo',
-        'ancho','descripcion','precio',
-        'fechaCompra','fechaVenta'
+        'idUsuario', 'nombre', 'ubicacion', 'estado', 'largo',
+        'ancho', 'descripcion', 'precio', 'superficie',
+        'zonificacion', 'pendiente', 'imagenes',
+        'fechaCompra', 'fechaVenta'
     ];
+
+    protected $casts = [
+        'imagenes' => 'array',
+    ];
+
+    public function getImagenesAttribute($value)
+    {
+        if (is_null($value)) {
+            return [];
+        }
+
+        if (is_array($value)) {
+            return $value;
+        }
+
+        if (is_string($value)) {
+            $decoded = json_decode($value, true);
+            return is_array($decoded) ? $decoded : [];
+        }
+
+        return [];
+    }
+
+    public function getImagenPrincipalAttribute()
+    {
+        $imagenes = $this->imagenes;
+        return !empty($imagenes) ? $imagenes[0] : null;
+    }
 
      // Scope para aprobados
     public function scopeAprobado(Builder $query)
