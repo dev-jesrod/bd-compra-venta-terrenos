@@ -12,7 +12,7 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         return [
-            'tipoUsuario' => fake()->randomElement(['admin','cliente']),
+            'tipoUsuario' => fake()->randomElement(['vendedor','cliente']),
             'nombre' => fake()->firstName(),
             'apellido1' => fake()->lastName(),
             'apellido2' => fake()->lastName(),
