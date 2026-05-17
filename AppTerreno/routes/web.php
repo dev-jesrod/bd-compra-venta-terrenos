@@ -10,19 +10,16 @@ use App\Http\Controllers\Vendedor\TerrenoVendedorController;
 use App\Http\Controllers\Vendedor\LeadController;
 use App\Http\Controllers\Vendedor\DocumentoController;
 use App\Http\Controllers\TerrenoController;
-<<<<<<< HEAD
 use App\Http\Controllers\PerfilController;
 
-/* |-------------------------------------------------------------------------- | Rutas de Autenticación |-------------------------------------------------------------------------- */
+/* |------------------------ | Rutas de Autenticación |-------------------------------------------------------------------------- */
 //* Usuario y Vendedor
 
 Route::get('/perfil-usuario', [PerfilController::class, 'usuario']);
 Route::get('/perfil-vendedor', [PerfilController::class, 'vendedor']);
 
 //* Terreno
-=======
 use App\Http\Controllers\Cliente\DashboardController as ClienteDashboardController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /* |--------------------------------------------------------------------------
  | Rutas Públicas (sin autenticación)
@@ -30,7 +27,6 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 // HomePage — accesible para todos
 Route::get('/', [HomePageController::class, 'index'])->name('home');
->>>>>>> e8a4ccb3b2b336f8a64be7fdce3934023338be64
 
 // Terrenos - Catálogo (requiere autenticación)
 Route::get('/terrenos', [TerrenoController::class, 'index'])
