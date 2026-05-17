@@ -20,8 +20,15 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 // HomePage — accesible para todos
 Route::get('/', [HomePageController::class, 'index'])->name('home');
 
-// Terrenos públicos
-Route::get('/terrenos', [TerrenoController::class, 'index'])->name('terrenos.index');
+// Terrenos - Catálogo (requiere autenticación)
+Route::get('/terrenos', [TerrenoController::class, 'index'])
+    ->middleware('auth')
+    ->name('terrenos.index');
+
+// Terrenos detalle - Requiere autenticación
+Route::get('/terrenos/{id}', [TerrenoController::class, 'show'])
+    ->middleware('auth')
+    ->name('terrenos.show');
 
 // Login
 Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');
@@ -61,7 +68,4 @@ Route::middleware(['auth', 'rol:cliente'])->prefix('cliente')->name('cliente.')-
     Route::get('/dashboard', [ClienteDashboardController::class, 'index'])->name('dashboard');
 });
 
-// Rutas para el admin
-Route::middleware(['auth', 'rol:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-});
+

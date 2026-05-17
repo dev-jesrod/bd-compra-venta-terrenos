@@ -36,11 +36,11 @@
                     Bienvenido a <span class="font-bold">maz terrenos</span>. Descubre una forma consciente de habitar el
                     mundo.
                 </p>
-                <button
+                <a href="{{ route('terrenos.index') }}"
                     class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-8 rounded-lg mb-10 flex items-center gap-2 transition-colors">
                     <span class="material-symbols-outlined text-[20px]">check_circle</span>
                     Ver Terrenos
-                </button>
+                </a>
                 <div class="w-full max-w-md flex items-center bg-gray-50 border border-gray-200 rounded-xl p-1 shadow-sm">
                     <span class="material-symbols-outlined text-gray-400 ml-4">search</span>
                     <input type="text" placeholder="¿Qué tipo de terreno buscas?"
@@ -60,106 +60,70 @@
                     <p class="text-gray-500 font-medium text-sm">Las mejores oportunidades de inversión en entornos
                         naturales.</p>
                 </div>
-                <a href="#" class="text-green-700 font-bold text-sm flex items-center hover:underline">
+                <a href="{{ route('terrenos.index') }}" class="text-green-700 font-bold text-sm flex items-center hover:underline">
                     Explorar todo <span class="material-symbols-outlined text-[18px] ml-1">arrow_forward</span>
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <!-- Property Card 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                @forelse($terrenos as $terreno)
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
-                    <div class="relative bg-gray-300 aspect-[4/3] flex items-center justify-center">
-                        <!-- 
-                            <img src="{{ asset('public/images/prop1.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                            -->
-                        <span class="text-gray-500 font-bold tracking-widest uppercase z-10">Imagen</span>
-                        <span
-                            class="absolute top-4 right-4 bg-white text-green-700 text-[10px] font-black uppercase px-3 py-1 rounded-full z-20">Nuevo</span>
+                    <div class="relative aspect-[4/3] bg-gray-300 overflow-hidden">
+                        @if($terreno->imagenPrincipal)
+                            <img src="{{ $terreno->imagenPrincipal }}" 
+                                alt="{{ $terreno->nombre }}" 
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center">
+                                <span class="material-symbols-outlined text-gray-400 text-6xl">landscape</span>
+                            </div>
+                        @endif
+                        <span class="absolute top-4 right-4 bg-white text-green-700 text-[10px] font-black uppercase px-3 py-1 rounded-full">
+                            {{ $terreno->estado }}
+                        </span>
                     </div>
                     <div class="p-6 flex flex-col flex-1">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-black text-gray-900">Bosque Sereno</h4>
-                            <span class="text-green-700 font-black text-lg">$120,000</span>
+                            <h4 class="text-xl font-black text-gray-900 line-clamp-1">{{ $terreno->nombre }}</h4>
+                            <span class="text-green-700 font-black text-lg">${{ number_format($terreno->precio, 0) }}</span>
                         </div>
-                        <p class="text-xs font-medium text-gray-500 mb-6 flex-1">
-                            Ubicado en el corazón del Valle del Sol, ideal para cabañas eco-friendly.
+                        <p class="text-xs font-medium text-gray-500 mb-3 flex-1 line-clamp-2">
+                            {{ $terreno->descripcion }}
+                        </p>
+                        <p class="text-xs text-gray-400 mb-4 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">location_on</span>
+                            {{ $terreno->ubicacion }}
                         </p>
                         <div class="flex gap-4 text-gray-400 text-xs font-semibold mb-6">
-                            <span class="flex items-center gap-1"><span
-                                    class="material-symbols-outlined text-[16px]">square_foot</span> 5000 m2</span>
-                            <span class="flex items-center gap-1"><span
-                                    class="material-symbols-outlined text-[16px]">eco</span> Sostenible</span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">square_foot</span> 
+                                {{ number_format($terreno->largo * $terreno->ancho, 0) }} m²
+                            </span>
+                            @if($terreno->zonificacion)
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[16px]">map</span>
+                                {{ $terreno->zonificacion }}
+                            </span>
+                            @endif
                         </div>
-                        <button
-                            class="w-full bg-gray-50 hover:bg-green-50 text-green-700 font-bold py-3 rounded-lg text-sm transition-colors border border-green-100">
+                        <a href="{{ route('terrenos.show', $terreno->idTerreno) }}"
+                            class="w-full bg-gray-50 hover:bg-green-50 text-green-700 font-bold py-3 rounded-lg text-sm text-center transition-colors border border-green-100 block">
                             Ver Detalles
-                        </button>
+                        </a>
                     </div>
                 </div>
-
-                <!-- Property Card 2 -->
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
-                    <div class="relative bg-gray-300 aspect-[4/3] flex items-center justify-center">
-                        <!-- 
-                            <img src="{{ asset('public/images/prop2.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                            -->
-                        <span class="text-gray-500 font-bold tracking-widest uppercase z-10">Imagen</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-black text-gray-900">Pradera Verde</h4>
-                            <span class="text-green-700 font-black text-lg">$85,000</span>
-                        </div>
-                        <p class="text-xs font-medium text-gray-500 mb-6 flex-1">
-                            Vistas panorámicas de 360 grados hacia las montañas de la cordillera.
-                        </p>
-                        <div class="flex gap-4 text-gray-400 text-xs font-semibold mb-6">
-                            <span class="flex items-center gap-1"><span
-                                    class="material-symbols-outlined text-[16px]">square_foot</span> 2000 m2</span>
-                            <span class="flex items-center gap-1"><span
-                                    class="material-symbols-outlined text-[16px]">visibility</span> Vista Panorámica</span>
-                        </div>
-                        <button
-                            class="w-full bg-gray-50 hover:bg-green-50 text-green-700 font-bold py-3 rounded-lg text-sm transition-colors border border-green-100">
-                            Ver Detalles
-                        </button>
-                    </div>
+                @empty
+                <div class="col-span-full text-center py-12">
+                    <span class="material-symbols-outlined text-gray-300 text-6xl mb-4">landscape</span>
+                    <p class="text-gray-500 font-medium">No hay terrenos disponibles actualmente.</p>
                 </div>
-
-                <!-- Property Card 3 -->
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
-                    <div class="relative bg-gray-300 aspect-[4/3] flex items-center justify-center">
-                        <!-- 
-                            <img src="{{ asset('public/images/prop3.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-                            -->
-                        <span class="text-gray-500 font-bold tracking-widest uppercase z-10">Imagen</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-1">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-black text-gray-900">Refugio del Valle</h4>
-                            <span class="text-green-700 font-black text-lg">$150,000</span>
-                        </div>
-                        <p class="text-xs font-medium text-gray-500 mb-6 flex-1">
-                            Acceso directo al río y rodeado de robles centenarios. Privacidad total.
-                        </p>
-                        <div class="flex gap-4 text-gray-400 text-xs font-semibold mb-6">
-                            <span class="flex items-center gap-1"><span
-                                    class="material-symbols-outlined text-[16px]">square_foot</span> 8000 m2</span>
-                            <span class="flex items-center gap-1"><span
-                                    class="material-symbols-outlined text-[16px]">water</span> Cerca del Río</span>
-                        </div>
-                        <button
-                            class="w-full bg-gray-50 hover:bg-green-50 text-green-700 font-bold py-3 rounded-lg text-sm transition-colors border border-green-100">
-                            Ver Detalles
-                        </button>
-                    </div>
-                </div>
+                @endforelse
             </div>
 
-            <div class="flex justify-center">
-                <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-8 rounded-xl transition-colors">
+            <div class="flex justify-center mb-8">
+                <a href="{{ route('terrenos.index') }}" class="bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-8 rounded-xl transition-colors">
                     Ver más propiedades
-                </button>
+                </a>
             </div>
     </main>
 @endsection

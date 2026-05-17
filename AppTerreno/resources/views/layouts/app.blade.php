@@ -38,7 +38,8 @@
                     <!-- Nav Links -->
                     <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-700">
                         <a class="hover:text-green-600 transition-colors" href="{{ route('home') }}">Home</a>
-                        <a class="hover:text-green-600 transition-colors" href="{{ route('terrenos.index') }}">Terrenos</a>
+                        <a class="hover:text-green-600 transition-colors"
+                            href="{{ route('terrenos.index') }}">Terrenos</a>
                         <a class="hover:text-green-600 transition-colors" href="#">Vendedores</a>
                         <a class="hover:text-green-600 transition-colors" href="#">Contacto</a>
                     </nav>
@@ -106,7 +107,7 @@
 
                 <div
                     class="max-w-7xl mx-auto pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-400 font-semibold">
-                    <p>© 2024 GreenEstate. Todos los derechos reservados.</p>
+                    <p>© 2026 MazTerreno. Todos los derechos reservados.</p>
                     <div class="flex gap-6 text-gray-400">
                         <a class="hover:text-green-600" href="#">Política de Privacidad</a>
                         <a class="hover:text-green-600" href="#">Términos de Servicio</a>
