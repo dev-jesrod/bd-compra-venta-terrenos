@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('terrenos', function (Blueprint $table) {
-            $table->string('ubicacion', 255)->nullable()->after('nombre');
+            // 'ubicacion' ya existe en migración 2026_04_07_194754_add_ubicacion_to_terrenos_table
             $table->decimal('superficie', 10, 2)->unsigned()->nullable()->after('precio');
             $table->enum('zonificacion', ['Residencial', 'Comercial', 'Industrial', 'Agricola', 'Mixta'])->nullable()->after('superficie');
             $table->enum('pendiente', ['Plana', 'Semi-plana', 'Con pendiente'])->nullable()->after('zonificacion');
@@ -20,7 +20,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('terrenos', function (Blueprint $table) {
-            $table->dropColumn(['ubicacion', 'superficie', 'zonificacion', 'pendiente', 'imagenes']);
+            $table->dropColumn(['superficie', 'zonificacion', 'pendiente', 'imagenes']);
         });
     }
 };
