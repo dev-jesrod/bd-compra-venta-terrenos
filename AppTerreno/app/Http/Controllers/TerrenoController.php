@@ -16,7 +16,7 @@ class TerrenoController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Terreno::query()->disponible();
+            $query = Terreno::query();
 
             // Filtro por nombre 
             if ($request->filled('busqueda')) {
