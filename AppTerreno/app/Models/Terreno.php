@@ -34,6 +34,11 @@ class Terreno extends Model
             $decoded = $value;
         } elseif (is_string($value)) {
             $decoded = json_decode($value, true);
+
+            if (is_string($decoded)) {
+                $decoded = json_decode($decoded, true);
+            }
+
             if (!is_array($decoded)) {
                 return [];
             }
