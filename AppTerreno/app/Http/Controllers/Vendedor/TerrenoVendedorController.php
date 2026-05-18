@@ -59,7 +59,7 @@ class TerrenoVendedorController extends Controller
             }
 
             if (!empty($imagenesPaths)) {
-                $datos['imagenes'] = json_encode($imagenesPaths);
+                $datos['imagenes'] = $imagenesPaths;
             }
 
             $terreno = Terreno::create($datos);
