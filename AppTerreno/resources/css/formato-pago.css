@@ -4,8 +4,8 @@
 body { font-family: 'Manrope', sans-serif; }
 h1, h2, h3, .font-serif { font-family: 'Newsreader', serif; }
 .glass-header {
-    background: rgba(249, 249, 255, 0.8);
-    backdrop-filter: blur(20px);
+    background: #ffffff;
 }
 .layout-container > header { display: none !important; }
 .layout-container > footer { display: none !important; }
+
