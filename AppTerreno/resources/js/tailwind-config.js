@@ -1,0 +1,23 @@
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#228b22",
+                "background-light": "#f8f8ff",
+                "background-dark": "#161d15",
+                "brand-green": "#228b22",
+            },
+            fontFamily: {
+                "display": ["Work Sans", "sans-serif"],
+                "sans": ["Work Sans", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+        },
+    },
+}
