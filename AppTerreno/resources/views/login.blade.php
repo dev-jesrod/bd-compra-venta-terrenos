@@ -9,7 +9,7 @@
 <main class="flex min-h-screen bg-white">
     <!-- Left Side: Background Image -->
     <div class="hidden lg:block lg:w-1/2 relative">
-        <div class="absolute inset-0 bg-cover bg-center FondoLogin"></div>
+        <img src="{{ asset('storage/IMG/IMG-LoginPortada.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
     </div>
 
     <!-- Right Side: Login Form -->
@@ -31,8 +31,8 @@
 
             <!-- Header Section -->
             <div class="mb-8">
-                <h2 class="text-4xl font-extrabold text-[#2ca030] mb-3">Sign In</h2>
-                <p class="text-gray-500 text-sm">Welcome back! Please enter your details to manage your properties.</p>
+                <h2 class="text-4xl font-extrabold text-[#2ca030] mb-3">Iniciar Sesión</h2>
+                <p class="text-gray-500 text-sm">¡Bienvenido de nuevo! Ingresa tus datos para gestionar tus propiedades.</p>
             </div>
 
             <form method="POST" action="{{ route('login') }}" class="space-y-5">

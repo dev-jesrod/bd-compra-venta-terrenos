@@ -6,6 +6,7 @@ tailwind.config = {
                 "primary": "#2c5926",
                 "background-light": "#f6f7f6",
                 "background-dark": "#161d15",
+                "brand-green": "#2ca030",
             },
             fontFamily: {
                 "display": ["Inter", "sans-serif"]
