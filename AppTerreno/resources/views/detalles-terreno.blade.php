@@ -8,9 +8,8 @@
 
 @section('content')
 <main class="pt-32 pb-24 max-w-6xl mx-auto px-6">
-    <!-- Header Section -->
     <header class="text-center mb-12">
-        <h1 class="text-5xl md:text-7xl mb-4 tracking-tight" style="color: #228B22;">{{ $terreno->nombre }}</h1>
+        <h1 class="text-5xl md:text-7xl mb-4 tracking-tight text-brand-green">{{ $terreno->nombre }}</h1>
         <div class="flex items-center justify-center gap-2 text-slate-500 mb-8">
             <span class="material-symbols-outlined text-green-700 text-sm">location_on</span>
             <span class="font-body text-sm uppercase tracking-widest">{{ $terreno->ubicacion }}</span>

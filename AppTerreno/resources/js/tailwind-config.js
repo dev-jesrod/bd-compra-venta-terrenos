@@ -3,13 +3,14 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                "primary": "#2c5926",
-                "background-light": "#f6f7f6",
+                "primary": "#228b22",
+                "background-light": "#f8f8ff",
                 "background-dark": "#161d15",
-                "brand-green": "#2ca030",
+                "brand-green": "#228b22",
             },
             fontFamily: {
-                "display": ["Inter", "sans-serif"]
+                "display": ["Work Sans", "sans-serif"],
+                "sans": ["Work Sans", "sans-serif"]
             },
             borderRadius: {
                 "DEFAULT": "0.25rem",

@@ -26,12 +26,12 @@
                         </path>
                     </svg>
                 </div>
-                <h1 class="text-xl font-extrabold text-[#2ca030] tracking-wide uppercase">Maz Terrenos</h1>
+                <h1 class="text-xl font-extrabold text-brand-green tracking-wide uppercase">Maz Terrenos</h1>
             </div>
 
             <!-- Header Section -->
             <div class="mb-8">
-                <h2 class="text-4xl font-extrabold text-[#2ca030] mb-3">Iniciar Sesión</h2>
+                <h2 class="text-4xl font-extrabold text-brand-green mb-3">Iniciar Sesión</h2>
                 <p class="text-gray-500 text-sm">¡Bienvenido de nuevo! Ingresa tus datos para gestionar tus propiedades.</p>
             </div>
 
@@ -93,7 +93,7 @@
                             </svg>
                         </div>
                         <input type="password" name="password" id="password" required placeholder="••••••••"
-                            class="block w-full pl-10 pr-10 py-3 rounded-lg bg-gray-50 border-transparent focus:bg-white focus:border-[#2ca030] focus:ring-1 focus:ring-[#2ca030] transition-colors text-gray-900 border text-sm">
+                            class="block w-full pl-10 pr-10 py-3 rounded-lg bg-gray-50 border-transparent focus:bg-white focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-colors text-gray-900 border text-sm">
                         <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
                             <button type="button" id="toggle-password"
                                 class="text-gray-400 hover:text-gray-500 focus:outline-none">

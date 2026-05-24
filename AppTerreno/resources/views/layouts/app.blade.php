@@ -7,8 +7,7 @@
     <title>@yield('title', 'AppTerreno')</title>
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
@@ -30,10 +29,10 @@
                 <div class="flex items-center justify-between max-w-7xl mx-auto">
                     <!-- Logo -->
                     <a href="/" class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full border-2 border-green-600 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-green-600 text-lg">nature_people</span>
+                        <div class="w-8 h-8 rounded-full border-2 border-brand-green flex items-center justify-center">
+                            <span class="material-symbols-outlined text-brand-green text-lg">nature_people</span>
                         </div>
-                        <h2 class="text-xl font-black text-green-700 tracking-wide uppercase">MAZ TERRENOS</h2>
+                        <h2 class="text-xl font-black text-brand-green tracking-wide uppercase">MAZ TERRENOS</h2>
                     </a>
                     <!-- Nav Links -->
                     <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-700">
@@ -57,10 +56,10 @@
                     <div class="col-span-1 md:col-span-1">
                         <a href="/" class="flex items-center gap-2 mb-4">
                             <div
-                                class="w-8 h-8 rounded-full border-2 border-green-600 flex items-center justify-center">
-                                <span class="material-symbols-outlined text-green-600 text-lg">nature_people</span>
+                                class="w-8 h-8 rounded-full border-2 border-brand-green flex items-center justify-center">
+                                <span class="material-symbols-outlined text-brand-green text-lg">nature_people</span>
                             </div>
-                            <h2 class="text-lg font-black text-green-700 tracking-wide uppercase">MAZ TERRENOS</h2>
+                            <h2 class="text-lg font-black text-brand-green tracking-wide uppercase">MAZ TERRENOS</h2>
                         </a>
                         <p class="text-xs text-gray-500 font-medium leading-relaxed max-w-[200px]">
                             Liderando la transición hacia un mercado inmobiliario sostenible y en armonía con el entorno
