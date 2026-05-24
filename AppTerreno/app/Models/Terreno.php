@@ -14,10 +14,17 @@ class Terreno extends Model
     protected $primaryKey = 'idTerreno';
 
     protected $fillable = [
-        'idUsuario', 'nombre', 'ubicacion', 'estado', 'largo',
-        'ancho', 'descripcion', 'precio', 'superficie',
-        'zonificacion', 'pendiente', 'imagenes',
-        'fechaCompra', 'fechaVenta'
+        'idUsuario',
+        'nombre',
+        'ubicacion',
+        'estado',
+        'largo',
+        'ancho',
+        'descripcion',
+        'precio',
+        'imagenes',
+        'fechaCompra',
+        'fechaVenta'
     ];
 
     protected $casts = [
@@ -48,11 +55,10 @@ class Terreno extends Model
         return !empty($imagenes) ? $imagenes[0] : null;
     }
 
-     // Scope para aprobados
+    // Scope para aprobados
     public function scopeAprobado(Builder $query)
     {
-        return $query->where('estado', 'DISPONIBLE'); 
-        
+        return $query->where('estado', 'DISPONIBLE');
     }
 
     // Scope para disponibles
