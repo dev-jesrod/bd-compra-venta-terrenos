@@ -65,7 +65,7 @@ class TerrenoFactory extends Factory
             'superficie' => fake()->randomFloat(2, 100, 5000),
             'zonificacion' => fake()->randomElement(['Residencial', 'Comercial', 'Industrial', 'Agricola', 'Mixta']),
             'pendiente' => fake()->randomElement(['Plana', 'Semi-plana', 'Con pendiente']),
-            'imagenes' => json_encode($imagenesRandom),
+            'imagenes' => $imagenesRandom,
             'fechaCompra' => fake()->date('Y-m-d', '-2 years'),
             'fechaVenta' => $estado === 'VENDIDO' ? fake()->date('Y-m-d', 'now') : null,
         ];

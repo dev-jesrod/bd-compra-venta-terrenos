@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Terreno;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TerrenoController extends Controller
 {
@@ -15,7 +16,7 @@ class TerrenoController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Terreno::query()->disponible();
+            $query = Terreno::query();
 
             // Filtro por nombre 
             if ($request->filled('busqueda')) {
@@ -59,7 +60,7 @@ class TerrenoController extends Controller
 
         } catch (\Exception $e) {
             Log::error('Error al cargar el catálogo de terrenos: ' . $e->getMessage());
-            return view('terrenos.index', ['terrenos' => collect()]);
+            return view('terrenos.index', ['terrenos' => new LengthAwarePaginator([], 0, 12)]);
         }
     }
 

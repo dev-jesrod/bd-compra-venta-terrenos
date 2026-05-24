@@ -38,15 +38,27 @@ class Terreno extends Model
         }
 
         if (is_array($value)) {
-            return $value;
-        }
-
-        if (is_string($value)) {
+            $decoded = $value;
+        } elseif (is_string($value)) {
             $decoded = json_decode($value, true);
-            return is_array($decoded) ? $decoded : [];
+
+            if (is_string($decoded)) {
+                $decoded = json_decode($decoded, true);
+            }
+
+            if (!is_array($decoded)) {
+                return [];
+            }
+        } else {
+            return [];
         }
 
-        return [];
+        return array_map(function ($path) {
+            if (str_starts_with($path, 'http')) {
+                return $path;
+            }
+            return asset('storage/' . $path);
+        }, $decoded);
     }
 
     public function getImagenPrincipalAttribute()
