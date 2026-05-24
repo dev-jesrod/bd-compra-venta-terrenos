@@ -55,7 +55,7 @@ $css_file = 'homePage';
     <div class="max-w-7xl mx-auto px-6 md:px-20 py-20">
         <div class="flex justify-between items-end mb-10">
             <div>
-                <h3 class="text-3xl font-black text-gray-900 mb-2">Featured Properties</h3>
+                <h3 class="text-3xl font-black text-gray-900 mb-2">Propiedades Destacadas</h3>
                 <p class="text-gray-500 font-medium text-sm">Las mejores oportunidades de inversión en entornos
                     naturales.</p>
             </div>
