@@ -1,4 +1,4 @@
-@extends('layo uts.app')
+@extends('layouts.app')
 @section('title', 'Maz Terrenos - Iniciar Sesión')
 
 @php
