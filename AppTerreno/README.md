@@ -1,36 +1,77 @@
-# Sistema de Gestión para la Compra y Venta de Terrenos
+# MAZ TERRENOS
+### Plataforma Integral de Comercialización y Gestión Inmobiliaria Sostenible
 
-## Introducción
-Este proyecto consiste en una plataforma digital integral diseñada para optimizar y profesionalizar el proceso de comercialización de bienes raíces, específicamente enfocada en la compra y venta de terrenos. Su objetivo principal es centralizar las operaciones comerciales, facilitando la interacción entre vendedores y prospectos, y asegurando un control eficiente de los activos inmobiliarios.
+---
 
-## ¿Qué es y qué hace la aplicación?
-La aplicación es una herramienta de gestión empresarial (ERP) simplificada que permite a las organizaciones inmobiliarias y a sus vendedores administrar todo el ciclo de vida de un terreno en venta. Desde la publicación inicial de la propiedad hasta el seguimiento de interesados y la gestión documental necesaria para el cierre de la operación.
+## 1. Presentación del Proyecto
 
-En esencia, la plataforma actúa como un puente digital que organiza la información crítica de los terrenos, permitiendo que la fuerza de ventas tenga acceso inmediato a su inventario y a las herramientas necesarias para convertir interesados en clientes finales.
+**Maz Terrenos** es un ecosistema digital de nivel empresarial diseñado específicamente para la administración, promoción y comercialización formal de desarrollos de terrenos. La plataforma actúa como un puente tecnológico robusto que conecta el inventario físico de tierras con las operaciones de ventas, el control documental y la trazabilidad de prospectos (leads) en tiempo real.
 
-## Funcionamiento General de la Aplicación
+A diferencia de los portales inmobiliarios genéricos, **Maz Terrenos** ha sido concebido desde sus cimientos como una herramienta especializada que responde a la complejidad técnica y legal intrínseca del mercado de terrenos, tales como las especificaciones de superficie, zonificación, pendientes y expediente legal de cada propiedad.
 
-### 1. Gestión de Acceso y Perfiles
-La seguridad y la integridad de la información son fundamentales. La plataforma cuenta con un sistema de autenticación formal donde cada usuario (vendedor o administrativo) posee una cuenta personal. Esto permite que cada acción realizada dentro del sistema quede registrada y asociada a un responsable, garantizando transparencia en el proceso de venta.
+---
 
-### 2. Panel de Control (Dashboard)
-Al ingresar, el usuario es recibido por un centro de mando visual. Este panel ofrece una vista panorámica del estado actual de sus operaciones, permitiéndole identificar de manera rápida el rendimiento de sus publicaciones y las tareas pendientes que requieren atención inmediata.
+## 2. Finalidad y Propósito
 
-### 3. Gestión de Inventario de Terrenos
-Esta es la columna vertebral del sistema. La plataforma permite:
-*   **Publicación Detallada:** Registrar nuevos terrenos con especificaciones técnicas, ubicación y características particulares que los hacen atractivos para el mercado.
-*   **Catálogo Digital:** Mantener una lista actualizada de propiedades disponibles, facilitando la búsqueda y filtrado de opciones según las necesidades de los clientes potenciales.
+El desarrollo de esta plataforma responde a tres objetivos estratégicos fundamentales en el sector inmobiliario moderno:
 
-### 4. Seguimiento de Prospectos (Gestión de Leads)
-El sistema incluye un módulo dedicado a la administración de interesados. Cada vez que una persona muestra interés en un terreno, se genera un registro centralizado. Los vendedores pueden gestionar estos contactos, realizar seguimientos oportunos y asegurar que ningún prospecto se pierda por falta de atención, incrementando así las tasas de conversión.
+### A. Centralización y Eficiencia Operativa
+Erradicar la dispersión de información y el uso de registros manuales o plantillas de cálculo tradicionales. La plataforma consolida en una base de datos única y relacional todo el catálogo de terrenos, expedientes documentales y el historial de interacciones con los clientes.
 
-### 5. Repositorio Documental
-Para formalizar una transacción inmobiliaria, la documentación es vital. La aplicación facilita la carga y organización de documentos legales y administrativos asociados a cada terreno o proceso de venta. Esto reduce la dependencia de archivos físicos y asegura que la información esté disponible para consulta en cualquier momento y desde cualquier lugar.
+### B. Transparencia y Trazabilidad Comercial
+Establecer un flujo comercial transparente en el que cada acción (publicación, registro de interesado, carga de documentos) esté vinculada a un usuario formalizado (Vendedor, Cliente o Administrador). Esto garantiza un control total sobre el estado de cada lote (Disponible, Reservado, Vendido) y evita conflictos como la duplicidad de ofertas.
 
-## Beneficios para la Organización
-*   **Centralización:** Toda la información de la empresa reside en un solo lugar, eliminando el uso de hojas de cálculo dispersas o procesos manuales propensos a errores.
-*   **Eficiencia Operativa:** Automatiza el flujo de publicación y seguimiento, permitiendo que el equipo se enfoque en lo más importante: las relaciones con los clientes.
-*   **Toma de Decisiones Basada en Datos:** Al tener un registro histórico de ventas y prospectos, la administración puede identificar tendencias y ajustar sus estrategias comerciales con mayor precisión.
+### C. Digitalización e Integridad Documental
+Facilitar la formalización de las operaciones mediante la integración de un repositorio digitalizado para cada propiedad. Esto reduce los tiempos muertos en los procesos de compraventa al permitir que tanto el vendedor como el cliente tengan acceso inmediato a escrituras, planos y contratos de manera segura.
 
-## Resumen Técnico
-La aplicación ha sido desarrollada utilizando estándares modernos de desarrollo web, garantizando una interfaz fluida, segura y compatible con diversos dispositivos. El enfoque principal ha sido la experiencia del usuario (UX), asegurando que personas con diferentes niveles de habilidades tecnológicas puedan navegar y utilizar todas las funciones de la plataforma de manera intuitiva y eficiente.
+---
+
+## 3. Pilares Funcionales de la Plataforma
+
+El ecosistema de **Maz Terrenos** se estructura sobre cuatro pilares esenciales que garantizan su óptimo funcionamiento:
+
+```mermaid
+graph TD
+    A[Ecosistema Maz Terrenos] --> B[1. Catálogo e Inventario]
+    A --> C[2. Gestión de Leads]
+    A --> D[3. Repositorio Documental]
+    A --> E[4. Portales Personalizados]
+
+    B --> B1[Ficha Técnica Detallada]
+    B --> B2[Control de Estados: Disponible, Reservado, Vendido]
+    
+    C --> C1[Captura y Seguimiento de Interesados]
+    C --> C2[Asignación Directa a Vendedores]
+    
+    D --> D1[Digitalización de Expedientes]
+    D --> D2[Trazabilidad Legal y Operativa]
+    
+    E --> E1[Panel de Vendedor: Mis Propiedades y Prospectos]
+    E --> E2[Panel de Cliente: Búsqueda y Favoritos]
+```
+
+### 1. Gestión de Catálogo e Inventario de Terrenos
+* **Ficha Técnica Detallada:** Registro completo de los atributos físicos de cada predio (medidas de largo y ancho, cálculo de superficie total, tipo de pendiente y nivel de zonificación residencial, comercial, industrial, agrícola o mixta).
+* **Galería Multimedia Integrada:** Almacenamiento optimizado de imágenes reales y renders conceptuales del terreno.
+* **Control de Disponibilidad en Tiempo Real:** Actualización instantánea del estado comercial de cada terreno para evitar fricciones comerciales.
+
+### 2. Administración y Trazabilidad de Prospectos (Leads)
+* **Captura Inteligente:** Registro automático de interesados que solicitan información detallada de una propiedad específica.
+* **Asignación y Seguimiento:** Módulo que permite a los asesores comerciales documentar el estatus de sus conversaciones, fechas de contacto y requerimientos específicos del cliente.
+
+### 3. Integridad Documental
+* **Manejo de Expedientes Digitales:** Almacenamiento seguro de documentos jurídicos clave asociados a los terrenos, optimizando los tiempos del proceso administrativo pre-cierre y post-venta.
+
+### 4. Portales de Experiencia Centrados en el Usuario (Role-Based Panels)
+* **Panel de Clientes:** Interfaz intuitiva para explorar el inventario, aplicar filtros inteligentes de búsqueda (ubicación, rango de precio, dimensiones) y contactar directamente a los asesores.
+* **Panel de Vendedores:** Tablero de mando enfocado en la productividad donde el asesor gestiona sus terrenos publicados, visualiza su cartera de prospectos activos y carga los documentos del cierre de operaciones.
+
+---
+
+## 4. Filosofía de Desarrollo y Arquitectura
+
+La plataforma está diseñada bajo un enfoque de **Arquitectura Limpia (MVC)** y construida utilizando las tecnologías más robustas del desarrollo web moderno:
+
+* **Núcleo de Software:** Utilización del framework **Laravel** y **PHP**, garantizando un procesamiento de backend rápido, seguro y escalable, respaldado por un sistema de autenticación nativo y middleware de control de accesos.
+* **Base de Datos Relacional:** Motor **MariaDB** estructurado para ofrecer máxima integridad referencial en la trazabilidad de usuarios, inventario, transacciones comerciales e interacciones con clientes.
+* **Estándar de Diseño Visual (UX/UI):** Implementación de una interfaz altamente visual, adaptada a dispositivos móviles y de escritorio, utilizando los principios modernos de diseño (fuente corporativa *Work Sans*, colores semánticos con verde bosque `#228b22` y fondos sofisticados en `#f8f8ff`).
