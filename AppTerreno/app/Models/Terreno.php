@@ -24,7 +24,10 @@ class Terreno extends Model
         'precio',
         'imagenes',
         'fechaCompra',
-        'fechaVenta'
+        'fechaVenta',
+        'superficie',
+        'zonificacion',
+        'pendiente'
     ];
 
     protected $casts = [
@@ -81,5 +84,10 @@ class Terreno extends Model
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'idUsuario');
+    }
+
+    public function leads()
+    {
+        return $this->hasMany(Lead::class, 'idTerreno', 'idTerreno');
     }
 }

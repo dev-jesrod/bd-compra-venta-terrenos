@@ -88,7 +88,7 @@ class TerrenoVendedorController extends Controller
     public function edit(string $id)
     {
         try {
-            $terreno = Terreno::where('idUsuario', auth()->id())->findOrFail($id);
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
             return view('vendedor.editar-terreno', compact('terreno'));
         } catch (\Exception $e) {
             return back()->with('error', 'Terreno no encontrado');
@@ -98,7 +98,7 @@ class TerrenoVendedorController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $terreno = Terreno::where('idUsuario', auth()->id())->findOrFail($id);
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
 
             $validated = $request->validate([
                 'nombre' => 'required|string|max:100',
@@ -125,7 +125,7 @@ class TerrenoVendedorController extends Controller
     public function destroy(string $id)
     {
         try {
-            $terreno = Terreno::where('idUsuario', auth()->id())->findOrFail($id);
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
 
             if ($terreno->imagenes) {
                 foreach ($terreno->imagenes as $imagen) {

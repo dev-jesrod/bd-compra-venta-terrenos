@@ -62,13 +62,19 @@ Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.
     Route::get('/mis-propiedades', [TerrenoVendedorController::class, 'index'])->name('terrenos.index');
     Route::get('/publicar-terreno', [TerrenoVendedorController::class, 'create'])->name('terrenos.create');
     Route::post('/publicar-terreno', [TerrenoVendedorController::class, 'store'])->name('terrenos.store');
+    Route::get('/terrenos/{id}', [TerrenoVendedorController::class, 'show'])->name('terrenos.show');
+    Route::get('/terrenos/{id}/editar', [TerrenoVendedorController::class, 'edit'])->name('terrenos.edit');
+    Route::put('/terrenos/{id}', [TerrenoVendedorController::class, 'update'])->name('terrenos.update');
+    Route::delete('/terrenos/{id}', [TerrenoVendedorController::class, 'destroy'])->name('terrenos.destroy');
 
     // Leads
     Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+    Route::put('/leads/{id}', [LeadController::class, 'update'])->name('leads.update');
 
     // Documentos
     Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
     Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
+    Route::post('/documentos/simular/{id}', [DocumentoController::class, 'simularValidacion'])->name('documentos.simular');
 });
 
 // Rutas para el cliente

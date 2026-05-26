@@ -12,9 +12,15 @@ class DatoVendedor extends Model
     protected $table = 'dato_vendedores';
     protected $primaryKey = 'idVendedor';
 
-    protected $fillable = ['idUsuario','rfc','utilidad','nombre', 'email'];
+    protected $fillable = ['idUsuario', 'rfc', 'utilidad'];
+
     public function usuario()
     {
-    return $this->belongsTo(User::class, 'idUsuario');
+        return $this->belongsTo(Usuario::class, 'idUsuario');
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany(Documento::class, 'idVendedor', 'idVendedor');
     }
 }
