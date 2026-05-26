@@ -2,10 +2,6 @@
 
 @section('title', 'Maz Terrenos - ' . ($terreno->nombre ?? 'Terreno'))
 
-@php
-    $css_file = 'detalles-terreno';
-@endphp
-
 @section('content')
 <main class="pt-32 pb-24 max-w-6xl mx-auto px-6">
     <header class="text-center mb-12">
