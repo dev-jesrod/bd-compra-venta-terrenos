@@ -41,7 +41,7 @@
                 @csrf
                 <input type="hidden" name="nombre" value="{{ $name }}">
                 <div class="relative w-full sm:w-auto">
-                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="this.form.submit()" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Deseas subir este archivo para su revisión?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     <button type="button" class="w-full sm:w-auto bg-[#228b22] text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:opacity-90 transition-opacity">
                         Subir archivo
                     </button>
@@ -53,17 +53,40 @@
                 @csrf
                 <input type="hidden" name="nombre" value="{{ $name }}">
                 <div class="relative w-full sm:w-auto">
-                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="this.form.submit()" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Deseas subir nuevamente este archivo para su revisión?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     <button type="button" class="w-full sm:w-auto bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-red-700 transition-colors">
                         Subir de nuevo
                     </button>
                 </div>
             </form>
         @else
-            <!-- View File Button -->
-            <a href="{{ asset('storage/' . $doc->ruta_archivo) }}" target="_blank" class="w-full sm:w-auto text-green-700 dark:text-green-400 font-bold text-sm hover:underline flex items-center justify-center gap-0.5">
-                <span class="material-symbols-outlined text-sm">visibility</span> Ver Documento
-            </a>
+            <!-- View, Change and Delete Actions -->
+            <div class="flex flex-col sm:flex-row items-center gap-3">
+                <a href="{{ asset('storage/' . $doc->ruta_archivo) }}" target="_blank" class="text-green-700 dark:text-green-400 font-bold text-sm hover:underline flex items-center justify-center gap-0.5">
+                    <span class="material-symbols-outlined text-sm">visibility</span> Ver Documento
+                </a>
+                
+                <!-- Change Document Form -->
+                <form action="{{ route('vendedor.documentos.store') }}" method="POST" enctype="multipart/form-data" class="inline">
+                    @csrf
+                    <input type="hidden" name="nombre" value="{{ $name }}">
+                    <div class="relative inline-block">
+                        <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Estás seguro de que deseas reemplazar el archivo actual?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        <button type="button" class="text-green-700 dark:text-green-400 font-bold text-sm hover:underline flex items-center justify-center gap-0.5">
+                            <span class="material-symbols-outlined text-sm">edit</span> Cambiar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Retire Document Form (DELETE) -->
+                <form action="{{ route('vendedor.documentos.destroy', $doc->idDocumento) }}" method="POST" class="inline" onsubmit="return confirm('¿Estás seguro de que deseas retirar y eliminar permanentemente este documento?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-red-600 font-bold text-sm hover:underline flex items-center justify-center gap-0.5">
+                        <span class="material-symbols-outlined text-sm">delete</span> Retirar
+                    </button>
+                </form>
+            </div>
         @endif
     </div>
 </div>

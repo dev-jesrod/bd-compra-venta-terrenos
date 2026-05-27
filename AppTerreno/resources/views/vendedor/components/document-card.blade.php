@@ -48,14 +48,14 @@
     </div>
 
     <!-- Actions -->
-    <div>
+    <div class="flex flex-col gap-2">
         @if(!$doc)
             <!-- Upload Form -->
             <form action="{{ route('vendedor.documentos.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="nombre" value="{{ $name }}">
                 <div class="relative w-full">
-                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="this.form.submit()" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Deseas subir este archivo para su revisión?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     <button type="button" class="w-full py-2.5 px-4 rounded-lg bg-slate-900 dark:bg-slate-800 text-white font-bold text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-1">
                         <span class="material-symbols-outlined text-sm">upload</span> Subir archivo
                     </button>
@@ -67,17 +67,40 @@
                 @csrf
                 <input type="hidden" name="nombre" value="{{ $name }}">
                 <div class="relative w-full">
-                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="this.form.submit()" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Deseas subir nuevamente este archivo para su revisión?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                     <button type="button" class="w-full py-2.5 px-4 rounded-lg bg-red-600 text-white font-bold text-xs hover:bg-red-700 transition-colors flex items-center justify-center gap-1">
                         <span class="material-symbols-outlined text-sm">replay</span> Subir de nuevo
                     </button>
                 </div>
             </form>
         @else
-            <!-- View File Button -->
-            <a href="{{ asset('storage/' . $doc->ruta_archivo) }}" target="_blank" class="w-full py-2.5 px-4 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-sm">visibility</span> Ver Archivo
-            </a>
+            <!-- View, Change and Delete Actions -->
+            <div class="flex flex-col gap-1.5">
+                <a href="{{ asset('storage/' . $doc->ruta_archivo) }}" target="_blank" class="w-full py-2 px-4 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 text-xs font-semibold hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-1">
+                    <span class="material-symbols-outlined text-sm">visibility</span> Ver Archivo
+                </a>
+                
+                <!-- Change Document Form -->
+                <form action="{{ route('vendedor.documentos.store') }}" method="POST" enctype="multipart/form-data" class="w-full">
+                    @csrf
+                    <input type="hidden" name="nombre" value="{{ $name }}">
+                    <div class="relative w-full">
+                        <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Estás seguro de que deseas reemplazar el archivo actual?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        <button type="button" class="w-full py-2 px-4 rounded-lg border border-green-600 text-green-600 font-bold text-xs hover:bg-green-50 dark:hover:bg-slate-800/50 transition-colors flex items-center justify-center gap-1">
+                            <span class="material-symbols-outlined text-sm">edit</span> Cambiar
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Retire Document Form (DELETE) -->
+                <form action="{{ route('vendedor.documentos.destroy', $doc->idDocumento) }}" method="POST" class="w-full" onsubmit="return confirm('¿Estás seguro de que deseas retirar y eliminar permanentemente este documento?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="w-full py-2 px-4 rounded-lg border border-red-200 hover:border-red-500 text-red-600 text-xs font-bold transition-colors flex items-center justify-center gap-1">
+                        <span class="material-symbols-outlined text-sm">delete</span> Retirar
+                    </button>
+                </form>
+            </div>
         @endif
     </div>
 </div>

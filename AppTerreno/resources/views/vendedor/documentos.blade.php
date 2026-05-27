@@ -41,7 +41,7 @@
             </div>
             <div class="flex-grow text-center md:text-left">
                 <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">Estado de Verificación General: {{ $trustLevel }}% completado</h2>
-                <p class="text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed">Completa tu perfil subiendo tus documentos. Un vendedor con 100% de confianza genera hasta un 40% más de interés y agiliza los procesos de apartado.</p>
+                <p class="text-gray-500 dark:text-gray-400 max-w-2xl leading-relaxed">Completa tu perfil subiendo tus documentos. <strong class="text-green-700 dark:text-green-400">IMPORTANTE:</strong> Para poder publicar nuevos terrenos o editar tus propiedades, debes contar con al menos el <strong class="text-green-700 dark:text-green-400">80% de tus documentos aprobados</strong> (equivalente a 4 documentos validados).</p>
             </div>
             <div class="hidden lg:block">
                 <span class="material-symbols-outlined text-6xl text-green-700/20 dark:text-green-500/20">verified_user</span>
@@ -151,7 +151,7 @@
                                 <span class="font-bold text-white">{{ $pendingDoc->nombre }}</span>
                                 <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-500 rounded text-[10px] font-bold uppercase tracking-wider">PENDIENTE</span>
                             </div>
-                            <p class="text-xs text-slate-400 mt-1">Subido por el vendedor. Archivo: <a href="{{ asset('storage/' . $pendingDoc->ruta_archivo) }}" target="_blank" class="text-primary hover:underline font-semibold flex inline-flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">download</span> Descargar</a></p>
+                            <p class="text-xs text-slate-400 mt-1">Subido por el vendedor. Archivo: <a href="{{ asset('storage/' . $pendingDoc->ruta_archivo) }}" target="_blank" class="text-primary hover:underline font-semibold inline-flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">download</span> Descargar</a></p>
                         </div>
                         
                         <!-- Simulation Action Form -->

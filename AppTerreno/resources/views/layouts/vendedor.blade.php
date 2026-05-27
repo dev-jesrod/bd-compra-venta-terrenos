@@ -12,19 +12,11 @@
         rel="stylesheet">
 
     @vite([
-        'resources/js/tailwind-config.js',
-        'resources/css/app.css',
+    'resources/js/tailwind-config.js',
+    'resources/css/app.css',
     ])
 
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
 
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
 </head>
 
 <body class="bg-slate-50 dark:bg-slate-950 text-on-background min-h-screen">
