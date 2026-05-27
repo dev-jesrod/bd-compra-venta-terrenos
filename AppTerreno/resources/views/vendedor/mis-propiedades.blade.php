@@ -110,10 +110,6 @@
                                 <span class="material-symbols-outlined text-lg">edit</span>
                                 Editar Terreno
                             </a>
-                            <a href="{{ route('vendedor.dashboard') }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
-                                <span class="material-symbols-outlined text-lg">insights</span>
-                                Ver Rendimiento
-                            </a>
                         </div>
                     </div>
                 </div>

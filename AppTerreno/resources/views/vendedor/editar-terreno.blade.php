@@ -18,7 +18,7 @@
     </div>
 @endif
 
-<form action="{{ route('vendedor.terrenos.update', $terreno->idTerreno) }}" method="POST">
+<form action="{{ route('vendedor.terrenos.update', $terreno->idTerreno) }}" method="POST" enctype="multipart/form-data">
 @csrf
 @method('PUT')
 
@@ -64,11 +64,17 @@
                 <div>
                     <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Título del Listado</label>
                     <input type="text" name="nombre" value="{{ old('nombre', $terreno->nombre) }}" placeholder="Ej: Terreno Sustentable en Valle Verde" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors" required>
+                    @error('nombre')
+                        <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                    @enderror
                 </div>
                 
                 <div>
                     <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Descripción Detallada</label>
                     <textarea name="descripcion" rows="4" placeholder="Describa el potencial..." class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors" required>{{ old('descripcion', $terreno->descripcion) }}</textarea>
+                    @error('descripcion')
+                        <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                    @enderror
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -78,6 +84,9 @@
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
                             <input type="number" step="0.01" name="precio" value="{{ old('precio', $terreno->precio) }}" placeholder="0.00" class="w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors" required>
                         </div>
+                        @error('precio')
+                            <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Ubicación</label>
@@ -85,6 +94,9 @@
                             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">location_on</span>
                             <input type="text" name="ubicacion" value="{{ old('ubicacion', $terreno->ubicacion) }}" placeholder="Colonia, Calle, Ciudad" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors" required>
                         </div>
+                        @error('ubicacion')
+                            <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -101,12 +113,23 @@
                 <div>
                     <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Largo (m)</label>
                     <input type="number" step="0.01" name="largo" value="{{ old('largo', $terreno->largo) }}" placeholder="Largo en metros" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors" required>
+                    @error('largo')
+                        <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Ancho (m)</label>
                     <input type="number" step="0.01" name="ancho" value="{{ old('ancho', $terreno->ancho) }}" placeholder="Ancho en metros" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors" required>
+                    @error('ancho')
+                        <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
+            
+            <p class="text-xs text-slate-500 mt-2 font-medium italic flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">info</span>
+                La superficie se calculará automáticamente (Largo × Ancho) al guardar cambios.
+            </p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                 <div>
@@ -122,6 +145,9 @@
                         </select>
                         <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[20px]">keyboard_arrow_down</span>
                     </div>
+                    @error('zonificacion')
+                        <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div>
                     <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Pendiente</label>
@@ -134,6 +160,9 @@
                         </select>
                         <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[20px]">keyboard_arrow_down</span>
                     </div>
+                    @error('pendiente')
+                        <p class="text-red-500 text-xs mt-1 font-semibold">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </section>

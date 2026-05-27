@@ -5,17 +5,17 @@
 @section('content')
 <!-- Notification Messages -->
 @if(session('success'))
-    <div class="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300 rounded-xl flex items-center gap-3">
-        <span class="material-symbols-outlined text-green-600">check_circle</span>
-        <span class="font-medium">{{ session('success') }}</span>
-    </div>
+<div class="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300 rounded-xl flex items-center gap-3">
+    <span class="material-symbols-outlined text-green-600">check_circle</span>
+    <span class="font-medium">{{ session('success') }}</span>
+</div>
 @endif
 
 @if(session('error'))
-    <div class="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 rounded-xl flex items-center gap-3">
-        <span class="material-symbols-outlined text-red-600">error</span>
-        <span class="font-medium">{{ session('error') }}</span>
-    </div>
+<div class="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-300 rounded-xl flex items-center gap-3">
+    <span class="material-symbols-outlined text-red-600">error</span>
+    <span class="font-medium">{{ session('error') }}</span>
+</div>
 @endif
 
 <!-- Control Panel Header -->
@@ -27,7 +27,7 @@
     <a href="{{ route('vendedor.terrenos.create') }}"
         class="bg-primary text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-green-700 transition-all active:scale-95 shadow-lg shadow-green-900/10">
         <span class="material-symbols-outlined">add_circle</span>
-        + Publicar Nuevo Terreno
+        Publicar Nuevo Terreno
     </a>
 </div>
 
@@ -74,63 +74,64 @@
     <div class="flex-1 w-full">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
             <h3 class="text-xl font-bold">Estado de Verificación del Vendedor</h3>
-            <a href="{{ route('vendedor.documentos.index') }}" class="text-xs text-primary font-bold hover:underline flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs">edit</span> Gestionar Documentos
+            <a href="{{ route('vendedor.documentos.index') }}" class="text-xs text-white/80 font-bold hover:underline flex items-center gap-1">
+                <span class="material-symbols-outlined text-white/80">edit</span> Gestionar Documentos
             </a>
         </div>
+        <!-- Nivel de confianza -->
         <div class="w-full bg-white/10 rounded-full h-3 mb-4 overflow-hidden">
-            <div class="bg-primary h-3 rounded-full transition-all duration-500" style="width: {{ $trustLevel }}%"></div>
+            <div class="bg-green-500 h-3 rounded-full transition-all duration-500" style="width: {{ $trustLevel }}%"></div>
         </div>
         <div class="flex flex-wrap gap-3">
             <!-- INE Badge -->
             @if($ineDoc && $ineDoc->estado === 'APROBADO')
-                <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">check_circle</span> INE Validada
-                </span>
+            <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">check_circle</span> INE Validada
+            </span>
             @elseif($ineDoc && $ineDoc->estado === 'RECHAZADO')
-                <span class="px-3 py-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">error</span> INE Rechazada
-                </span>
+            <span class="px-3 py-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">error</span> INE Rechazada
+            </span>
             @else
-                <span class="px-3 py-1 bg-white/10 border border-white/10 text-white/70 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">schedule</span> INE {{ $ineDoc ? 'En Revisión' : 'Pendiente' }}
-                </span>
+            <span class="px-3 py-1 bg-white/10 border border-white/10 text-white/70 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">schedule</span> INE {{ $ineDoc ? 'En Revisión' : 'Pendiente' }}
+            </span>
             @endif
 
             <!-- RFC Badge -->
             @if($rfcDoc && $rfcDoc->estado === 'APROBADO')
-                <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">check_circle</span> RFC Verificado
-                </span>
+            <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">check_circle</span> RFC Verificado
+            </span>
             @elseif($rfcDoc && $rfcDoc->estado === 'RECHAZADO')
-                <span class="px-3 py-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">error</span> RFC Rechazado
-                </span>
+            <span class="px-3 py-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">error</span> RFC Rechazado
+            </span>
             @else
-                <span class="px-3 py-1 bg-white/10 border border-white/10 text-white/70 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">schedule</span> RFC {{ $rfcDoc ? 'En Revisión' : 'Pendiente' }}
-                </span>
+            <span class="px-3 py-1 bg-white/10 border border-white/10 text-white/70 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">schedule</span> RFC {{ $rfcDoc ? 'En Revisión' : 'Pendiente' }}
+            </span>
             @endif
 
             <!-- Comprobante Badge -->
             @if($comprobanteDoc && $comprobanteDoc->estado === 'APROBADO')
-                <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">check_circle</span> Domicilio Aprobado
-                </span>
+            <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-400 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">check_circle</span> Domicilio Aprobado
+            </span>
             @elseif($comprobanteDoc && $comprobanteDoc->estado === 'RECHAZADO')
-                <span class="px-3 py-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">error</span> Domicilio Rechazado
-                </span>
+            <span class="px-3 py-1 bg-red-500/20 border border-red-500/30 text-red-400 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">error</span> Domicilio Rechazado
+            </span>
             @else
-                <span class="px-3 py-1 bg-white/10 border border-white/10 text-white/70 rounded-full text-xs font-bold flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">schedule</span> Domicilio {{ $comprobanteDoc ? 'En Revisión' : 'Pendiente' }}
-                </span>
+            <span class="px-3 py-1 bg-white/10 border border-white/10 text-white/70 rounded-full text-xs font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">schedule</span> Domicilio {{ $comprobanteDoc ? 'En Revisión' : 'Pendiente' }}
+            </span>
             @endif
         </div>
     </div>
     <div class="flex-shrink-0 text-center md:text-right min-w-[120px]">
         <p class="text-white/60 text-xs mb-1 uppercase tracking-wider font-bold">Confianza</p>
-        <p class="text-5xl font-black text-primary">{{ $trustLevel }}%</p>
+        <p class="text-5xl font-black text-white">{{ $trustLevel }}%</p>
     </div>
 </div>
 
@@ -144,63 +145,63 @@
     </div>
 
     @if($noContent)
-        <div class="bg-white dark:bg-slate-900 rounded-xl p-12 text-center border border-gray-200 dark:border-gray-800 shadow-sm">
-            <span class="material-symbols-outlined text-5xl text-gray-400 mb-4">landscape</span>
-            <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Aún no has publicado ningún terreno</h4>
-            <p class="text-gray-500 text-sm mb-6 max-w-md mx-auto">Comienza a publicar tus propiedades para que los clientes potenciales puedan verlas y contactarte.</p>
-            <a href="{{ route('vendedor.terrenos.create') }}" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md shadow-green-900/10">
-                <span class="material-symbols-outlined text-sm">add_circle</span> Publicar mi primer terreno
-            </a>
-        </div>
+    <div class="bg-white dark:bg-slate-900 rounded-xl p-12 text-center border border-gray-200 dark:border-gray-800 shadow-sm">
+        <span class="material-symbols-outlined text-5xl text-gray-400 mb-4">landscape</span>
+        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-1">Aún no has publicado ningún terreno</h4>
+        <p class="text-gray-500 text-sm mb-6 max-w-md mx-auto">Comienza a publicar tus propiedades para que los clientes potenciales puedan verlas y contactarte.</p>
+        <a href="{{ route('vendedor.terrenos.create') }}" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md shadow-green-900/10">
+            <span class="material-symbols-outlined text-sm">add_circle</span> Publicar mi primer terreno
+        </a>
+    </div>
     @else
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            @foreach($terrenos as $terreno)
-                <div class="bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm group hover:shadow-md transition-all duration-300">
-                    <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
-                        @if($terreno->imagenPrincipal)
-                            <img alt="{{ $terreno->nombre }}"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                src="{{ $terreno->imagenPrincipal }}">
-                        @else
-                            <div class="w-full h-full flex flex-col items-center justify-center text-gray-400">
-                                <span class="material-symbols-outlined text-4xl">image</span>
-                                <span class="text-xs mt-1">Sin imagen</span>
-                            </div>
-                        @endif
-
-                        <!-- Status Badge -->
-                        @if($terreno->estado === 'DISPONIBLE')
-                            <div class="absolute top-3 left-3 px-3 py-1 bg-green-100 dark:bg-green-900/80 text-green-700 dark:text-green-300 text-xs font-bold rounded-lg uppercase tracking-tight">
-                                ACTIVO
-                            </div>
-                        @elseif($terreno->estado === 'RESERVADO')
-                            <div class="absolute top-3 left-3 px-3 py-1 bg-blue-100 dark:bg-blue-900/80 text-blue-700 dark:text-blue-300 text-xs font-bold rounded-lg uppercase tracking-tight">
-                                APARTADO
-                            </div>
-                        @else
-                            <div class="absolute top-3 left-3 px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg uppercase tracking-tight">
-                                VENDIDO
-                            </div>
-                        @endif
-                    </div>
-                    
-                    <div class="p-5 flex flex-col justify-between h-44">
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">
-                                {{ number_format($terreno->largo) }}m x {{ number_format($terreno->ancho) }}m ({{ number_format($terreno->superficie) }} m²)
-                            </p>
-                            <h4 class="font-bold text-gray-900 dark:text-white line-clamp-1 mb-1">{{ $terreno->nombre }}</h4>
-                            <p class="text-primary font-extrabold text-lg mb-2">${{ number_format($terreno->precio, 2) }} MXN</p>
-                        </div>
-                        
-                        <a href="{{ route('vendedor.terrenos.edit', $terreno->idTerreno) }}"
-                            class="w-full text-center py-2 bg-slate-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                            Editar Detalles
-                        </a>
-                    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        @foreach($terrenos as $terreno)
+        <div class="bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-sm group hover:shadow-md transition-all duration-300">
+            <div class="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-800">
+                @if($terreno->imagenPrincipal)
+                <img alt="{{ $terreno->nombre }}"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="{{ $terreno->imagenPrincipal }}">
+                @else
+                <div class="w-full h-full flex flex-col items-center justify-center text-gray-400">
+                    <span class="material-symbols-outlined text-4xl">image</span>
+                    <span class="text-xs mt-1">Sin imagen</span>
                 </div>
-            @endforeach
+                @endif
+
+                <!-- Status Badge -->
+                @if($terreno->estado === 'DISPONIBLE')
+                <div class="absolute top-3 left-3 px-3 py-1 bg-green-100 dark:bg-green-900/80 text-green-700 dark:text-green-300 text-xs font-bold rounded-lg uppercase tracking-tight">
+                    ACTIVO
+                </div>
+                @elseif($terreno->estado === 'RESERVADO')
+                <div class="absolute top-3 left-3 px-3 py-1 bg-blue-100 dark:bg-blue-900/80 text-blue-700 dark:text-blue-300 text-xs font-bold rounded-lg uppercase tracking-tight">
+                    APARTADO
+                </div>
+                @else
+                <div class="absolute top-3 left-3 px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-lg uppercase tracking-tight">
+                    VENDIDO
+                </div>
+                @endif
+            </div>
+
+            <div class="p-5 flex flex-col justify-between h-44">
+                <div>
+                    <p class="text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">
+                        {{ number_format($terreno->largo) }}m x {{ number_format($terreno->ancho) }}m ({{ number_format($terreno->superficie) }} m²)
+                    </p>
+                    <h4 class="font-bold text-gray-900 dark:text-white line-clamp-1 mb-1">{{ $terreno->nombre }}</h4>
+                    <p class="text-primary font-extrabold text-lg mb-2">${{ number_format($terreno->precio, 2) }} MXN</p>
+                </div>
+
+                <a href="{{ route('vendedor.terrenos.edit', $terreno->idTerreno) }}"
+                    class="w-full text-center py-2 bg-slate-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                    Editar Detalles
+                </a>
+            </div>
         </div>
+        @endforeach
+    </div>
     @endif
 </div>
 
@@ -212,7 +213,7 @@
             Ver Todos <span class="material-symbols-outlined text-xs">arrow_forward</span>
         </a>
     </div>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- INE Quick View -->
         <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 flex items-center gap-4 shadow-sm">
@@ -226,11 +227,11 @@
                 </span>
             </div>
             @if($ineDoc && $ineDoc->estado === 'APROBADO')
-                <span class="material-symbols-outlined text-green-600">check_circle</span>
+            <span class="material-symbols-outlined text-green-600">check_circle</span>
             @elseif($ineDoc && $ineDoc->estado === 'RECHAZADO')
-                <span class="material-symbols-outlined text-red-600">error</span>
+            <span class="material-symbols-outlined text-red-600">error</span>
             @else
-                <span class="material-symbols-outlined text-amber-500">schedule</span>
+            <span class="material-symbols-outlined text-amber-500">schedule</span>
             @endif
         </div>
 
@@ -246,11 +247,11 @@
                 </span>
             </div>
             @if($rfcDoc && $rfcDoc->estado === 'APROBADO')
-                <span class="material-symbols-outlined text-green-600">check_circle</span>
+            <span class="material-symbols-outlined text-green-600">check_circle</span>
             @elseif($rfcDoc && $rfcDoc->estado === 'RECHAZADO')
-                <span class="material-symbols-outlined text-red-600">error</span>
+            <span class="material-symbols-outlined text-red-600">error</span>
             @else
-                <span class="material-symbols-outlined text-amber-500">schedule</span>
+            <span class="material-symbols-outlined text-amber-500">schedule</span>
             @endif
         </div>
 
@@ -266,11 +267,11 @@
                 </span>
             </div>
             @if($comprobanteDoc && $comprobanteDoc->estado === 'APROBADO')
-                <span class="material-symbols-outlined text-green-600">check_circle</span>
+            <span class="material-symbols-outlined text-green-600">check_circle</span>
             @elseif($comprobanteDoc && $comprobanteDoc->estado === 'RECHAZADO')
-                <span class="material-symbols-outlined text-red-600">error</span>
+            <span class="material-symbols-outlined text-red-600">error</span>
             @else
-                <span class="material-symbols-outlined text-amber-500">schedule</span>
+            <span class="material-symbols-outlined text-amber-500">schedule</span>
             @endif
         </div>
     </div>

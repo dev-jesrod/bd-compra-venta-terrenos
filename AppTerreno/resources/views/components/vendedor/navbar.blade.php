@@ -5,8 +5,8 @@
         </button>
         <div class="relative w-full">
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-            <form action="#" method="GET">
-                <input name="query" class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="Buscar por propiedad o ID..." type="text">
+            <form action="{{ route('vendedor.terrenos.index') }}" method="GET">
+                <input name="query" value="{{ request('query') }}" class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="Buscar por propiedad..." type="text">
             </form>
         </div>
     </div>
