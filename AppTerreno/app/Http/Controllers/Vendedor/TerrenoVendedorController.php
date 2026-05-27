@@ -10,13 +10,22 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use App\Models\Documento;
+
 class TerrenoVendedorController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
             $user = Auth::user();
-            $terrenos = Terreno::where('idUsuario', $user->idUsuario)->get();
+            $query = Terreno::where('idUsuario', $user->idUsuario);
+            
+            if ($request->filled('query')) {
+                $q = $request->input('query');
+                $query->where('nombre', 'LIKE', "%{$q}%");
+            }
+            
+            $terrenos = $query->get();
             return view('vendedor.mis-propiedades', compact('terrenos'));
         } catch (\Exception $e) {
             return back()->with('error', 'Error al cargar propiedades: ' . $e->getMessage());
@@ -32,6 +41,22 @@ class TerrenoVendedorController extends Controller
     {
         try {
             $user = Auth::user();
+            $vendedor = $user->vendedor;
+
+            if (!$vendedor) {
+                return back()->with('error', 'Debe registrar sus datos de vendedor antes de publicar un terreno.');
+            }
+
+            // Validar nivel de confianza del 80%
+            $documentos = Documento::where('idVendedor', $vendedor->idVendedor)->get();
+            $aprobadosCount = $documentos->where('estado', 'APROBADO')->count();
+            $trustLevel = min($aprobadosCount * 20, 100);
+
+            if ($trustLevel < 80) {
+                return back()
+                    ->with('error', "No puede publicar terrenos. Requiere al menos el 80% de sus documentos autorizados (Actualmente tiene {$trustLevel}%).")
+                    ->withInput();
+            }
 
             $datos = $request->validated();
 
@@ -78,10 +103,11 @@ class TerrenoVendedorController extends Controller
     public function show(string $id)
     {
         try {
-            $terreno = Terreno::with('usuario')->findOrFail($id);
-            return view('vendedor.mostrar-terreno', compact('terreno'));
+            // Filtrar por idUsuario para que solo el propietario pueda ver/editar
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
+            return view('vendedor.editar-terreno', compact('terreno'));
         } catch (\Exception $e) {
-            return back()->with('error', 'Terreno no encontrado');
+            return back()->with('error', 'Terreno no encontrado o sin autorización');
         }
     }
 
@@ -91,14 +117,30 @@ class TerrenoVendedorController extends Controller
             $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
             return view('vendedor.editar-terreno', compact('terreno'));
         } catch (\Exception $e) {
-            return back()->with('error', 'Terreno no encontrado');
+            return back()->with('error', 'Terreno no encontrado o sin autorización');
         }
     }
 
     public function update(Request $request, string $id)
     {
         try {
-            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
+            $user = Auth::user();
+            $vendedor = $user->vendedor;
+
+            if (!$vendedor) {
+                return back()->with('error', 'Debe registrar sus datos de vendedor.');
+            }
+
+            // Validar nivel de confianza del 80%
+            $documentos = Documento::where('idVendedor', $vendedor->idVendedor)->get();
+            $aprobadosCount = $documentos->where('estado', 'APROBADO')->count();
+            $trustLevel = min($aprobadosCount * 20, 100);
+
+            if ($trustLevel < 80) {
+                return back()->with('error', "No puede actualizar terrenos. Requiere al menos el 80% de sus documentos autorizados (Actualmente tiene {$trustLevel}%).");
+            }
+
+            $terreno = Terreno::where('idUsuario', $user->idUsuario)->findOrFail($id);
 
             $validated = $request->validate([
                 'nombre' => 'required|string|max:100',

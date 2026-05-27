@@ -26,7 +26,7 @@ class DocumentoController extends Controller
             
             // Calculate trust level (20% for each approved document)
             $aprobadosCount = $documentos->where('estado', 'APROBADO')->count();
-            $trustLevel = $aprobadosCount * 20;
+            $trustLevel = min($aprobadosCount * 20, 100);
 
             // Separate by type for easy display in Blade
             $ineDoc = $documentos->where('nombre', 'INE')->first();
@@ -74,6 +74,32 @@ class DocumentoController extends Controller
             $nombreDoc = $request->input('nombre');
             $archivo = $request->file('archivo');
 
+            // --- Validación básica Opción B ---
+            $esValido = true;
+            $motivoRechazo = null;
+
+            // 1. Validar tamaño mínimo de 50KB
+            if ($archivo->getSize() < 51200) { // 50 * 1024
+                $esValido = false;
+                $motivoRechazo = 'El documento es demasiado pequeño (debe ser mayor a 50KB). Suba una copia de mejor calidad.';
+            }
+
+            // 2. Validar resolución de imagen
+            if ($esValido && in_array($archivo->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
+                $imageSize = getimagesize($archivo->getRealPath());
+                if ($imageSize) {
+                    $width = $imageSize[0];
+                    $height = $imageSize[1];
+                    if ($width < 600 || $height < 400) {
+                        $esValido = false;
+                        $motivoRechazo = "La resolución de la imagen es muy baja ({$width}x{$height}px). Debe ser al menos de 600x400px para garantizar legibilidad.";
+                    }
+                } else {
+                    $esValido = false;
+                    $motivoRechazo = 'El archivo de imagen está corrupto o no es válido.';
+                }
+            }
+
             // Unique name for the file
             $extension = $archivo->getClientOriginalExtension();
             $timestamp = now()->timestamp;
@@ -89,17 +115,19 @@ class DocumentoController extends Controller
                                   ->where('nombre', $nombreDoc)
                                   ->first();
 
+            $estadoInicial = $esValido ? 'PENDIENTE' : 'RECHAZADO';
+
             if ($documento) {
                 // Delete old file if it exists
                 if ($documento->ruta_archivo) {
                     Storage::disk('public')->delete($documento->ruta_archivo);
                 }
 
-                // Update existing record and reset state to PENDIENTE
+                // Update existing record
                 $documento->update([
                     'ruta_archivo' => $path,
-                    'estado' => 'PENDIENTE',
-                    'motivo_rechazo' => null
+                    'estado' => $estadoInicial,
+                    'motivo_rechazo' => $motivoRechazo
                 ]);
             } else {
                 // Create new record
@@ -107,9 +135,13 @@ class DocumentoController extends Controller
                     'idVendedor' => $vendedor->idVendedor,
                     'nombre' => $nombreDoc,
                     'ruta_archivo' => $path,
-                    'estado' => 'PENDIENTE',
-                    'motivo_rechazo' => null
+                    'estado' => $estadoInicial,
+                    'motivo_rechazo' => $motivoRechazo
                 ]);
+            }
+
+            if (!$esValido) {
+                return back()->with('error', 'El documento "' . $nombreDoc . '" ha sido rechazado automáticamente. Motivo: ' . $motivoRechazo);
             }
 
             return back()->with('success', 'El documento "' . $nombreDoc . '" ha sido subido correctamente y está en revisión.');
@@ -133,7 +165,15 @@ class DocumentoController extends Controller
         ]);
 
         try {
-            $documento = Documento::findOrFail($id);
+            $user = Auth::user();
+            $vendedor = $user->vendedor;
+
+            if (!$vendedor) {
+                return back()->with('error', 'Perfil de vendedor no encontrado.');
+            }
+
+            // Validar que el documento realmente pertenezca a este vendedor (Seguridad #4)
+            $documento = Documento::where('idVendedor', $vendedor->idVendedor)->findOrFail($id);
             
             $estado = $request->input('estado');
             $motivo = $estado === 'RECHAZADO' ? $request->input('motivo_rechazo') : null;
@@ -150,6 +190,33 @@ class DocumentoController extends Controller
             return back()->with('success', $mensaje);
         } catch (\Exception $e) {
             return back()->with('error', 'Error al procesar la validación: ' . $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $user = Auth::user();
+            $vendedor = $user->vendedor;
+
+            if (!$vendedor) {
+                return back()->with('error', 'Perfil de vendedor no encontrado.');
+            }
+
+            // Validar propiedad
+            $documento = Documento::where('idVendedor', $vendedor->idVendedor)->findOrFail($id);
+
+            // Eliminar el archivo físico
+            if ($documento->ruta_archivo) {
+                Storage::disk('public')->delete($documento->ruta_archivo);
+            }
+
+            // Eliminar el registro
+            $documento->delete();
+
+            return back()->with('success', 'Documento "' . $documento->nombre . '" retirado correctamente.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error al retirar el documento: ' . $e->getMessage());
         }
     }
 }

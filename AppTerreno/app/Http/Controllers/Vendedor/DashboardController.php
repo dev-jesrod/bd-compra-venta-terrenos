@@ -20,7 +20,21 @@ class DashboardController extends Controller
             $vendedor = $user->vendedor;
             
             if (!$vendedor) {
-                return view('vendedor.dashboard')->with('noContent', true);
+                return view('vendedor.dashboard')->with([
+                    'noContent' => true,
+                    'terrenos' => collect(),
+                    'totalProspectos' => 0,
+                    'totalVistas' => 0,
+                    'terrenosActivos' => 0,
+                    'apartadosActivos' => 0,
+                    'trustLevel' => 0,
+                    'vendedor' => null,
+                    'ineDoc' => null,
+                    'rfcDoc' => null,
+                    'curpDoc' => null,
+                    'comprobanteDoc' => null,
+                    'satDoc' => null
+                ]);
             }
 
             // Get terrains and leads for this vendor
@@ -32,13 +46,13 @@ class DashboardController extends Controller
             $terrenosActivos = $terrenos->where('estado', 'DISPONIBLE')->count();
             $apartadosActivos = $terrenos->where('estado', 'RESERVADO')->count();
             
-            // Dynamic view stats simulation based on terrenos
+            // Dynamic view stats simulation based on terrains
             $totalVistas = $terrenos->count() * 342 + 120; // Simulated dynamic view counts
 
             // Calculate trust level based on approved documents
             $documentos = Documento::where('idVendedor', $vendedor->idVendedor)->get();
             $aprobadosCount = $documentos->where('estado', 'APROBADO')->count();
-            $trustLevel = $aprobadosCount * 20;
+            $trustLevel = min($aprobadosCount * 20, 100);
 
             // Fetch specific document states for the dashboard banner
             $ineDoc = $documentos->where('nombre', 'INE')->first();
@@ -68,7 +82,19 @@ class DashboardController extends Controller
         } catch (\Exception $e) {
             return view('vendedor.dashboard')->with([
                 'noContent' => true, 
-                'error' => 'Error al cargar el contenido: ' . $e->getMessage()
+                'error' => 'Error al cargar el contenido: ' . $e->getMessage(),
+                'terrenos' => collect(),
+                'totalProspectos' => 0,
+                'totalVistas' => 0,
+                'terrenosActivos' => 0,
+                'apartadosActivos' => 0,
+                'trustLevel' => 0,
+                'vendedor' => null,
+                'ineDoc' => null,
+                'rfcDoc' => null,
+                'curpDoc' => null,
+                'comprobanteDoc' => null,
+                'satDoc' => null
             ]);
         }
     }

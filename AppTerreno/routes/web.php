@@ -75,6 +75,7 @@ Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.
     Route::get('/documentos', [DocumentoController::class, 'index'])->name('documentos.index');
     Route::post('/documentos', [DocumentoController::class, 'store'])->name('documentos.store');
     Route::post('/documentos/simular/{id}', [DocumentoController::class, 'simularValidacion'])->name('documentos.simular');
+    Route::delete('/documentos/{id}', [DocumentoController::class, 'destroy'])->name('documentos.destroy');
 });
 
 // Rutas para el cliente
