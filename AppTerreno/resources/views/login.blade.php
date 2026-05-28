@@ -127,7 +127,7 @@ $css_file = 'login';
                 <div class="mb-8">
                     <p class="text-sm text-gray-500">
                         {{ $no_account_text ?? '¿No tienes una cuenta?' }}
-                        <a class="text-brand-green font-bold hover:underline">
+                        <a href="{{ route('registro.cliente') }}" class="text-brand-green font-bold hover:underline">
                             {{ $register_text ?? 'Regístrate gratis' }}
                         </a>
                     </p>
