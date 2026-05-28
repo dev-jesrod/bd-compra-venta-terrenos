@@ -10,9 +10,12 @@
 <main class="pt-32 pb-24 max-w-6xl mx-auto px-6">
     <header class="text-center mb-12">
         <h1 class="text-5xl md:text-7xl mb-4 tracking-tight text-brand-green">{{ $terreno->nombre }}</h1>
-        <div class="flex items-center justify-center gap-2 text-slate-500 mb-8">
+        <div class="flex items-center justify-center gap-2 text-slate-500 mb-4">
             <span class="material-symbols-outlined text-green-700 text-sm">location_on</span>
             <span class="font-body text-sm uppercase tracking-widest">{{ $terreno->ubicacion }}</span>
+        </div>
+        <div class="flex items-center justify-center gap-3 mb-8">
+            <x-badge-terreno-verificacion :estadoVerificacion="$terreno->estado_verificacion" :motivoRechazo="$terreno->motivo_rechazo" tamano="md" />
         </div>
         <div class="inline-block px-8 py-3 bg-green-50 rounded-full border border-green-200">
             <span class="text-2xl font-body font-bold text-green-700 tracking-tight">${{ number_format($terreno->precio, 0) }} MXN</span>
@@ -123,9 +126,15 @@
         <!-- Right: Seller Card -->
         <aside class="space-y-8 sticky top-36">
             @if($terreno->usuario)
+            @php
+                $documentos = $terreno->usuario->vendedor->documentos ?? collect();
+                $aprobados = $documentos->where('estado', 'APROBADO')->count();
+                $nivelConfianza = min($aprobados * 20, 100);
+                $verificado = $nivelConfianza >= 80;
+            @endphp
             <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
                 <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-6">DATOS DEL VENDEDOR</p>
-                <div class="flex items-center gap-4 mb-6">
+                <div class="flex items-center gap-4 mb-4">
                     <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
                         <span class="material-symbols-outlined text-green-700 text-2xl">person</span>
                     </div>
@@ -133,6 +142,9 @@
                         <h3 class="text-xl font-bold text-gray-900">{{ $terreno->usuario->nombre }}</h3>
                         <p class="text-sm font-body text-slate-500 italic">Vendedor</p>
                     </div>
+                </div>
+                <div class="mb-6">
+                    <x-badge-verificacion :verificado="$verificado" :nivelConfianza="$nivelConfianza" tamano="md" />
                 </div>
                 <button class="w-full py-4 bg-green-700 text-white rounded-full font-body font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-green-800 transition-colors">
                     <span class="material-symbols-outlined text-sm">call</span>

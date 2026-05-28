@@ -47,19 +47,22 @@
                     @endif
 
                     <!-- Dynamic Badge -->
-                    @if($terreno->estado === 'DISPONIBLE')
-                        <div class="absolute top-4 left-4 bg-green-100 dark:bg-green-900/80 text-green-800 dark:text-green-200 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-green-200 dark:border-green-800">
-                            Disponible
-                        </div>
-                    @elseif($terreno->estado === 'RESERVADO')
-                        <div class="absolute top-4 left-4 bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-blue-200 dark:border-blue-800">
-                            Apartado
-                        </div>
-                    @else
-                        <div class="absolute top-4 left-4 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700">
-                            Vendido
-                        </div>
-                    @endif
+                    <div class="absolute top-4 left-4 flex flex-col gap-2">
+                        @if($terreno->estado === 'DISPONIBLE')
+                            <div class="bg-green-100 dark:bg-green-900/80 text-green-800 dark:text-green-200 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-green-200 dark:border-green-800">
+                                Disponible
+                            </div>
+                        @elseif($terreno->estado === 'RESERVADO')
+                            <div class="bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-blue-200 dark:border-blue-800">
+                                Apartado
+                            </div>
+                        @else
+                            <div class="bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-slate-300 dark:border-slate-700">
+                                Vendido
+                            </div>
+                        @endif
+                        <x-badge-terreno-verificacion :estadoVerificacion="$terreno->estado_verificacion" :motivoRechazo="$terreno->motivo_rechazo" />
+                    </div>
                 </div>
 
                 <!-- Terrain Details Section -->
@@ -106,6 +109,10 @@
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col justify-center gap-2">
+                            <a href="{{ route('vendedor.terrenos.validarForm', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-green-700 text-white font-semibold text-sm hover:bg-green-800 transition-colors">
+                                <span class="material-symbols-outlined text-lg">verified</span>
+                                Validar Terreno
+                            </a>
                             <a href="{{ route('vendedor.terrenos.edit', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
                                 <span class="material-symbols-outlined text-lg">edit</span>
                                 Editar Terreno

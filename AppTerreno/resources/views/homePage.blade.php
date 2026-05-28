@@ -13,7 +13,7 @@ $css_file = 'homePage';
         <!-- Left: Image Placeholder -->
         <div class="lg:w-1/2 relative bg-gray-300 min-h-[400px] lg:min-h-full flex items-center justify-center">
 
-            <img src="{{ asset('storage/IMG/IMG-Portada.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+            <img src="{{ asset('storage/HomePage-IMG.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
 
 
             <!-- Overlay Text -->
@@ -26,9 +26,7 @@ $css_file = 'homePage';
 
         <!-- Right: Content -->
         <div class="lg:w-1/2 flex flex-col items-center justify-center p-10 lg:p-20 text-center">
-            <div class="w-16 h-16 rounded-full border-2 border-green-600 flex items-center justify-center mb-6">
-                <span class="material-symbols-outlined text-green-600 text-3xl">home_work</span>
-            </div>
+            <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-16 h-16 rounded-full object-cover mb-6">
             <h2 class="text-5xl lg:text-7xl font-black text-green-700 tracking-wider mb-6 leading-none">MAZ<br>TERRENOS
             </h2>
             <p class="text-gray-600 text-sm font-medium leading-relaxed max-w-sm mb-10">
@@ -40,14 +38,14 @@ $css_file = 'homePage';
                 <span class="material-symbols-outlined text-[20px]">check_circle</span>
                 Ver Terrenos
             </a>
-            <div class="w-full max-w-md flex items-center bg-gray-50 border border-gray-200 rounded-xl p-1 shadow-sm">
+            <form action="{{ route('terrenos.index') }}" method="GET" class="w-full max-w-md flex items-center bg-gray-50 border border-gray-200 rounded-xl p-1 shadow-sm">
                 <span class="material-symbols-outlined text-gray-400 ml-4">search</span>
-                <input type="text" placeholder="¿Qué tipo de terreno buscas?"
-                    class="flex-1 bg-transparent border-none focus:ring-0 text-sm px-4" />
-                <button class="bg-green-700 text-white px-6 py-2 rounded-lg font-bold text-sm flex items-center gap-1">
+                <input type="text" name="busqueda" placeholder="¿Qué tipo de terreno buscas?"
+                    class="flex-1 bg-transparent border-none focus:ring-0 focus:outline-none text-sm px-4 text-green-700 placeholder:text-gray-400" />
+                <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded-lg font-bold text-sm flex items-center gap-1">
                     Empezar <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </button>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -66,6 +64,12 @@ $css_file = 'homePage';
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             @forelse($terrenos as $terreno)
+            @php
+                $documentos = $terreno->usuario->vendedor->documentos ?? collect();
+                $aprobados = $documentos->where('estado', 'APROBADO')->count();
+                $nivelConfianza = min($aprobados * 20, 100);
+                $verificado = $nivelConfianza >= 80;
+            @endphp
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col">
                 <div class="relative aspect-[4/3] bg-gray-300 overflow-hidden">
                     @if($terreno->imagenPrincipal)
@@ -79,6 +83,9 @@ $css_file = 'homePage';
                     @endif
                     <span class="absolute top-4 right-4 bg-white text-green-700 text-[10px] font-black uppercase px-3 py-1 rounded-full">
                         {{ $terreno->estado }}
+                    </span>
+                    <span class="absolute top-4 left-4">
+                        <x-badge-terreno-verificacion :estadoVerificacion="$terreno->estado_verificacion" :motivoRechazo="$terreno->motivo_rechazo" />
                     </span>
                 </div>
                 <div class="p-6 flex flex-col flex-1">
@@ -124,5 +131,6 @@ $css_file = 'homePage';
                 Ver más propiedades
             </a>
         </div>
+    </div>
 </main>
 @endsection
