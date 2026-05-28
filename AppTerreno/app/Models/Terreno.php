@@ -18,6 +18,8 @@ class Terreno extends Model
         'nombre',
         'ubicacion',
         'estado',
+        'estado_verificacion',
+        'motivo_rechazo',
         'largo',
         'ancho',
         'descripcion',
@@ -70,7 +72,25 @@ class Terreno extends Model
         return !empty($imagenes) ? $imagenes[0] : null;
     }
 
-    // Scope para aprobados
+    // Scope para terrenos verificados (aprobados por validación)
+    public function scopeVerificado(Builder $query)
+    {
+        return $query->where('estado_verificacion', 'APROBADO');
+    }
+
+    // Scope para terrenos pendientes de verificación
+    public function scopePendienteVerificacion(Builder $query)
+    {
+        return $query->where('estado_verificacion', 'PENDIENTE');
+    }
+
+    // Scope para disponibles y verificados (para catálogo público)
+    public function scopeDisponibleVerificado(Builder $query)
+    {
+        return $query->where('estado', 'DISPONIBLE')->where('estado_verificacion', 'APROBADO');
+    }
+
+    // Scope para aprobados (compatibilidad)
     public function scopeAprobado(Builder $query)
     {
         return $query->where('estado', 'DISPONIBLE');
