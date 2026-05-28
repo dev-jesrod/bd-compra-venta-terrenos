@@ -109,10 +109,22 @@
 
                         <!-- Action Buttons -->
                         <div class="flex flex-col justify-center gap-2">
-                            <a href="{{ route('vendedor.terrenos.validarForm', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#228B22] text-white font-semibold text-sm hover:bg-green-700 transition-colors">
-                                <span class="material-symbols-outlined text-lg">verified</span>
-                                Validar Terreno
-                            </a>
+                            @if($terreno->estado_verificacion === 'APROBADO')
+                                <span class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-gray-100 text-gray-400 font-semibold text-sm cursor-not-allowed select-none">
+                                    <span class="material-symbols-outlined text-lg">lock</span>
+                                    Ya Verificado
+                                </span>
+                            @elseif($terreno->estado_verificacion === 'RECHAZADO')
+                                <a href="{{ route('vendedor.terrenos.validarForm', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-red-600 text-white font-semibold text-sm hover:bg-red-700 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">error</span>
+                                    Revisar Terreno
+                                </a>
+                            @else
+                                <a href="{{ route('vendedor.terrenos.validarForm', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#228B22] text-white font-semibold text-sm hover:bg-green-700 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">verified</span>
+                                    Validar Terreno
+                                </a>
+                            @endif
                             <a href="{{ route('vendedor.terrenos.edit', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors">
                                 <span class="material-symbols-outlined text-lg">edit</span>
                                 Editar Terreno
