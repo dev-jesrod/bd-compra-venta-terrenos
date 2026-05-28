@@ -42,28 +42,16 @@ class RegistroVendedorController extends Controller
         $request->validate([
             'nombre'          => ['required', 'string', 'max:45'],
             'apellido1'       => ['required', 'string', 'max:45'],
-            'apellido2'       => ['nullable', 'string', 'max:45'],
-            'sexo'            => ['required', 'in:M,F'],
-            'fechaNacimiento' => ['required', 'date'],
-            'curp'            => ['required', 'string', 'size:18', 'unique:usuarios,curp'],
             'telefono'        => ['required', 'string', 'max:10', 'unique:usuarios,telefono'],
             'email'           => ['required', 'string', 'email', 'max:80', 'unique:usuarios,email'],
             'password'        => ['required', 'string', 'min:8', 'confirmed'],
-            'rfc'             => ['required', 'string', 'max:13', 'unique:dato_vendedores,rfc'],
-            'utilidad'        => ['required', 'numeric', 'min:0'],
         ], [
             'nombre.required'            => 'El nombre es obligatorio.',
             'apellido1.required'         => 'El primer apellido es obligatorio.',
-            'sexo.in'                    => 'El sexo debe ser Masculino o Femenino.',
-            'fechaNacimiento.required'   => 'La fecha de nacimiento es obligatoria.',
-            'curp.size'                  => 'La CURP debe tener exactamente 18 caracteres.',
-            'curp.unique'                => 'Esta CURP ya está registrada.',
             'telefono.unique'            => 'Este número de teléfono ya está registrado.',
             'email.unique'               => 'Este correo electrónico ya está registrado.',
             'password.min'               => 'La contraseña debe tener al menos 8 caracteres.',
             'password.confirmed'         => 'Las contraseñas no coinciden.',
-            'rfc.unique'                 => 'Este RFC ya está registrado.',
-            'utilidad.numeric'           => 'La utilidad debe ser un valor numérico.',
         ]);
 
         try {
@@ -73,20 +61,20 @@ class RegistroVendedorController extends Controller
             $usuario->tipoUsuario    = 'vendedor';
             $usuario->nombre         = $request->nombre;
             $usuario->apellido1      = $request->apellido1;
-            $usuario->apellido2      = $request->apellido2 ?? '';
-            $usuario->sexo           = $request->sexo;
-            $usuario->fechaNacimiento = $request->fechaNacimiento;
+            $usuario->apellido2      = '';
+            $usuario->sexo           = 'M';
+            $usuario->fechaNacimiento = '2000-01-01';
             $usuario->contrasena     = Hash::make($request->password);
             $usuario->estado         = true;
-            $usuario->curp           = $request->curp;
+            $usuario->curp           = 'SELLER' . strtoupper(\Illuminate\Support\Str::random(12)); // 18 chars unique CURP
             $usuario->telefono       = $request->telefono;
             $usuario->email          = $request->email;
             $usuario->save();
 
             $datoVendedor = new DatoVendedor();
             $datoVendedor->idUsuario = $usuario->idUsuario;
-            $datoVendedor->rfc       = $request->rfc;
-            $datoVendedor->utilidad  = $request->utilidad;
+            $datoVendedor->rfc       = 'XAXX010101' . strtoupper(\Illuminate\Support\Str::random(3)); // 13 chars RFC
+            $datoVendedor->utilidad  = 20.0; // 20% max utility by default
             $datoVendedor->save();
 
             DB::commit();

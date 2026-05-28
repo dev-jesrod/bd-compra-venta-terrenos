@@ -8,11 +8,11 @@ class PerfilController extends Controller
 {
     public function usuario()
     {
-        return view('perfil.usuario');
+        return view('perfilUsuario');
     }
 
     public function vendedor()
     {
-        return view('perfil.vendedor');
+        return view('perfilVendedor');
     }
 }

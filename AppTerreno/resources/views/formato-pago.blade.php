@@ -28,15 +28,15 @@
 
 @section('title', 'Formato de Pago - ' . ($company_name ?? 'Maz Terrenos'))
 
-@section('styles')
-    <link href="{{ asset('css/formato-pago.css') }}" rel="stylesheet" />
-@endsection
+@php
+    $css_file = 'formato-pago';
+@endphp
 
 @section('content')
     <!-- Top Branding Header -->
     <div class="sticky top-0 z-50 glass-header w-full border-b border-outline-variant/10 shadow-sm bg-white/95 backdrop-blur-md">
         <div class="max-w-screen-2xl mx-auto flex items-center justify-center py-4 px-8">
-            <img alt="Maz Terrenos Logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary mr-3" src="{{ $logo_src ?? '/views/iconov6.png' }}"/>
+            <img alt="Maz Terrenos Logo" class="w-10 h-10 rounded-full object-cover border-2 border-primary mr-3" src="{{ $logo_src ?? asset('resources/logo.png') }}"/>
             <span class="text-2xl font-serif text-primary tracking-tighter italic font-bold">{{ $company_name ?? 'Maz Terrenos' }}</span>
         </div>
     </div>
@@ -113,7 +113,7 @@
                     </div>
 
                     <!-- Payment Form Details -->
-                    <form method="POST" action="{{ route('formato.pago') }}" class="space-y-6">
+                    <form method="POST" action="{{ route('formato.pago.process', $terreno->idTerreno) }}" class="space-y-6">
                         @csrf
                         
                         <div class="space-y-2">
