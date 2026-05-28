@@ -1,11 +1,20 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CyMNpgrE.css",
+    "file": "assets/app-Dvroy-MN.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
+    ]
+  },
+  "resources/css/formato-pago.css": {
+    "file": "assets/formato-pago-zcpQIVcn.css",
+    "src": "resources/css/formato-pago.css",
+    "isEntry": true,
+    "name": "formato-pago",
+    "names": [
+      "formato-pago.css"
     ]
   },
   "resources/css/homePage.css": {
@@ -36,7 +45,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CKl8NZMC.js",
+    "file": "assets/app-UyRVujZY.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
