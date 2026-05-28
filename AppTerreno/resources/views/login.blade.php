@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 @section('title', 'Maz Terrenos - Iniciar Sesión')
 
 @php
@@ -18,6 +18,10 @@ $css_file = 'login';
         <div class="w-full max-w-md">
             <!-- Logo Section -->
             <div class="flex flex-col items-center mb-10">
+                <a href="{{ route('home') }}" class="self-start mb-4 text-lg font-bold text-green-700 hover:text-green-800 flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Volver al inicio
+                </a>
                 <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-20 h-20 rounded-full object-cover mb-3">
                 <h1 class="text-xl font-extrabold text-brand-green tracking-wide uppercase">Maz Terrenos</h1>
             </div>
@@ -127,7 +131,7 @@ $css_file = 'login';
                 <div class="mb-8">
                     <p class="text-sm text-gray-500">
                         {{ $no_account_text ?? '¿No tienes una cuenta?' }}
-                        <a class="text-brand-green font-bold hover:underline">
+                        <a href="{{ route('registro.cliente') }}" class="text-brand-green font-bold hover:underline">
                             {{ $register_text ?? 'Regístrate gratis' }}
                         </a>
                     </p>
@@ -138,6 +142,7 @@ $css_file = 'login';
                     <a class="hover:text-gray-600 transition-colors" href="#">Centro de Ayuda</a>
                 </nav>
             </footer>
+        </div>
         </div>
 </main>
 

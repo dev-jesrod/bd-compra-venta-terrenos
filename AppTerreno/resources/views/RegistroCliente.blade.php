@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'Maz Terrenos - Registro Comprador')
 
@@ -7,16 +7,6 @@
     <!-- Left Side: Image -->
     <div class="hidden lg:block lg:w-1/2 relative">
         <img src="{{ asset('storage/registro-cliente-bg.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center px-12 text-center">
-            <div class="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center mb-6">
-                <span class="material-symbols-outlined text-white text-4xl">home_work</span>
-            </div>
-            <h2 class="text-white font-black text-4xl tracking-wide mb-4">MAZ TERRENOS</h2>
-            <p class="text-white/80 font-medium text-sm leading-relaxed">
-                Encuentra el terreno ideal para tu proyecto.<br>
-                <span class="text-white font-bold">Cientos de propiedades te esperan.</span>
-            </p>
-        </div>
     </div>
 
     <!-- Right Side: Registration Form -->
@@ -25,6 +15,10 @@
 
             <!-- Logo Section -->
             <div class="flex flex-col items-center mb-8">
+                <a href="{{ route('home') }}" class="self-start mb-4 text-lg font-bold text-green-700 hover:text-green-800 flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Volver al inicio
+                </a>
                 <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-16 h-16 rounded-full object-cover mb-4">
                 <h1 class="text-2xl font-black text-green-700 tracking-wide uppercase">Crear Cuenta</h1>
                 <p class="text-gray-500 text-sm mt-2 font-medium text-center">Regístrate gratis y empieza a explorar terrenos</p>
