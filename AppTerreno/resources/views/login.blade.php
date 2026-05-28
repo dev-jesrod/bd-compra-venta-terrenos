@@ -2,7 +2,7 @@
 @section('title', 'Maz Terrenos - Iniciar Sesión')
 
 @php
-    $css_file = 'login';
+$css_file = 'login';
 @endphp
 
 @section('content')
@@ -33,11 +33,11 @@
 
                 {{-- Mostrar errores globales si existen --}}
                 @if ($errors->any())
-                    <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg mb-6">
-                        @foreach ($errors->all() as $error)
-                            <p class="text-sm text-red-700">{{ $error }}</p>
-                        @endforeach
-                    </div>
+                <div class="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg mb-6">
+                    @foreach ($errors->all() as $error)
+                    <p class="text-sm text-red-700">{{ $error }}</p>
+                    @endforeach
+                </div>
                 @endif
 
                 {{-- Email Field --}}
@@ -59,7 +59,7 @@
                             placeholder="{{ $email_placeholder ?? 'nombre@empresa.com' }}" type="email" required
                             autocomplete="email" />
                         @error('email')
-                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                             </button>
                         </div>
                         @error('password')
-                            <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                        <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -144,7 +144,7 @@
 
 @push('scripts')
 <script>
-    document.getElementById('toggle-password').addEventListener('click', function () {
+    document.getElementById('toggle-password').addEventListener('click', function() {
         const passwordInput = document.getElementById('password');
         const icon = document.getElementById('eye-icon');
 

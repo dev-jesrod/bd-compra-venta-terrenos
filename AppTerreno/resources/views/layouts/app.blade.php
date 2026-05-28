@@ -15,7 +15,6 @@
     @vite([
         'resources/js/tailwind-config.js',
         'resources/css/app.css',
-        isset($css_file) ? "resources/css/{$css_file}.css" : ''
     ])
     @yield('styles')
 </head>

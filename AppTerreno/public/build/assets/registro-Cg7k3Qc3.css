@@ -1,0 +1,1 @@
+body{font-family:Work Sans,sans-serif;background-color:#f8f8ff}.font-serif{font-family:Newsreader,serif}.split-container{display:flex;min-height:100vh}@media(max-width:768px){.split-container{flex-direction:column}.left-panel{height:300px;width:100%}}
