@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-slate-50 dark:bg-slate-950 text-on-background min-h-screen">
+<body class="bg-[#F8F8FF] text-gray-900 min-h-screen">
     <!-- Backdrop for mobile sidebar -->
     <div id="sidebar-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
 
