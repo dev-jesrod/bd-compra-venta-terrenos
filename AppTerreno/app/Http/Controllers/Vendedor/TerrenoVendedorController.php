@@ -62,6 +62,7 @@ class TerrenoVendedorController extends Controller
 
             $datos['idUsuario'] = $user->idUsuario;
             $datos['estado'] = 'DISPONIBLE';
+            $datos['estado_verificacion'] = 'PENDIENTE';
             $datos['superficie'] = $datos['largo'] * $datos['ancho'];
             $datos['fechaCompra'] = now()->toDateString();
 
@@ -180,6 +181,42 @@ class TerrenoVendedorController extends Controller
             return redirect()->route('vendedor.terrenos.index')->with('success', 'Terreno eliminado correctamente');
         } catch (\Exception $e) {
             return back()->with('error', 'Error al eliminar: ' . $e->getMessage());
+        }
+    }
+
+    public function validarForm(string $id)
+    {
+        try {
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
+            return view('vendedor.validar-terreno', compact('terreno'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terreno no encontrado o sin autorización');
+        }
+    }
+
+    public function validar(Request $request, string $id)
+    {
+        try {
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
+
+            $validated = $request->validate([
+                'estado_verificacion' => 'required|in:APROBADO,RECHAZADO',
+                'motivo_rechazo' => 'required_if:estado_verificacion,RECHAZADO|nullable|string|max:500',
+            ]);
+
+            $terreno->estado_verificacion = $validated['estado_verificacion'];
+            $terreno->motivo_rechazo = $validated['estado_verificacion'] === 'RECHAZADO'
+                ? $validated['motivo_rechazo']
+                : null;
+            $terreno->save();
+
+            $mensaje = $validated['estado_verificacion'] === 'APROBADO'
+                ? 'Terreno verificado correctamente. Ahora es visible en el catálogo.'
+                : 'Terreno rechazado. Revise el motivo y corrija los datos.';
+
+            return redirect()->route('vendedor.terrenos.index')->with('success', $mensaje);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error al validar terreno: ' . $e->getMessage());
         }
     }
 }

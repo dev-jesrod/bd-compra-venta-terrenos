@@ -12,11 +12,23 @@ use App\Http\Controllers\Vendedor\DocumentoController;
 use App\Http\Controllers\TerrenoController;
 use App\Http\Controllers\PerfilController;
 
-/* |------------------------ | Rutas de Autenticación |-------------------------------------------------------------------------- */
-//* Usuario y Vendedor
+Route::middleware('auth')->group(function () {
+    Route::get('/perfil-usuario', [PerfilController::class, 'usuario'])->name('perfil.usuario');
+    Route::get('/perfil-vendedor', [PerfilController::class, 'vendedor'])->name('perfil.vendedor');
+});
 
-Route::get('/perfil-usuario', [PerfilController::class, 'usuario']);
-Route::get('/perfil-vendedor', [PerfilController::class, 'vendedor']);
+// Rutas de pagos
+use App\Http\Controllers\PagoController;
+Route::middleware('auth')->group(function () {
+    Route::get('/formato-pago/{id}', [PagoController::class, 'show'])->name('formato.pago');
+    Route::post('/formato-pago/{id}', [PagoController::class, 'process'])->name('formato.pago.process');
+    Route::get('/comprobante-pago/{idTransaccion}', [PagoController::class, 'comprobante'])->name('comprobante.pago');
+});
+
+// Rutas de recuperación de contraseña
+use App\Http\Controllers\RecuperarContrasenaController;
+Route::get('/recuperar-contrasena', [RecuperarContrasenaController::class, 'showForm'])->name('password.request');
+Route::post('/recuperar-contrasena', [RecuperarContrasenaController::class, 'enviarEnlace'])->name('password.email');
 
 //* Terreno
 use App\Http\Controllers\Cliente\DashboardController as ClienteDashboardController;
@@ -66,6 +78,10 @@ Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.
     Route::get('/terrenos/{id}/editar', [TerrenoVendedorController::class, 'edit'])->name('terrenos.edit');
     Route::put('/terrenos/{id}', [TerrenoVendedorController::class, 'update'])->name('terrenos.update');
     Route::delete('/terrenos/{id}', [TerrenoVendedorController::class, 'destroy'])->name('terrenos.destroy');
+
+    // Validación de terrenos
+    Route::get('/terrenos/{id}/validar', [TerrenoVendedorController::class, 'validarForm'])->name('terrenos.validarForm');
+    Route::post('/terrenos/{id}/validar', [TerrenoVendedorController::class, 'validar'])->name('terrenos.validar');
 
     // Leads
     Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');

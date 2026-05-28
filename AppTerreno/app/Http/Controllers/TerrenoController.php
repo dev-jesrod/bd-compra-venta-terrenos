@@ -16,7 +16,8 @@ class TerrenoController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Terreno::query();
+            $query = Terreno::with('usuario.vendedor.documentos')
+                ->where('estado_verificacion', 'APROBADO');
 
             // Filtro por nombre 
             if ($request->filled('busqueda')) {
@@ -71,7 +72,7 @@ class TerrenoController extends Controller
     public function show(string $id)
     {
         try {
-            $terreno = Terreno::with('usuario')->findOrFail($id);
+            $terreno = Terreno::with('usuario.vendedor.documentos')->findOrFail($id);
             return view('detalles-terreno', compact('terreno'));
         } catch (\Exception $e) {
             return redirect()->route('terrenos.index')->with('error', 'Terreno no encontrado');
