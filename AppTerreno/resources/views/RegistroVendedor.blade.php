@@ -18,6 +18,10 @@
 
             <!-- Logo Section -->
             <div class="flex flex-col items-center mb-8">
+                <a href="{{ route('home') }}" class="self-start mb-4 text-xs font-bold text-green-700 hover:text-green-800 flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Volver al inicio
+                </a>
                 <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-16 h-16 rounded-full object-cover mb-4">
                 <h1 class="text-2xl font-black text-green-700 tracking-wide uppercase">MAZ TERRENOS</h1>
                 <p class="text-gray-500 text-sm mt-2 font-medium text-center">Únete a la red inmobiliaria más sostenible del mundo</p>

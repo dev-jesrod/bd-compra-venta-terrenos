@@ -18,6 +18,10 @@ $css_file = 'login';
         <div class="w-full max-w-md">
             <!-- Logo Section -->
             <div class="flex flex-col items-center mb-10">
+                <a href="{{ route('home') }}" class="self-start mb-4 text-xs font-bold text-green-700 hover:text-green-800 flex items-center gap-1 transition-colors">
+                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Volver al inicio
+                </a>
                 <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-20 h-20 rounded-full object-cover mb-3">
                 <h1 class="text-xl font-extrabold text-brand-green tracking-wide uppercase">Maz Terrenos</h1>
             </div>
