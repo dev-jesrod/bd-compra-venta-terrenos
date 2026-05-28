@@ -219,4 +219,28 @@ class TerrenoVendedorController extends Controller
             return back()->with('error', 'Error al validar terreno: ' . $e->getMessage());
         }
     }
+
+    public function cambiarEstado(Request $request, string $id)
+    {
+        try {
+            $terreno = Terreno::where('idUsuario', auth()->user()->idUsuario)->findOrFail($id);
+
+            $validated = $request->validate([
+                'estado' => 'required|in:DISPONIBLE,EN_PROCESO,VENDIDO',
+            ]);
+
+            $terreno->estado = $validated['estado'];
+            $terreno->save();
+
+            $estados = [
+                'DISPONIBLE' => 'Disponible',
+                'EN_PROCESO' => 'En Proceso',
+                'VENDIDO' => 'Vendido',
+            ];
+
+            return back()->with('success', 'Estado cambiado a: ' . $estados[$validated['estado']]);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error al cambiar estado: ' . $e->getMessage());
+        }
+    }
 }

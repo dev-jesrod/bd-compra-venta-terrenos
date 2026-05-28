@@ -46,21 +46,21 @@
                         </div>
                     @endif
 
-                    <!-- Dynamic Badge -->
+                    <!-- Dynamic Badge + Estado Dropdown -->
                     <div class="absolute top-4 left-4 flex flex-col gap-2">
-                        @if($terreno->estado === 'DISPONIBLE')
-                            <div class="bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-green-200">
-                                Disponible
-                            </div>
-                        @elseif($terreno->estado === 'RESERVADO')
-                            <div class="bg-blue-100 text-blue-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-blue-200">
-                                Apartado
-                            </div>
-                        @else
-                            <div class="bg-gray-200 text-gray-800 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-gray-300">
-                                Vendido
-                            </div>
-                        @endif
+                        <form action="{{ route('vendedor.terrenos.cambiarEstado', $terreno->idTerreno) }}" method="POST" class="inline-block">
+                            @csrf
+                            <select name="estado" onchange="this.form.submit()" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border cursor-pointer focus:ring-1 focus:ring-primary focus:border-primary
+                                @if($terreno->estado === 'DISPONIBLE') bg-green-100 text-green-800 border-green-200
+                                @elseif($terreno->estado === 'EN_PROCESO') bg-amber-100 text-amber-800 border-amber-200
+                                @elseif($terreno->estado === 'RESERVADO') bg-blue-100 text-blue-800 border-blue-200
+                                @else bg-gray-200 text-gray-800 border-gray-300 @endif">
+                                <option value="DISPONIBLE" {{ $terreno->estado === 'DISPONIBLE' ? 'selected' : '' }}>Disponible</option>
+                                <option value="EN_PROCESO" {{ $terreno->estado === 'EN_PROCESO' ? 'selected' : '' }}>En Proceso</option>
+                                <option value="RESERVADO" {{ $terreno->estado === 'RESERVADO' ? 'selected' : '' }}>Apartado</option>
+                                <option value="VENDIDO" {{ $terreno->estado === 'VENDIDO' ? 'selected' : '' }}>Vendido</option>
+                            </select>
+                        </form>
                         <x-badge-terreno-verificacion :estadoVerificacion="$terreno->estado_verificacion" :motivoRechazo="$terreno->motivo_rechazo" />
                     </div>
                 </div>

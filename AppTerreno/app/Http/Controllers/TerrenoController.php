@@ -17,7 +17,8 @@ class TerrenoController extends Controller
     {
         try {
             $query = Terreno::with('usuario.vendedor.documentos')
-                ->where('estado_verificacion', 'APROBADO');
+                ->where('estado_verificacion', 'APROBADO')
+                ->where('estado', 'DISPONIBLE');
 
             // Filtro por nombre 
             if ($request->filled('busqueda')) {

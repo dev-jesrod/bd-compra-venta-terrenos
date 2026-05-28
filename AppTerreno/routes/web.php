@@ -83,6 +83,9 @@ Route::middleware(['auth', 'rol:vendedor'])->prefix('vendedor')->name('vendedor.
     Route::get('/terrenos/{id}/validar', [TerrenoVendedorController::class, 'validarForm'])->name('terrenos.validarForm');
     Route::post('/terrenos/{id}/validar', [TerrenoVendedorController::class, 'validar'])->name('terrenos.validar');
 
+    // Cambiar estado del terreno
+    Route::post('/terrenos/{id}/cambiar-estado', [TerrenoVendedorController::class, 'cambiarEstado'])->name('terrenos.cambiarEstado');
+
     // Leads
     Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
     Route::put('/leads/{id}', [LeadController::class, 'update'])->name('leads.update');
