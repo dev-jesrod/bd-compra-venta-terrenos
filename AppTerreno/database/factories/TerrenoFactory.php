@@ -26,25 +26,20 @@ class TerrenoFactory extends Factory
     public function definition(): array
     {
         $estado = fake()->randomElement(['DISPONIBLE', 'VENDIDO', 'RESERVADO']);
-        $vendedor = Usuario::where('tipoUsuario', 'vendedor')->inRandomOrder()->first();
-
         $imagenesRandom = fake()->randomElements($this->imagenesUnsplash, fake()->numberBetween(2, 5));
+        
+        $largo = fake()->randomFloat(2, 8, 17);
+        $ancho = fake()->randomFloat(2, 7, 14);
+        $superficie = $largo * $ancho;
 
         return [
-            'idUsuario' => $vendedor ? $vendedor->idUsuario : 1,
-
-            'nombre' => fake()->randomElement([
-                'Terreno Vista al Mar',
-                'Lote en Zona Dorada',
-                'Terreno Campestre Mazatlán',
-                'Solar Urbano Centro',
-                'Parcela Agricola',
-                'Terreno Residencial',
-                'Lote Comercial',
-                'Terreno de Playa',
-                'Rancho Ganadero',
-                'Terreno en Precio',
+            'idUsuario' => Usuario::factory([
+                'tipoUsuario' => 'vendedor'
             ]),
+
+            'nombre' => fake()->optional(0.8)->passthrough(
+                fake()->randomElement(['Lote', 'Terreno']) . fake()->numberBetween(1, 2017)
+            ),
 
             'ubicacion' => fake()->randomElement([
                 'Zona Dorada, Mazatlán, Sinaloa',
@@ -58,16 +53,26 @@ class TerrenoFactory extends Factory
             ]),
 
             'estado' => $estado,
-            'largo' => fake()->randomFloat(2, 10, 100),
-            'ancho' => fake()->randomFloat(2, 10, 100),
-            'descripcion' => fake()->paragraph(2),
-            'precio' => fake()->randomFloat(2, 150000, 3500000),
-            'superficie' => fake()->randomFloat(2, 100, 5000),
+            'largo' => $largo,
+            'ancho' => $ancho,
+
+            'descripcion' => fake()->randomElement([
+                'Magnífico terreno residencial ubicado en una de las zonas con mayor crecimiento y plusvalía de la ciudad. Cuenta con topografía completamente plana, ideal para desarrollar un proyecto residencial a medida. Acceso rápido a avenidas principales, centros comerciales y escuelas de prestigio. Servicios a pie de calle listos para contratación.',
+                'Oportunidad única para inversionistas y desarrolladores. Terreno de forma regular con excelente frente, situado dentro de un fraccionamiento privado con vigilancia las 24 horas, acceso controlado y amenidades exclusivas como casa club y áreas verdes. Documentación en regla y listo para escriturar.',
+                'Predio urbano de uso mixto ideal para proyecto comercial o departamentos. Ubicado en esquina estratégica con alto flujo vehicular y peatonal, rodeado de comercios consolidados. Una opción inmejorable para asegurar un retorno de inversión a corto plazo en una ubicación privilegiada.',
+                'Hermoso lote campestre rodeado de naturaleza, perfecto para construir una casa de campo o de fin de semana para la familia. Cuenta con una vista panorámica espectacular, ambiente tranquilo y alejado del ruido de la ciudad, pero con conectividad a solo 15 minutos de la zona urbana. Cuenta con factibilidad de agua y luz.',
+                'Terreno plano habitacional en calle cerrada muy tranquila y segura. Excelente orientación que permite un aprovechamiento óptimo de la luz natural para el diseño arquitectónico. Cercano a parques públicos, supermercados y transporte; ideal para familias que buscan construir su primer patrimonio.',
+                'Predio de dimensiones premium con factibilidad para subdivisión o desarrollo de vivienda horizontal. Ubicado en zona residencial consolidada con todos los servicios subterráneos disponibles (agua, luz, drenaje e internet de alta velocidad). Acceso pavimentado y libre de inundaciones.',
+                'Lote residencial premium ubicado frente a área verde dentro de coto privado. El diseño del fraccionamiento ofrece un entorno seguro, familiar y con calles de concreto hidráulico. Una inversión segura en una ubicación con alta demanda y excelente proyección a futuro.'
+            ]),
+
+            'precio' => fake()->randomFloat(2, 574310, 2600000),
+            'superficie' => $superficie,
             'zonificacion' => fake()->randomElement(['Residencial', 'Comercial', 'Industrial', 'Agricola', 'Mixta']),
             'pendiente' => fake()->randomElement(['Plana', 'Semi-plana', 'Con pendiente']),
             'imagenes' => $imagenesRandom,
-            'fechaCompra' => fake()->date('Y-m-d', '-2 years'),
-            'fechaVenta' => $estado === 'VENDIDO' ? fake()->date('Y-m-d', 'now') : null,
+            'fechaCompra' => fake()->dateTimeBetween('-7 months', '-5 months')->format('Y-m-d'),
+            'fechaVenta' => $estado === 'VENDIDO' ? fake()->dateTimeBetween('-6 years', 'now')->format('Y-m-d') : null,
         ];
     }
 }

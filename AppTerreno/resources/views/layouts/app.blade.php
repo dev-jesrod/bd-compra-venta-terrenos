@@ -6,7 +6,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>@yield('title', 'AppTerreno')</title>
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -17,9 +16,7 @@
         'resources/js/tailwind-config.js',
         'resources/css/app.css',
     ])
-    @if(isset($css_file) && !empty($css_file))
-        @vite(["resources/css/{$css_file}.css"])
-    @endif
+    @yield('styles')
 </head>
 
 <body
@@ -31,9 +28,7 @@
                 <div class="flex items-center justify-between max-w-7xl mx-auto">
                     <!-- Logo -->
                     <a href="/" class="flex items-center gap-2">
-                        <div class="w-8 h-8 rounded-full border-2 border-brand-green flex items-center justify-center">
-                            <span class="material-symbols-outlined text-brand-green text-lg">nature_people</span>
-                        </div>
+                        <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-8 h-8 rounded-full object-cover">
                         <h2 class="text-xl font-black text-brand-green tracking-wide uppercase">MAZ TERRENOS</h2>
                     </a>
                     <!-- Nav Links -->
@@ -57,10 +52,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12 max-w-7xl mx-auto">
                     <div class="col-span-1 md:col-span-1">
                         <a href="/" class="flex items-center gap-2 mb-4">
-                            <div
-                                class="w-8 h-8 rounded-full border-2 border-brand-green flex items-center justify-center">
-                                <span class="material-symbols-outlined text-brand-green text-lg">nature_people</span>
-                            </div>
+                            <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-8 h-8 rounded-full object-cover">
                             <h2 class="text-lg font-black text-brand-green tracking-wide uppercase">MAZ TERRENOS</h2>
                         </a>
                         <p class="text-xs text-gray-500 font-medium leading-relaxed max-w-[200px]">

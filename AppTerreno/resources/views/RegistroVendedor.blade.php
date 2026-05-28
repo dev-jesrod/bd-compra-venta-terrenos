@@ -4,10 +4,11 @@
 
 @section('content')
 <main class="flex-1 flex bg-white min-h-[calc(100vh-80px)]">
-    <!-- Left Side: Image Placeholder -->
-    <div class="hidden lg:flex lg:w-1/2 bg-gray-200 relative items-center justify-center">
-        <div class="absolute inset-0 flex items-center justify-center">
-            <span class="text-gray-500 font-black text-3xl uppercase tracking-widest text-center px-10">Paisaje de Mazatlán</span>
+    <!-- Left Side: Image -->
+    <div class="hidden lg:block lg:w-1/2 relative">
+        <img src="{{ asset('storage/registro-vendedor-bg.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+            <span class="text-white font-black text-3xl uppercase tracking-widest text-center px-10">Paisaje de Mazatlán</span>
         </div>
     </div>
 
@@ -17,9 +18,7 @@
 
             <!-- Logo Section -->
             <div class="flex flex-col items-center mb-8">
-                <div class="w-16 h-16 rounded-full border-2 border-green-600 flex items-center justify-center mb-4">
-                    <span class="material-symbols-outlined text-green-600 text-3xl">nature_people</span>
-                </div>
+                <img src="{{ asset('resources/logo.png') }}" alt="Maz Terrenos Logo" class="w-16 h-16 rounded-full object-cover mb-4">
                 <h1 class="text-2xl font-black text-green-700 tracking-wide uppercase">MAZ TERRENOS</h1>
                 <p class="text-gray-500 text-sm mt-2 font-medium text-center">Únete a la red inmobiliaria más sostenible del mundo</p>
             </div>
@@ -61,52 +60,7 @@
                     @error('apellido1')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
                 </div>
 
-                {{-- Apellido Materno --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Apellido Materno</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">badge</span>
-                        <input type="text" name="apellido2" value="{{ old('apellido2') }}"
-                            placeholder="Ej: López (opcional)"
-                            class="w-full pl-11 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600 text-sm placeholder:text-gray-400 outline-none transition-colors">
-                    </div>
-                    @error('apellido2')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
-                </div>
 
-                {{-- Sexo --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Sexo *</label>
-                    <select name="sexo" required
-                        class="w-full px-4 py-3 rounded-lg border text-sm outline-none transition-colors
-                               {{ $errors->has('sexo') ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600' }}">
-                        <option value="" disabled {{ old('sexo') ? '' : 'selected' }}>Selecciona...</option>
-                        <option value="M" {{ old('sexo') === 'M' ? 'selected' : '' }}>Masculino</option>
-                        <option value="F" {{ old('sexo') === 'F' ? 'selected' : '' }}>Femenino</option>
-                    </select>
-                    @error('sexo')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
-                </div>
-
-                {{-- Fecha de Nacimiento --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Fecha de Nacimiento *</label>
-                    <input type="date" name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required
-                        class="w-full px-4 py-3 rounded-lg border text-sm outline-none transition-colors
-                               {{ $errors->has('fechaNacimiento') ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600' }}">
-                    @error('fechaNacimiento')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
-                </div>
-
-                {{-- CURP --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">CURP *</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">fingerprint</span>
-                        <input type="text" name="curp" value="{{ old('curp') }}" required maxlength="18"
-                            placeholder="18 caracteres"
-                            class="w-full pl-11 pr-4 py-3 rounded-lg border text-sm placeholder:text-gray-400 outline-none transition-colors uppercase
-                                   {{ $errors->has('curp') ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600' }}">
-                    </div>
-                    @error('curp')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
-                </div>
 
                 {{-- Teléfono --}}
                 <div>
@@ -134,31 +88,7 @@
                     @error('email')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
                 </div>
 
-                {{-- RFC --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">RFC *</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">receipt_long</span>
-                        <input type="text" name="rfc" value="{{ old('rfc') }}" required maxlength="13"
-                            placeholder="Ej: XXXX000000XXX"
-                            class="w-full pl-11 pr-4 py-3 rounded-lg border text-sm placeholder:text-gray-400 outline-none transition-colors uppercase
-                                   {{ $errors->has('rfc') ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600' }}">
-                    </div>
-                    @error('rfc')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
-                </div>
 
-                {{-- Utilidad --}}
-                <div>
-                    <label class="block text-[11px] font-bold text-gray-800 mb-1.5 tracking-wide">Porcentaje de Utilidad (%) *</label>
-                    <div class="relative flex items-center">
-                        <span class="material-symbols-outlined absolute left-4 text-gray-400 text-[18px] pointer-events-none">percent</span>
-                        <input type="number" name="utilidad" value="{{ old('utilidad', 0) }}" required min="0" step="0.01"
-                            placeholder="Ej: 5.5"
-                            class="w-full pl-11 pr-4 py-3 rounded-lg border text-sm placeholder:text-gray-400 outline-none transition-colors
-                                   {{ $errors->has('utilidad') ? 'border-red-500 bg-red-50' : 'border-gray-200 focus:ring-1 focus:ring-green-600 focus:border-green-600' }}">
-                    </div>
-                    @error('utilidad')<span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>@enderror
-                </div>
 
                 {{-- Contraseña --}}
                 <div>

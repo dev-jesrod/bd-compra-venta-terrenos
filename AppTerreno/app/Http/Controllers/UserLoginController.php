@@ -70,7 +70,6 @@ class UserLoginController extends Controller
                 return match($user->tipoUsuario) {
                     'vendedor' => redirect()->route('vendedor.dashboard'),
                     'cliente' => redirect()->route('cliente.dashboard'),
-                    'admin' => redirect()->route('admin.dashboard'),
                     default => redirect()->route('home'),
                 };
             }

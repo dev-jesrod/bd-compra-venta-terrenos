@@ -2,7 +2,9 @@
 
 @section('title', 'Recuperar Contraseña - Maz Terrenos')
 
-@push('css_file', 'recuperarcontra')
+@php
+    $css_file = 'registro';
+@endphp
 
 @section('content')
 <main class="asymmetric-split overflow-hidden">
@@ -24,7 +26,7 @@
     <section class="flex items-center justify-center p-8 md:p-16 bg-surface">
         <div class="w-full max-w-md flex flex-col items-center">
             <header class="text-center mb-12">
-                <img alt="Maz Terrenos Logo" class="w-20 h-20 rounded-full mx-auto mb-6 shadow-md border-2 border-white object-cover" data-alt="Logotipo de Maz Terrenos" src="https://lh3.googleusercontent.com/aida/ADBb0ujpuC5QXQNJQ0SXgcre5F1A4Derl9dtGgk4vUibTVLM6upvOHvaPXc7MfKp_8gqF0lrpPi40XxRjd4P6EN0WbmvLwR4d-JlalmEETu_tfZErjeGMxu5nZRXbMhcF50Ue-5GixhqggqHQo0CRQX67VVTIA0q44tgF1Ih-KHUdG9beSjOViZmq9PrvhyiSkteWHH3HRm6wru-VsjSWMK98VeKHuL3F9wUsqOZxO0IGs8ap4bBPGfRqoVWr2qZxWTHT15q0rVJ31ewTQ"/>
+                <img alt="Maz Terrenos Logo" class="w-20 h-20 rounded-full mx-auto mb-6 shadow-md border-2 border-white object-cover" src="{{ asset('resources/logo.png') }}"/>
                 <h1 class="font-serif italic font-bold text-4xl text-primary tracking-tight">
                     Maz Terrenos
                 </h1>
@@ -34,7 +36,6 @@
             </header>
 
             <div class="w-full bg-white p-10 rounded-xl shadow-lg shadow-black/5 border border-gray-200">
-                @csrf
                 <div class="mb-8">
                     <h3 class="font-serif text-2xl font-bold text-primary text-center">Recuperar Contraseña</h3>
                     <p class="text-gray-600 text-sm mt-2 leading-relaxed text-center">

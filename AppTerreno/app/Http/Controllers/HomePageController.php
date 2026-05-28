@@ -12,6 +12,8 @@ class HomePageController extends Controller
     {
         try {
             $terrenos = Terreno::disponible()
+                ->with('usuario.vendedor.documentos')
+                ->where('estado_verificacion', 'APROBADO')
                 ->latest()
                 ->take(4)
                 ->get();

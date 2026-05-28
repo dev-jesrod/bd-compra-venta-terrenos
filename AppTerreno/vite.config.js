@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/homePage.css',
                 'resources/css/login.css',
                 'resources/css/registro.css',
+                'resources/css/formato-pago.css',
                 'resources/js/app.js',
                 'resources/js/tailwind-config.js',
             ],

@@ -99,6 +99,12 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             @forelse($terrenos as $terreno)
+            @php
+                $documentos = $terreno->usuario->vendedor->documentos ?? collect();
+                $aprobados = $documentos->where('estado', 'APROBADO')->count();
+                $nivelConfianza = min($aprobados * 20, 100);
+                $verificado = $nivelConfianza >= 80;
+            @endphp
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow">
                 <div class="relative aspect-[4/3] bg-gray-300 overflow-hidden">
                     @if($terreno->imagenPrincipal)
@@ -112,6 +118,9 @@
                     @endif
                     <span class="absolute top-4 right-4 bg-white text-green-700 text-[10px] font-black uppercase px-3 py-1 rounded-full">
                         {{ $terreno->estado }}
+                    </span>
+                    <span class="absolute top-4 left-4">
+                        <x-badge-terreno-verificacion :estadoVerificacion="$terreno->estado_verificacion" :motivoRechazo="$terreno->motivo_rechazo" />
                     </span>
                 </div>
                 <div class="p-6 flex flex-col flex-1">

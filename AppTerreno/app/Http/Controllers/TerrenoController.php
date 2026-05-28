@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Terreno;
+use App\Models\VisitaTerreno;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -16,7 +17,9 @@ class TerrenoController extends Controller
     public function index(Request $request)
     {
         try {
-            $query = Terreno::query();
+            $query = Terreno::with('usuario.vendedor.documentos')
+                ->where('estado_verificacion', 'APROBADO')
+                ->where('estado', 'DISPONIBLE');
 
             // Filtro por nombre 
             if ($request->filled('busqueda')) {
@@ -71,7 +74,13 @@ class TerrenoController extends Controller
     public function show(string $id)
     {
         try {
-            $terreno = Terreno::with('usuario')->findOrFail($id);
+            $terreno = Terreno::with('usuario.vendedor.documentos')->findOrFail($id);
+
+            VisitaTerreno::create([
+                'idTerreno' => $terreno->idTerreno,
+                'idUsuario' => auth()->id(),
+            ]);
+
             return view('detalles-terreno', compact('terreno'));
         } catch (\Exception $e) {
             return redirect()->route('terrenos.index')->with('error', 'Terreno no encontrado');
