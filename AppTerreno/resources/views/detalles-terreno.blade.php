@@ -93,31 +93,31 @@
             </div>
 
             <div class="bg-green-50 p-8 rounded-xl">
-                <h2 class="text-3xl font-bold mb-6 text-[#228B22]" style="font-family: 'Work Sans', sans-serif;">Detalles Técnicos</h2>
+                <h2 class="text-3xl font-bold mb-6 text-primary">Detalles Técnicos</h2>
                 <div class="grid grid-cols-2 gap-y-6">
                     <div>
                         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Largo</p>
-                        <p class="text-xl font-bold text-gray-900" style="font-family: 'Work Sans', sans-serif;">{{ $terreno->largo }} m</p>
+                        <p class="text-xl font-bold text-gray-900">{{ $terreno->largo }} m</p>
                     </div>
                     <div>
                         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Ancho</p>
-                        <p class="text-xl font-bold text-gray-900" style="font-family: 'Work Sans', sans-serif;">{{ $terreno->ancho }} m</p>
+                        <p class="text-xl font-bold text-gray-900">{{ $terreno->ancho }} m</p>
                     </div>
                     <div>
                         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Superficie</p>
-                        <p class="text-xl font-bold text-gray-900" style="font-family: 'Work Sans', sans-serif;">{{ number_format($terreno->largo * $terreno->ancho, 0) }} m²</p>
+                        <p class="text-xl font-bold text-gray-900">{{ number_format($terreno->largo * $terreno->ancho, 0) }} m²</p>
                     </div>
                     <div>
                         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Estado</p>
-                        <p class="text-xl font-bold text-[#228B22]" style="font-family: 'Work Sans', sans-serif;">{{ $terreno->estado }}</p>
+                        <p class="text-xl font-bold text-primary">{{ $terreno->estado }}</p>
                     </div>
                     <div>
                         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Zonificación</p>
-                        <p class="text-xl font-bold text-gray-900" style="font-family: 'Work Sans', sans-serif;">{{ $terreno->zonificacion ?? 'No especificada' }}</p>
+                        <p class="text-xl font-bold text-gray-900">{{ $terreno->zonificacion ?? 'No especificada' }}</p>
                     </div>
                     <div>
                         <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Pendiente</p>
-                        <p class="text-xl font-bold text-gray-900" style="font-family: 'Work Sans', sans-serif;">{{ $terreno->pendiente ?? 'No especificada' }}</p>
+                        <p class="text-xl font-bold text-gray-900">{{ $terreno->pendiente ?? 'No especificada' }}</p>
                     </div>
                 </div>
             </div>

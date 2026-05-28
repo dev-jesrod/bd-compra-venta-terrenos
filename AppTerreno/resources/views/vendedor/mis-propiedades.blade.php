@@ -10,7 +10,7 @@
             <h1 class="text-2xl font-bold text-gray-900">Mis Propiedades</h1>
             <p class="text-gray-500 text-sm mt-1">Gestiona y monitorea el rendimiento de tus terrenos publicados.</p>
         </div>
-        <a href="{{ route('vendedor.terrenos.create') }}" class="flex items-center justify-center gap-2 bg-[#228B22] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 active:opacity-80 transition-all shadow-md">
+        <a href="{{ route('vendedor.terrenos.create') }}" class="flex items-center justify-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 active:opacity-80 transition-all shadow-md">
             <span class="material-symbols-outlined">add_circle</span>
             Publicar Nuevo Terreno
         </a>
@@ -76,7 +76,7 @@
                                 {{ $terreno->ubicacion }}
                             </div>
                             <div class="mt-4">
-                                <span class="block text-2xl font-black text-[#228B22]">${{ number_format($terreno->precio, 2) }} MXN</span>
+                                <span class="block text-2xl font-black text-primary">${{ number_format($terreno->precio, 2) }} MXN</span>
                                 <span class="text-xs text-gray-400 font-medium">
                                     ${{ number_format($terreno->precio / ($terreno->superficie > 0 ? $terreno->superficie : 1), 2) }} / m²
                                 </span>
@@ -120,7 +120,7 @@
                                     Revisar Terreno
                                 </a>
                             @else
-                                <a href="{{ route('vendedor.terrenos.validarForm', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#228B22] text-white font-semibold text-sm hover:bg-green-700 transition-colors">
+                                <a href="{{ route('vendedor.terrenos.validarForm', $terreno->idTerreno) }}" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-green-700 transition-colors">
                                     <span class="material-symbols-outlined text-lg">verified</span>
                                     Validar Terreno
                                 </a>
@@ -138,7 +138,7 @@
                 <span class="material-symbols-outlined text-5xl text-gray-400 mb-4">landscape</span>
                 <h3 class="text-lg font-bold text-gray-900 mb-1">No tienes propiedades publicadas</h3>
                 <p class="text-gray-500 text-sm mb-6">Comienza hoy a listar tus terrenos para venderlos con rapidez.</p>
-                <a href="{{ route('vendedor.terrenos.create') }}" class="inline-flex items-center gap-2 bg-[#228B22] text-white px-5 py-2.5 rounded-lg font-bold hover:opacity-95 transition-opacity shadow-md">
+                <a href="{{ route('vendedor.terrenos.create') }}" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:opacity-95 transition-opacity shadow-md">
                     <span class="material-symbols-outlined text-sm">add_circle</span> Publicar Nuevo Terreno
                 </a>
             </div>

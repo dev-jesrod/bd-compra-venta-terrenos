@@ -30,13 +30,13 @@
                 <svg class="w-full h-full transform -rotate-90">
                     <circle class="text-gray-100" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
                     <!-- Perimeter is 2 * pi * 58 = 364.4. Dashoffset = 364.4 - (364.4 * (trustLevel / 100)) -->
-                    <circle class="text-[#228b22] transition-all duration-700 ease-out" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" 
+                    <circle class="text-primary transition-all duration-700 ease-out" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" 
                             stroke-dasharray="364.4" 
                             stroke-dashoffset="{{ 364.4 - (364.4 * ($trustLevel / 100)) }}" 
                             stroke-width="8"></circle>
                 </svg>
                 <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <span class="text-2xl font-bold text-[#228b22]">{{ $trustLevel }}%</span>
+                    <span class="text-2xl font-bold text-primary">{{ $trustLevel }}%</span>
                 </div>
             </div>
             <div class="flex-grow text-center md:text-left">
@@ -94,7 +94,7 @@
             <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-[#228B22] rounded-full flex items-center justify-center text-white">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
                             <span class="material-symbols-outlined">account_balance_wallet</span>
                         </div>
                         <div>
@@ -125,7 +125,7 @@
     <!-- DEMO & TESTING SECTION: ADMIN DOCUMENT VALIDATION SIMULATOR -->
     <div class="mt-16 bg-gray-100 text-gray-900 rounded-2xl border border-gray-200 p-8 shadow-sm">
         <div class="flex items-center gap-3 mb-4">
-            <span class="material-symbols-outlined text-[#228b22]">terminal</span>
+            <span class="material-symbols-outlined text-primary">terminal</span>
             <h3 class="text-xl font-bold">Simulador de Validación de Administración (Modo Demo)</h3>
         </div>
         <p class="text-sm text-gray-500 mb-6">
@@ -151,16 +151,16 @@
                                 <span class="font-bold text-gray-900">{{ $pendingDoc->nombre }}</span>
                                 <span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-[10px] font-bold uppercase tracking-wider">PENDIENTE</span>
                             </div>
-                            <p class="text-xs text-gray-400 mt-1">Subido por el vendedor. Archivo: <a href="{{ asset('storage/' . $pendingDoc->ruta_archivo) }}" target="_blank" class="text-[#228b22] hover:underline font-semibold inline-flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">download</span> Descargar</a></p>
+                            <p class="text-xs text-gray-400 mt-1">Subido por el vendedor. Archivo: <a href="{{ asset('storage/' . $pendingDoc->ruta_archivo) }}" target="_blank" class="text-primary hover:underline font-semibold inline-flex items-center gap-0.5"><span class="material-symbols-outlined text-xs">download</span> Descargar</a></p>
                         </div>
                         
                         <!-- Simulation Action Form -->
                         <form action="{{ route('vendedor.documentos.simular', $pendingDoc->idDocumento) }}" method="POST" class="w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                             @csrf
-                            <input type="text" name="motivo_rechazo" placeholder="Motivo de rechazo (si aplica)" class="text-xs bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#228b22]">
+                            <input type="text" name="motivo_rechazo" placeholder="Motivo de rechazo (si aplica)" class="text-xs bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary">
                             
                             <div class="flex gap-2">
-                                <button type="submit" name="estado" value="APROBADO" class="flex-1 bg-[#228b22] text-white hover:bg-green-700 text-xs font-bold py-2 px-4 rounded-lg transition-colors">
+                                <button type="submit" name="estado" value="APROBADO" class="flex-1 bg-primary text-white hover:bg-green-700 text-xs font-bold py-2 px-4 rounded-lg transition-colors">
                                     Aprobar
                                 </button>
                                 <button type="submit" name="estado" value="RECHAZADO" class="flex-1 bg-red-600 text-white hover:bg-red-700 text-xs font-bold py-2 px-4 rounded-lg transition-colors">

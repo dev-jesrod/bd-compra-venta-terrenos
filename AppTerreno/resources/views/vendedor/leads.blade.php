@@ -136,12 +136,12 @@
                                         @if($lead->telefono)
                                             <a href="https://wa.me/{{ preg_replace('/\D/', '', $lead->telefono) }}?text=Hola%20{{ urlencode($lead->nombre) }},%20te%20contacto%20desde%20MAZ%20TERRENOS%20sobre%20el%20terreno%20'{{ urlencode($lead->terreno->nombre ?? '') }}'." 
                                                target="_blank"
-                                               class="inline-flex items-center gap-1 bg-[#228b22] text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-green-700 transition-colors shadow-sm">
+                                               class="inline-flex items-center gap-1 bg-primary text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-green-700 transition-colors shadow-sm">
                                                 <span class="material-symbols-outlined text-xs">chat</span> WhatsApp
                                             </a>
                                         @else
                                             <a href="mailto:{{ $lead->email }}?subject=Informaci%C3%B3n%20sobre%20terreno%20{{ urlencode($lead->terreno->nombre ?? '') }}"
-                                               class="inline-flex items-center gap-1 bg-[#228b22] text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-green-700 transition-colors shadow-sm">
+                                               class="inline-flex items-center gap-1 bg-primary text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-green-700 transition-colors shadow-sm">
                                                 <span class="material-symbols-outlined text-xs">mail</span> Enviar Correo
                                             </a>
                                         @endif

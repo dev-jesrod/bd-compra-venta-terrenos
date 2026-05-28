@@ -58,7 +58,7 @@
                 <!-- Text Header Details -->
                 <div class="space-y-4">
                     <span class="label-md uppercase tracking-[0.2em] text-primary font-bold text-[10px] bg-primary/10 px-3 py-1 rounded-full">{{ $badge_text ?? 'Inversión Consciente' }}</span>
-                    <h2 class="text-4xl font-body text-[#228B22] leading-tight font-semibold">{{ $property_title ?? 'Reserva Natural San Mateo' }}</h2>
+                    <h2 class="text-4xl font-body text-primary leading-tight font-semibold">{{ $property_title ?? 'Reserva Natural San Mateo' }}</h2>
                     <p class="text-on-surface-variant font-body text-sm leading-relaxed">{{ $property_subtitle ?? 'Lote Residencial Premium • 450m² • Ubicación Privilegiada' }}</p>
                 </div>
 
@@ -90,7 +90,7 @@
             <div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-12 rounded-2xl shadow-[0_24px_48px_-12px_rgba(25,28,32,0.06)] border border-outline-variant/10">
                 <div class="space-y-10">
                     <div class="text-center md:text-left">
-                        <h1 class="text-3xl font-body text-[#228B22] font-semibold">{{ $payment_title ?? 'Finalizar Pago' }}</h1>
+                        <h1 class="text-3xl font-body text-primary font-semibold">{{ $payment_title ?? 'Finalizar Pago' }}</h1>
                         <p class="text-on-surface-variant mt-2 text-sm">{{ $payment_subtitle ?? 'Seleccione su método de pago preferido para asegurar su patrimonio.' }}</p>
                     </div>
 

@@ -1,21 +1,21 @@
 <header class="fixed top-0 right-0 left-0 md:left-64 z-40 flex justify-between items-center px-4 md:px-8 h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-300">
     <div class="flex items-center w-full max-w-xl gap-3">
-        <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-[#228B22] transition-colors">
+        <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-primary transition-colors">
             <span class="material-symbols-outlined">menu</span>
         </button>
         <div class="relative w-full">
             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
             <form action="{{ route('vendedor.terrenos.index') }}" method="GET">
-                <input name="query" value="{{ request('query') }}" class="w-full pl-10 pr-4 py-2 bg-gray-100 border-none rounded-lg text-sm focus:ring-2 focus:ring-[#228B22]" placeholder="Buscar por propiedad..." type="text">
+                <input name="query" value="{{ request('query') }}" class="w-full pl-10 pr-4 py-2 bg-gray-100 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="Buscar por propiedad..." type="text">
             </form>
         </div>
     </div>
     <div class="flex items-center gap-6">
-        <button class="relative text-gray-500 hover:text-[#228B22] transition-colors">
+        <button class="relative text-gray-500 hover:text-primary transition-colors">
             <span class="material-symbols-outlined">notifications</span>
             <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
         </button>
-        <button class="text-gray-500 hover:text-[#228B22] transition-colors">
+        <button class="text-gray-500 hover:text-primary transition-colors">
             <span class="material-symbols-outlined">help</span>
         </button>
         <div class="flex items-center gap-3 pl-6 border-l border-gray-200">

@@ -56,7 +56,7 @@
                 <input type="hidden" name="nombre" value="{{ $name }}">
                 <div class="relative w-full">
                     <input type="file" name="archivo" accept=".pdf,.png,.jpg,.jpeg" onchange="if(confirm('¿Deseas subir este archivo para su revisión?')) this.form.submit(); else this.value='';" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                    <button type="button" class="w-full py-2.5 px-4 rounded-lg bg-[#228B22] text-white font-bold text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-1">
+                    <button type="button" class="w-full py-2.5 px-4 rounded-lg bg-primary text-white font-bold text-xs hover:opacity-90 transition-opacity flex items-center justify-center gap-1">
                         <span class="material-symbols-outlined text-sm">upload</span> Subir archivo
                     </button>
                 </div>

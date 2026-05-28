@@ -25,7 +25,7 @@
         <p class="text-gray-500 mt-1">Gestiona tus publicaciones y revisa el rendimiento de tus terrenos.</p>
     </div>
     <a href="{{ route('vendedor.terrenos.create') }}"
-        class="bg-[#228B22] text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-green-700 transition-all active:scale-95 shadow-lg">
+        class="bg-primary text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:bg-green-700 transition-all active:scale-95 shadow-lg">
         <span class="material-symbols-outlined">add_circle</span>
         Publicar Nuevo Terreno
     </a>
@@ -37,7 +37,7 @@
     <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
         <div class="flex justify-between items-start mb-4">
             <div class="p-3 bg-green-50 rounded-lg">
-                <span class="material-symbols-outlined text-[#228B22]">visibility</span>
+                <span class="material-symbols-outlined text-primary">visibility</span>
             </div>
             <span class="text-green-600 text-sm font-bold bg-green-50 px-2 py-1 rounded">+12%</span>
         </div>
@@ -58,7 +58,7 @@
     </div>
 
     <!-- Stat 3: Apartados Activos -->
-    <div class="bg-[#228B22] text-white p-6 rounded-xl border border-[#228B22] shadow-sm">
+    <div class="bg-primary text-white p-6 rounded-xl border border-primary shadow-sm">
         <div class="flex justify-between items-start mb-4">
             <div class="p-3 bg-white/20 rounded-lg text-white">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
@@ -74,13 +74,13 @@
     <div class="flex-1 w-full">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
             <h3 class="text-xl font-bold">Estado de Verificación del Vendedor</h3>
-            <a href="{{ route('vendedor.documentos.index') }}" class="text-xs text-[#228B22] font-bold hover:underline flex items-center gap-1">
-                <span class="material-symbols-outlined text-[#228B22]">edit</span> Gestionar Documentos
+            <a href="{{ route('vendedor.documentos.index') }}" class="text-xs text-primary font-bold hover:underline flex items-center gap-1">
+                <span class="material-symbols-outlined text-primary">edit</span> Gestionar Documentos
             </a>
         </div>
         <!-- Nivel de confianza -->
         <div class="w-full bg-gray-200 rounded-full h-3 mb-4 overflow-hidden">
-            <div class="bg-[#228B22] h-3 rounded-full transition-all duration-500" style="width: {{ $trustLevel }}%"></div>
+            <div class="bg-primary h-3 rounded-full transition-all duration-500" style="width: {{ $trustLevel }}%"></div>
         </div>
         <div class="flex flex-wrap gap-3">
             <!-- INE Badge -->
@@ -131,7 +131,7 @@
     </div>
     <div class="flex-shrink-0 text-center md:text-right min-w-[120px]">
         <p class="text-gray-400 text-xs mb-1 uppercase tracking-wider font-bold">Confianza</p>
-        <p class="text-5xl font-black text-[#228B22]">{{ $trustLevel }}%</p>
+        <p class="text-5xl font-black text-primary">{{ $trustLevel }}%</p>
     </div>
 </div>
 
@@ -139,7 +139,7 @@
 <div class="mb-12">
     <div class="flex items-center justify-between mb-6">
         <h3 class="text-2xl font-bold text-gray-900">Mis Terrenos Publicados</h3>
-        <a href="{{ route('vendedor.terrenos.index') }}" class="text-[#228B22] font-bold text-sm hover:underline flex items-center gap-1">
+        <a href="{{ route('vendedor.terrenos.index') }}" class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
             Ver todos los listados <span class="material-symbols-outlined text-xs">arrow_forward</span>
         </a>
     </div>
@@ -149,7 +149,7 @@
         <span class="material-symbols-outlined text-5xl text-gray-400 mb-4">landscape</span>
         <h4 class="text-lg font-bold text-gray-900 mb-1">Aún no has publicado ningún terreno</h4>
         <p class="text-gray-500 text-sm mb-6 max-w-md mx-auto">Comienza a publicar tus propiedades para que los clientes potenciales puedan verlas y contactarte.</p>
-        <a href="{{ route('vendedor.terrenos.create') }}" class="inline-flex items-center gap-2 bg-[#228B22] text-white px-5 py-2.5 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md">
+        <a href="{{ route('vendedor.terrenos.create') }}" class="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:bg-green-700 transition-colors shadow-md">
             <span class="material-symbols-outlined text-sm">add_circle</span> Publicar mi primer terreno
         </a>
     </div>
@@ -191,7 +191,7 @@
                         {{ number_format($terreno->largo) }}m x {{ number_format($terreno->ancho) }}m ({{ number_format($terreno->superficie) }} m²)
                     </p>
                     <h4 class="font-bold text-gray-900 line-clamp-1 mb-1">{{ $terreno->nombre }}</h4>
-                    <p class="text-[#228B22] font-extrabold text-lg mb-2">${{ number_format($terreno->precio, 2) }} MXN</p>
+                    <p class="text-primary font-extrabold text-lg mb-2">${{ number_format($terreno->precio, 2) }} MXN</p>
                 </div>
 
                 <a href="{{ route('vendedor.terrenos.edit', $terreno->idTerreno) }}"
@@ -209,7 +209,7 @@
 <div class="mb-8">
     <div class="flex items-center justify-between mb-6">
         <h3 class="text-2xl font-bold text-gray-900">Estado de Documentación</h3>
-        <a href="{{ route('vendedor.documentos.index') }}" class="text-[#228B22] font-bold text-sm hover:underline flex items-center gap-1">
+        <a href="{{ route('vendedor.documentos.index') }}" class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
             Ver Todos <span class="material-symbols-outlined text-xs">arrow_forward</span>
         </a>
     </div>
@@ -217,7 +217,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- INE Quick View -->
         <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-center gap-4 shadow-sm">
-            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-[#228B22]">
+            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-primary">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
             </div>
             <div class="flex-grow">
@@ -237,7 +237,7 @@
 
         <!-- RFC Quick View -->
         <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-center gap-4 shadow-sm">
-            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-[#228B22]">
+            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-primary">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span>
             </div>
             <div class="flex-grow">
@@ -257,7 +257,7 @@
 
         <!-- Comprobante Domicilio Quick View -->
         <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-center gap-4 shadow-sm">
-            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-[#228B22]">
+            <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-primary">
                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_pin</span>
             </div>
             <div class="flex-grow">
