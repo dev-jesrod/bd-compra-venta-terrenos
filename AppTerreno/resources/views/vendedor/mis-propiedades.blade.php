@@ -50,7 +50,7 @@
                     <div class="absolute top-4 left-4 flex flex-col gap-2">
                         <form action="{{ route('vendedor.terrenos.cambiarEstado', $terreno->idTerreno) }}" method="POST" class="inline-block">
                             @csrf
-                            <select name="estado" onchange="this.form.submit()" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border cursor-pointer focus:ring-1 focus:ring-primary focus:border-primary
+                            <select name="estado" onchange="this.form.submit()" class="text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-md border cursor-pointer focus:ring-1 focus:ring-primary focus:border-primary
                                 @if($terreno->estado === 'DISPONIBLE') bg-green-100 text-green-800 border-green-200
                                 @elseif($terreno->estado === 'EN_PROCESO') bg-amber-100 text-amber-800 border-amber-200
                                 @elseif($terreno->estado === 'RESERVADO') bg-blue-100 text-blue-800 border-blue-200

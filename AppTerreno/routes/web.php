@@ -11,6 +11,7 @@ use App\Http\Controllers\Vendedor\LeadController;
 use App\Http\Controllers\Vendedor\DocumentoController;
 use App\Http\Controllers\TerrenoController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ContactoController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/perfil-usuario', [PerfilController::class, 'usuario'])->name('perfil.usuario');
@@ -49,6 +50,11 @@ Route::get('/terrenos', [TerrenoController::class, 'index'])
 Route::get('/terrenos/{id}', [TerrenoController::class, 'show'])
     ->middleware('auth')
     ->name('terrenos.show');
+
+// Contactar vendedor / Solicitar información
+Route::post('/terrenos/{id}/contactar', [ContactoController::class, 'store'])
+    ->middleware('auth')
+    ->name('terrenos.contactar');
 
 // Login
 Route::get('/login', [UserLoginController::class, 'showLoginForm'])->name('login');

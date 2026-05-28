@@ -6,8 +6,8 @@
 @endphp
 
 @if($estadoVerificacion === 'APROBADO')
-    <span class="inline-flex items-center gap-1 bg-green-50 border border-green-200 {{ $sizes }} rounded-full font-bold uppercase tracking-wider">
-        <span class="material-symbols-outlined {{ $iconSizes }}">verified</span>
+    <span class="inline-flex items-center gap-1 bg-green-50 text-primary border border-green-200 {{ $sizes }} rounded-full font-bold uppercase tracking-wider">
+        <span class="material-symbols-outlined text-primary {{ $iconSizes }}">verified</span>
         Terreno Verificado
     </span>
 @elseif($estadoVerificacion === 'RECHAZADO')

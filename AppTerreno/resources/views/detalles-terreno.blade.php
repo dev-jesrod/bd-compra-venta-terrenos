@@ -8,6 +8,20 @@
 
 @section('content')
 <main class="pt-32 pb-24 max-w-6xl mx-auto px-6">
+    @if(session('success'))
+        <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-xl flex items-center gap-3">
+            <span class="material-symbols-outlined text-green-600">check_circle</span>
+            <span class="font-medium">{{ session('success') }}</span>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-xl flex items-center gap-3">
+            <span class="material-symbols-outlined text-red-600">error</span>
+            <span class="font-medium">{{ session('error') }}</span>
+        </div>
+    @endif
+
     <header class="text-center mb-12">
         <h1 class="text-5xl md:text-7xl mb-4 tracking-tight text-brand-green">{{ $terreno->nombre }}</h1>
         <div class="flex items-center justify-center gap-2 text-slate-500 mb-4">
@@ -146,21 +160,23 @@
                 <div class="mb-6">
                     <x-badge-verificacion :verificado="$verificado" :nivelConfianza="$nivelConfianza" tamano="md" />
                 </div>
-                <button class="w-full py-4 bg-green-700 text-white rounded-full font-body font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-green-800 transition-colors">
+                <a href="https://wa.me/52{{ preg_replace('/\D/', '', $terreno->usuario->telefono) }}?text=Hola,%20me%20interesa%20el%20terreno%20{{ urlencode($terreno->nombre) }}" target="_blank" class="w-full py-4 bg-primary text-white rounded-full font-body font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
                     <span class="material-symbols-outlined text-sm">call</span>
                     Contactar Vendedor
-                </button>
+                </a>
             </div>
             @endif
 
             <!-- Contact Form -->
             <div class="p-8 border border-gray-200 rounded-xl">
-                <h2 class="text-xl font-bold mb-6 text-gray-800">Solicitar Información</h2>
-                <form class="space-y-4">
-                    <input class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-green-700 text-sm font-body uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="NOMBRE COMPLETO" type="text" />
-                    <input class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-green-700 text-sm font-body uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="EMAIL" type="email" />
-                    <textarea class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:border-green-700 text-sm font-body uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="MENSAJE" rows="3"></textarea>
-                    <button class="w-full py-4 mt-4 bg-green-700 text-white rounded-full font-body font-extrabold text-xs uppercase tracking-[0.15em] shadow-lg shadow-green-700/20 hover:bg-green-800 transition-colors">
+                <h2 class="text-xl font-bold mb-6 text-primary">Solicitar Información</h2>
+                <form action="{{ route('terrenos.contactar', $terreno->idTerreno) }}" method="POST" class="space-y-4">
+                    @csrf
+                    <input name="nombre" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:outline-none focus:border-primary text-sm font-body text-primary uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="NOMBRE COMPLETO" type="text" required />
+                    <input name="email" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:outline-none focus:border-primary text-sm font-body text-primary uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="EMAIL" type="email" required />
+                    <input name="telefono" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:outline-none focus:border-primary text-sm font-body text-primary uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="TELÉFONO (OPCIONAL)" type="tel" />
+                    <textarea name="mensaje" class="w-full bg-transparent border-0 border-b border-gray-300 focus:ring-0 focus:outline-none focus:border-primary text-sm font-body text-primary uppercase tracking-wider px-0 py-3 placeholder:text-slate-300" placeholder="MENSAJE" rows="3"></textarea>
+                    <button class="w-full py-4 mt-4 bg-primary text-white rounded-full font-body font-extrabold text-xs uppercase tracking-[0.15em] shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">
                         ENVIAR MENSAJE
                     </button>
                 </form>
