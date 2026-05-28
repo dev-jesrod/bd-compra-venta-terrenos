@@ -110,4 +110,9 @@ class Terreno extends Model
     {
         return $this->hasMany(Lead::class, 'idTerreno', 'idTerreno');
     }
+
+    public function visitas()
+    {
+        return $this->hasMany(VisitaTerreno::class, 'idTerreno', 'idTerreno');
+    }
 }
