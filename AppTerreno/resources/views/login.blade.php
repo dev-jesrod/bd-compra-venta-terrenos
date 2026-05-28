@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 @section('title', 'Maz Terrenos - Iniciar Sesión')
 
 @php
@@ -138,6 +138,7 @@
                     <a class="hover:text-gray-600 transition-colors" href="#">Centro de Ayuda</a>
                 </nav>
             </footer>
+        </div>
         </div>
 </main>
 
