@@ -25,22 +25,20 @@ class LeadController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->get();
             
-            // Calculate dynamic funnel metrics
-            $totalVistas = $terrenos->count() * 342 + 120;
-            $whatsappConsultas = $leads->count(); // Each lead represents a generated contact query
+            // Real metrics
+            $totalVistas = Terreno::where('idUsuario', $user->idUsuario)
+                ->withCount('visitas')
+                ->get()
+                ->sum('visitas_count');
+            
+            $whatsappConsultas = $leads->count();
             $apartadosIntenciones = $terrenos->where('estado', 'RESERVADO')->count();
-
-            // Calculate conversion rates
-            $whatsappConvRate = ($totalVistas > 0) ? round(($whatsappConsultas / $totalVistas) * 100, 1) : 0;
-            $apartadoConvRate = ($whatsappConsultas > 0) ? round(($apartadosIntenciones / $whatsappConsultas) * 100, 1) : 0;
             
             return view('vendedor.leads', compact(
                 'leads',
                 'totalVistas',
                 'whatsappConsultas',
-                'apartadosIntenciones',
-                'whatsappConvRate',
-                'apartadoConvRate'
+                'apartadosIntenciones'
             ));
         } catch (\Exception $e) {
             return back()->with('error', 'Error al cargar los leads: ' . $e->getMessage());

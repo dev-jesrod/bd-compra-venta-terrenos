@@ -35,11 +35,10 @@
                 <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-700">
                     <span class="material-symbols-outlined">visibility</span>
                 </div>
-                <span class="text-green-600 text-xs font-bold bg-green-50 px-2 py-1 rounded-full">+12%</span>
             </div>
-            <p class="text-gray-500 text-sm font-medium">Vistas Totales (Simulado)</p>
+            <p class="text-gray-500 text-sm font-medium">Vistas Totales</p>
             <h2 class="text-3xl font-bold text-gray-900">{{ number_format($totalVistas) }}</h2>
-            <p class="text-[10px] text-gray-400 mt-1">Clicks en tus terrenos este mes</p>
+            <p class="text-[10px] text-gray-400 mt-1">Visitas a tus terrenos</p>
         </div>
 
         <!-- Metric 2: Consultas Recibidas -->
@@ -48,7 +47,6 @@
                 <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
                     <span class="material-symbols-outlined">forum</span>
                 </div>
-                <span class="text-green-600 text-xs font-bold bg-green-50 px-2 py-1 rounded-full">+8%</span>
             </div>
             <p class="text-gray-500 text-sm font-medium">Leads Totales</p>
             <h2 class="text-3xl font-bold text-gray-900">{{ $leads->count() }}</h2>
@@ -61,7 +59,6 @@
                 <div class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center text-amber-600">
                     <span class="material-symbols-outlined">payments</span>
                 </div>
-                <span class="text-green-600 text-xs font-bold bg-green-50 px-2 py-1 rounded-full">+15%</span>
             </div>
             <p class="text-gray-500 text-sm font-medium">Intenciones de Apartado</p>
             <h2 class="text-3xl font-bold text-gray-900">{{ $apartadosIntenciones }}</h2>
@@ -69,10 +66,9 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 gap-8">
         <!-- Listado de Leads -->
-        <div class="lg:col-span-2">
-            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-slate-50">
                     <h3 class="font-semibold text-gray-900">Leads Recientes</h3>
                     <span class="text-xs text-gray-400 font-semibold">Total: {{ $leads->count() }}</span>
@@ -158,81 +154,6 @@
                             @endforelse
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gráfico de Conversión (Panel Lateral) -->
-        <div class="lg:col-span-1">
-            <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-full flex flex-col justify-between">
-                <div>
-                    <h3 class="font-semibold text-gray-900 mb-6 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-green-700">filter_alt</span>
-                        Embudo de Conversión
-                    </h3>
-                    
-                    <div class="space-y-6">
-                        <!-- Step 1: Vistas -->
-                        <div class="relative">
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-xs font-bold text-gray-500">Vistas (Top)</span>
-                                <span class="text-sm font-black text-gray-900">{{ number_format($totalVistas) }}</span>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-8 overflow-hidden relative">
-                                <div class="bg-green-700 h-full w-full opacity-20 absolute inset-0"></div>
-                                <div class="absolute inset-0 flex items-center px-4 text-xs font-bold text-green-800">100% de Alcance</div>
-                            </div>
-                        </div>
-
-                        <!-- Transition Arrow -->
-                        <div class="flex justify-center -my-2 text-gray-300">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </div>
-
-                        <!-- Step 2: Leads -->
-                        <div class="relative">
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-xs font-bold text-gray-500">Leads Generados</span>
-                                <div class="flex flex-col items-end">
-                                    <span class="text-sm font-black text-gray-900">{{ $leads->count() }}</span>
-                                    <span class="text-[10px] text-green-600 font-bold">{{ $whatsappConvRate }}% conversión</span>
-                                </div>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-8 overflow-hidden relative">
-                                <div class="bg-green-700 h-full opacity-50 absolute left-0 top-0" style="width: {{ min(100, max(5, $whatsappConvRate * 2)) }}%"></div>
-                                <div class="absolute inset-0 flex items-center px-4 text-xs font-bold text-green-900">Interés Directo</div>
-                            </div>
-                        </div>
-
-                        <!-- Transition Arrow -->
-                        <div class="flex justify-center -my-2 text-gray-300">
-                            <span class="material-symbols-outlined">expand_more</span>
-                        </div>
-
-                        <!-- Step 3: Reservas / Apartados -->
-                        <div class="relative">
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-xs font-bold text-gray-500">Apartados Realizados</span>
-                                <div class="flex flex-col items-end">
-                                    <span class="text-sm font-black text-gray-900">{{ $apartadosIntenciones }}</span>
-                                    <span class="text-[10px] text-green-600 font-bold">{{ $apartadoConvRate }}% conversión</span>
-                                </div>
-                            </div>
-                            <div class="w-full bg-gray-100 rounded-full h-8 overflow-hidden relative">
-                                <div class="bg-green-700 h-full opacity-100 absolute left-0 top-0" style="width: {{ min(100, max(5, $apartadoConvRate * 5)) }}%"></div>
-                                <div class="absolute inset-0 flex items-center px-4 text-xs font-bold text-white">Intención de Pago</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-8 pt-6 border-t border-gray-100">
-                    <div class="bg-green-50 p-4 rounded-lg border border-green-100">
-                        <p class="text-[11px] text-green-800 font-medium leading-relaxed flex gap-1 items-start">
-                            <span class="material-symbols-outlined text-sm flex-shrink-0" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
-                            <span><span class="font-bold">Consejo:</span> Tu tasa de conversión de Vistas a Leads es del <span class="font-bold">{{ $whatsappConvRate }}%</span>. ¡Asegúrate de responder rápidamente para maximizar las reservaciones!</span>
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
