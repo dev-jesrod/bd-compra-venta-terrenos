@@ -7,16 +7,6 @@
     <!-- Left Side: Image -->
     <div class="hidden lg:block lg:w-1/2 relative">
         <img src="{{ asset('storage/registro-cliente-bg.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
-        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center px-12 text-center">
-            <div class="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center mb-6">
-                <span class="material-symbols-outlined text-white text-4xl">home_work</span>
-            </div>
-            <h2 class="text-white font-black text-4xl tracking-wide mb-4">MAZ TERRENOS</h2>
-            <p class="text-white/80 font-medium text-sm leading-relaxed">
-                Encuentra el terreno ideal para tu proyecto.<br>
-                <span class="text-white font-bold">Cientos de propiedades te esperan.</span>
-            </p>
-        </div>
     </div>
 
     <!-- Right Side: Registration Form -->
